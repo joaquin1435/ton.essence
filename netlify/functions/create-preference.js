@@ -99,11 +99,16 @@ exports.handler = async function (event) {
       return json(502, { error: "No pudimos iniciar el pago. Probá de nuevo en un momento." });
     }
 
-    // init_point = checkout de producción. sandbox_init_point = checkout de prueba
-    // (se usa mientras el Access Token configurado sea el de TEST).
-    const checkoutUrl = MP_ACCESS_TOKEN.startsWith("TEST-")
-      ? mpData.sandbox_init_point
-      : mpData.init_point;
+    // Mercado Pago ya no requiere una URL separada para pruebas: si el Access
+    // Token es de TEST, "init_point" redirige automáticamente al checkout en
+    // modo sandbox. Usamos sandbox_init_point solo como respaldo por si en
+    // algún momento la API lo vuelve a devolver.
+    const checkoutUrl = mpData.init_point || mpData.sandbox_init_point;
+
+    if (!checkoutUrl) {
+      console.error("Mercado Pago no devolvió init_point:", mpData);
+      return json(502, { error: "No pudimos iniciar el pago. Probá de nuevo en un momento." });
+    }
 
     return json(200, { init_point: checkoutUrl });
   } catch (err) {
