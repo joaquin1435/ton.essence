@@ -1,0 +1,3874 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ton Essence — Tu perfumería de confianza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14110d;
+    --bg-2: #1a1611;
+    --surface: #201b15;
+    --surface-2: #262019;
+    --line: #352e24;
+    --gold: #b9a67e;
+    --gold-bright: #ddd0ab;
+    --silver: #aab0bd;
+    --silver-bright: #d7dbe3;
+    --cream: #f2e9d8;
+    --muted: #9c8f7a;
+    --muted-2: #6f6455;
+    --ruby: #8a3b3b;
+    --green-wa: #3fae5b;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 500px at 15% -10%, rgba(200,161,84,0.08), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(200,161,84,0.05), transparent 55%),
+      var(--bg);
+    color:var(--cream);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing:0.01em;
+  }
+
+  /* ---------- ornamental divider (signature element) ---------- */
+
+  /* ---------- header ---------- */
+  header{
+    padding:20px 6vw 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .brandmark{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  .brandmark .word1{
+    font-size:22px;
+    font-weight:700;
+    color:var(--cream);
+    letter-spacing:0.02em;
+  }
+  .brandmark .word2{
+    font-size:22px;
+    font-weight:700;
+    color:var(--gold-bright);
+    letter-spacing:0.02em;
+  }
+  .header-wa{
+    display:none;
+  }
+  @media(min-width:760px){
+    .header-wa{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 18px;
+      border:1px solid var(--gold);
+      border-radius:100px;
+      color:var(--gold-bright);
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+      transition:background .2s ease, color .2s ease;
+    }
+    .header-wa:hover{ background:var(--gold); color:#1a1611; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:8vh 6vw 6vh;
+    text-align:center;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(38px, 8vw, 78px);
+    line-height:1.02;
+    margin:0 auto;
+    max-width:920px;
+    font-weight:600;
+    color:var(--cream);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-bright);
+  }
+  .hero p{
+    max-width:520px;
+    margin:22px auto 0;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.6;
+  }
+  .hero-ctas{
+    margin-top:34px;
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 26px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:14.5px;
+    text-decoration:none;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .15s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-primary{
+    background:var(--green-wa);
+    color:#0e1f13;
+  }
+  .btn-primary:hover{ box-shadow:0 8px 24px rgba(63,174,91,0.28); }
+  .btn-ghost{
+    border-color:var(--line);
+    color:var(--cream);
+    background:transparent;
+  }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold-bright); }
+
+  .ship-note{
+    margin-top:28px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12.5px;
+    color:var(--muted);
+    border:1px solid var(--line);
+    padding:8px 16px;
+    border-radius:100px;
+  }
+  .ship-note b{ color:var(--gold-bright); font-weight:700; }
+
+  /* ---------- controls ---------- */
+  .controls{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(20,17,13,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:14px 6vw;
+  }
+  .controls-inner{
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .cat-jump{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+  }
+  .cat-jump-btn{
+    padding:14px 28px;
+    border-radius:14px;
+    font-size:14.5px;
+    font-weight:700;
+    font-family:'Manrope',sans-serif;
+    letter-spacing:0.01em;
+    cursor:pointer;
+    background:var(--surface);
+    border:1px solid var(--line);
+    transition:all .15s ease;
+  }
+  .cat-jump-disenador{ color:var(--silver-bright); }
+  .cat-jump-disenador:hover{ border-color:var(--silver); }
+  .cat-jump-disenador.active{ background:var(--silver); color:#1a1611; border-color:var(--silver); }
+  .cat-jump-arabes{ color:var(--gold-bright); }
+  .cat-jump-arabes:hover{ border-color:var(--gold); }
+  .cat-jump-arabes.active{ background:var(--gold); color:#1a1611; border-color:var(--gold); }
+  .cat-jump-all{ color:var(--cream); }
+  .cat-jump-all:hover{ border-color:var(--cream); }
+  .cat-jump-all.active{ background:var(--cream); color:#1a1611; border-color:var(--cream); }
+
+  .search-chips-wrap{ display:none; }
+  .search-chips-wrap.show{ display:block; }
+
+  .search-row{
+    display:flex;
+    gap:10px;
+  }
+  .search-row input{
+    flex:1;
+    background:var(--surface);
+    border:1px solid var(--line);
+    color:var(--cream);
+    padding:12px 16px;
+    border-radius:10px;
+    font-size:15px;
+    font-family:'Manrope',sans-serif;
+    outline:none;
+  }
+  .search-row input:focus{ border-color:var(--gold); }
+  .search-row input::placeholder{ color:var(--muted-2); }
+  .count-pill{
+    display:flex;
+    align-items:center;
+    padding:0 16px;
+    font-size:13px;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .chips{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:2px;
+    scrollbar-width:thin;
+  }
+  .chips::-webkit-scrollbar{ height:4px; }
+  .chips::-webkit-scrollbar-thumb{ background:var(--line); border-radius:4px; }
+  .chip{
+    flex:0 0 auto;
+    padding:7px 14px;
+    border-radius:100px;
+    border:1px solid var(--line);
+    color:var(--muted);
+    font-size:12.5px;
+    font-weight:600;
+    cursor:pointer;
+    background:transparent;
+    white-space:nowrap;
+    transition:all .15s ease;
+  }
+  .chip:hover{ border-color:var(--gold); color:var(--gold-bright); }
+  .chip.active{ background:var(--gold); border-color:var(--gold); color:#1a1611; }
+
+  /* ---------- catalog ---------- */
+  main{
+    max-width:1180px;
+    margin:0 auto;
+    padding:40px 6vw 40px;
+  }
+  .brand-section{ margin-bottom:44px; }
+  .category-section{
+    margin-bottom:56px;
+  }
+  .category-header{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 34px;
+    padding-bottom:22px;
+    position:relative;
+  }
+  .category-header h2{
+    font-family:'Cormorant Garamond', serif;
+    font-size:40px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    margin:0 0 8px;
+    color:var(--gold-bright);
+  }
+  .category-header p{
+    font-size:14px;
+    color:var(--muted);
+    margin:0;
+  }
+  .cat-motif{
+    width:180px;
+    height:16px;
+    display:block;
+    margin:0 auto 10px;
+  }
+  .cat-motif path{ stroke:var(--gold); stroke-width:1; fill:none; }
+  .cat-motif circle{ fill:var(--gold); }
+  .cat-motif-diamond{ width:28px; height:16px; }
+  .cat-motif-diamond path{ fill:var(--silver); stroke:none; }
+  .category-header::after{
+    content:"";
+    position:absolute;
+    bottom:0; left:50%;
+    transform:translateX(-50%);
+    width:64px; height:2px;
+    background:var(--gold);
+    border-radius:2px;
+  }
+  .category-disenador .category-header h2{ color:var(--silver-bright); }
+  .category-disenador .category-header::after{ background:var(--silver); }
+  .category-disenador .brand-title h3{ color:var(--silver-bright); }
+  .category-disenador .card:hover{ border-color:var(--silver); }
+
+  .brand-title{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:6px;
+  }
+  .brand-title h3{
+    font-size:26px;
+    font-weight:600;
+    color:var(--gold-bright);
+    margin:0;
+  }
+  .brand-title .brand-count{
+    font-size:12.5px;
+    color:var(--muted-2);
+    font-family:'Manrope',sans-serif;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:12px;
+    margin-top:18px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    transition:border-color .15s ease, transform .15s ease, background .15s ease;
+  }
+  .card:hover{
+    border-color:var(--gold);
+    background:var(--surface-2);
+    transform:translateY(-2px);
+  }
+  .card.out{ opacity:0.5; }
+  .card.out:hover{ transform:none; border-color:var(--line); background:var(--surface); }
+
+  .card-img{
+    position:relative;
+    flex:0 0 auto;
+    width:54px;
+    height:54px;
+    border-radius:10px;
+    overflow:hidden;
+    background:linear-gradient(160deg, var(--surface-2), var(--bg-2));
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .card-img-fallback{
+    font-family:'Cormorant Garamond', serif;
+    font-size:20px;
+    font-weight:700;
+    color:var(--gold);
+  }
+  .card-img img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+
+  .card-body{ display:flex; align-items:center; gap:12px; min-width:0; flex:1; }
+  .card-left{ min-width:0; }
+  .card-name{
+    font-size:15px;
+    font-weight:600;
+    color:var(--cream);
+    line-height:1.3;
+    word-break:break-word;
+  }
+  .card-price{
+    font-size:15px;
+    font-weight:700;
+    color:var(--gold-bright);
+    margin-top:4px;
+  }
+  .card-price.na{ color:var(--muted-2); font-weight:600; font-size:12.5px; letter-spacing:0.04em; text-transform:uppercase; }
+  .card-cta{
+    flex:0 0 auto;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--muted);
+    text-decoration:none;
+    transition:all .15s ease;
+  }
+  .card:not(.out) .card-cta:hover{
+    background:var(--green-wa);
+    border-color:var(--green-wa);
+    color:#0e1f13;
+  }
+  .card.out .card-cta{ pointer-events:none; opacity:0.4; }
+
+  .card-actions{ display:flex; align-items:center; gap:8px; flex:0 0 auto; }
+  .card-buy-btn{
+    flex:0 0 auto;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--muted);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .card:not(.out) .card-buy-btn:hover{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:#1a1611;
+  }
+  .card.out .card-buy-btn{ pointer-events:none; opacity:0.4; }
+
+  .empty-state{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--muted);
+    display:none;
+  }
+  .empty-state.show{ display:block; }
+
+  /* ---------- floating WA button ---------- */
+  .fab{
+    position:fixed;
+    bottom:22px;
+    right:22px;
+    z-index:30;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:var(--green-wa);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    transition:transform .15s ease;
+  }
+  .fab:hover{ transform:scale(1.06); }
+
+  .fab-cart{
+    position:fixed;
+    bottom:90px;
+    right:22px;
+    z-index:30;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    transition:transform .15s ease;
+  }
+  .fab-cart:hover{ transform:scale(1.06); }
+  .fab-cart-badge{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    min-width:20px;
+    height:20px;
+    padding:0 5px;
+    border-radius:100px;
+    background:var(--ruby);
+    color:var(--cream);
+    font-size:11px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    display:none;
+  }
+  .fab-cart-badge.show{ display:flex; }
+
+  /* ---------- carrito ---------- */
+  .cart-overlay{
+    position:fixed;
+    inset:0;
+    z-index:110;
+    background:rgba(10,8,6,0.72);
+    backdrop-filter:blur(4px);
+    display:none;
+    opacity:0;
+    transition:opacity .18s ease;
+  }
+  .cart-overlay.show{ display:block; opacity:1; }
+  .cart-panel{
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    width:min(420px, 100vw);
+    background:var(--bg-2);
+    border-left:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    transform:translateX(100%);
+    transition:transform .22s ease;
+  }
+  .cart-overlay.show .cart-panel{ transform:translateX(0); }
+  .cart-head{
+    padding:20px 22px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .cart-head h3{ margin:0; font-size:22px; color:var(--cream); }
+  .cart-close{
+    width:34px; height:34px; border-radius:50%;
+    border:1px solid var(--line); background:transparent; color:var(--cream);
+    cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center;
+  }
+  .cart-items{ flex:1; overflow-y:auto; padding:14px 22px; }
+  .cart-empty{ color:var(--muted); text-align:center; padding:40px 10px; font-size:14px; }
+  .cart-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .cart-item-info{ flex:1; min-width:0; }
+  .cart-item-name{ font-size:14px; font-weight:600; color:var(--cream); word-break:break-word; }
+  .cart-item-price{ font-size:13px; color:var(--muted); margin-top:2px; }
+  .cart-item-qty{
+    display:flex; align-items:center; gap:6px;
+  }
+  .cart-item-qty button{
+    width:24px; height:24px; border-radius:6px; border:1px solid var(--line);
+    background:var(--surface); color:var(--cream); cursor:pointer; font-size:14px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .cart-item-qty span{ font-size:13px; min-width:16px; text-align:center; }
+  .cart-item-remove{
+    background:none; border:none; color:var(--muted-2); cursor:pointer; font-size:18px; padding:4px;
+  }
+  .cart-item-remove:hover{ color:var(--ruby); }
+  .cart-foot{
+    padding:18px 22px 24px;
+    border-top:1px solid var(--line);
+  }
+  .cart-total{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom:16px; font-size:15px; color:var(--cream);
+  }
+  .cart-total b{ font-size:20px; color:var(--gold-bright); }
+  .cart-pay-btn{
+    width:100%; justify-content:center; background:var(--gold); color:#1a1611; border:none;
+  }
+  .cart-pay-btn:hover{ box-shadow:0 8px 24px rgba(185,166,126,0.3); }
+  .cart-pay-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+  .cart-note{ margin-top:10px; font-size:12px; color:var(--muted-2); text-align:center; }
+
+  .toast{
+    position:fixed;
+    bottom:22px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--surface-2);
+    border:1px solid var(--gold);
+    color:var(--cream);
+    padding:12px 20px;
+    border-radius:100px;
+    font-size:13.5px;
+    z-index:120;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  .modal-buy-row{ display:flex; gap:10px; margin-top:10px; }
+  .modal-buy-row .btn{ flex:1; justify-content:center; }
+  .btn-gold{ background:var(--gold); color:#1a1611; }
+  .btn-gold:hover{ box-shadow:0 8px 24px rgba(185,166,126,0.3); }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:44px 6vw 60px;
+    text-align:center;
+  }
+  footer .foot-brand{
+    font-size:22px;
+    color:var(--gold-bright);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  footer p{
+    color:var(--muted);
+    font-size:13.5px;
+    max-width:480px;
+    margin:6px auto;
+    line-height:1.6;
+  }
+  footer .foot-cta{
+    margin-top:20px;
+  }
+
+  ::selection{ background:var(--gold); color:#1a1611; }
+
+  /* ---------- quick-view modal ---------- */
+  .card{ cursor:pointer; }
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(10,8,6,0.72);
+    backdrop-filter:blur(4px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    opacity:0;
+    transition:opacity .18s ease;
+  }
+  .modal-overlay.show{ display:flex; opacity:1; }
+  .modal-card{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px 26px 26px;
+    text-align:center;
+    transform:translateY(14px) scale(0.97);
+    opacity:0;
+    transition:transform .2s ease, opacity .2s ease;
+    max-height:90vh;
+    overflow-y:auto;
+  }
+  .modal-overlay.show .modal-card{ transform:translateY(0) scale(1); opacity:1; }
+  .modal-close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--muted);
+    font-size:15px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all .15s ease;
+  }
+  .modal-close:hover{ border-color:var(--gold); color:var(--gold-bright); }
+  .modal-img{
+    position:relative;
+    width:220px;
+    height:220px;
+    max-width:70vw;
+    max-height:70vw;
+    margin:8px auto 20px;
+    border-radius:16px;
+    overflow:hidden;
+    background:linear-gradient(160deg, var(--surface-2), var(--bg-2));
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .modal-img-fallback{
+    font-family:'Cormorant Garamond', serif;
+    font-size:64px;
+    font-weight:700;
+    color:var(--gold);
+  }
+  .modal-img img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .modal-brand{
+    font-size:12px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .modal-name{
+    font-size:26px;
+    font-weight:600;
+    color:var(--cream);
+    margin:0 0 10px;
+  }
+  .modal-price{
+    font-size:20px;
+    font-weight:700;
+    color:var(--gold-bright);
+    margin-bottom:22px;
+  }
+  .modal-price.na{ color:var(--muted-2); font-size:14px; letter-spacing:0.04em; text-transform:uppercase; }
+  .modal-notes{
+    text-align:left;
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+    margin-bottom:20px;
+    font-size:13px;
+    line-height:1.55;
+    color:var(--muted);
+    display:none;
+  }
+  .modal-notes.show{ display:block; }
+  .modal-notes-family{
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .modal-notes p{ margin:4px 0; }
+  .modal-notes b{ color:var(--cream); font-weight:600; }
+  .modal-notes-like{
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px solid var(--line);
+    color:var(--gold-bright);
+    font-weight:600;
+  }
+  .modal-wa{ width:100%; justify-content:center; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brandmark">
+    <span class="word1">Ton</span><span class="word2">Essence</span>
+  </div>
+  <a class="header-wa" id="headerWa" href="#" target="_blank" rel="noopener">
+    ✆ 11 2524-2328
+  </a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Ton Essence · Tu perfumería de confianza</div>
+  <h1>La esencia correcta,<br><em>a un mensaje de distancia</em></h1>
+  <p>Perfumes de diseñador y perfumería árabe premium, todos originales. Catálogo completo con precios actualizados — consultá y coordinamos por WhatsApp.</p>
+  <div class="hero-ctas">
+    <a class="btn btn-primary" id="heroWa" href="#" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.42-1.36c1.37.7 2.93 1.1 4.62 1.1 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.09c-1.5 0-2.9-.4-4.12-1.09l-.29-.17-3.22.81.84-3.14-.19-.32a8.03 8.03 0 0 1-1.24-4.27c0-4.46 3.63-8.09 8.13-8.09 4.5 0 8.13 3.63 8.13 8.09 0 4.46-3.63 8.18-8.04 8.18zm4.4-6.08c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.42-1.34-1.66-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+      Consultar por WhatsApp
+    </a>
+  </div>
+  <div class="ship-note">🚚 Envío <b>GRATIS</b> en Dominico y alrededores — CABA y resto del país: a coordinar</div>
+</section>
+
+<div class="controls" id="catalogo">
+  <div class="controls-inner">
+    <div class="cat-jump" id="catJump">
+      <button type="button" class="cat-jump-btn cat-jump-disenador" data-cat="disenador">Ver perfumes de Diseñador</button>
+      <button type="button" class="cat-jump-btn cat-jump-arabes" data-cat="arabes">Ver perfumes Árabes</button>
+      <button type="button" class="cat-jump-btn cat-jump-all" data-cat="__all__">Ver todos los perfumes</button>
+    </div>
+    <div class="search-chips-wrap" id="searchChipsWrap">
+      <div class="search-row">
+        <input type="text" id="search" placeholder="Buscar perfume por nombre… (ej: khamrah, oud, club)">
+        <div class="count-pill" id="countPill">— resultados</div>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div id="brandContainer"></div>
+  <div class="empty-state" id="emptyState">
+    No encontramos perfumes con ese nombre.<br>Probá con otra palabra o consultanos directo por WhatsApp.
+  </div>
+</main>
+
+<a class="fab" id="fabWa" href="#" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#0e1f13"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.42-1.36c1.37.7 2.93 1.1 4.62 1.1 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.09c-1.5 0-2.9-.4-4.12-1.09l-.29-.17-3.22.81.84-3.14-.19-.32a8.03 8.03 0 0 1-1.24-4.27c0-4.46 3.63-8.09 8.13-8.09 4.5 0 8.13 3.63 8.13 8.09 0 4.46-3.63 8.18-8.04 8.18zm4.4-6.08c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.42-1.34-1.66-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<button class="fab-cart" id="fabCart" aria-label="Ver carrito">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1611" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+  <span class="fab-cart-badge" id="fabCartBadge">0</span>
+</button>
+
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-panel">
+    <div class="cart-head">
+      <h3>Tu carrito</h3>
+      <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="cart-total">
+        <span>Total</span>
+        <b id="cartTotal">$0</b>
+      </div>
+      <button class="btn cart-pay-btn" id="cartPayBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm2 2v8h16V8H4zm0-2v.01L20 6H4z"/></svg>
+        Pagar con Mercado Pago
+      </button>
+      <div class="cart-note">Pago 100% seguro procesado por Mercado Pago</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar">✕</button>
+    <div class="modal-img" id="modalImgWrap">
+      <span class="modal-img-fallback" id="modalImgFallback"></span>
+      <img id="modalImg" alt="">
+    </div>
+    <div class="modal-info">
+      <div class="modal-brand" id="modalBrand"></div>
+      <h3 class="modal-name" id="modalName"></h3>
+      <div class="modal-price" id="modalPrice"></div>
+      <div class="modal-notes" id="modalNotes"></div>
+      <div class="modal-buy-row" id="modalBuyRow">
+        <button class="btn btn-gold" id="modalBuyNow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm2 2v8h16V8H4zm0-2v.01L20 6H4z"/></svg>
+          Comprar ahora
+        </button>
+        <button class="btn btn-ghost" id="modalAddCart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          Agregar
+        </button>
+      </div>
+      <a class="btn btn-primary modal-wa" id="modalWa" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.42-1.36c1.37.7 2.93 1.1 4.62 1.1 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.09c-1.5 0-2.9-.4-4.12-1.09l-.29-.17-3.22.81.84-3.14-.19-.32a8.03 8.03 0 0 1-1.24-4.27c0-4.46 3.63-8.09 8.13-8.09 4.5 0 8.13 3.63 8.13 8.09 0 4.46-3.63 8.18-8.04 8.18zm4.4-6.08c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.42-1.34-1.66-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+        Consultar por WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<footer>
+  <div class="foot-brand">Ton Essence</div>
+  <p>Perfumes árabes premium (Lattafa, Armaf, Afnan, Al Haramain, French Avenue, Bharara, Rasasi, Maison Alhambra, Zimaya, Orientica, Rayhaan, Al Wataniah, Riffs, Paris Corner, Fragance World y Zakat) y perfumes de diseñador originales.</p>
+  <p>Envío gratis en Dominico y alrededores. CABA y resto del país: a coordinar. Precios sujetos a variación según stock.</p>
+  <div class="foot-cta">
+    <a class="btn btn-primary" id="footWa" href="#" target="_blank" rel="noopener">✆ Escribinos: 11 2524-2328</a>
+  </div>
+</footer>
+
+<script>
+const PHONE = "5491125242328";
+
+// name, price (null = sin stock)
+const DATA = [
+["LATTAFA",[
+["Khamrah",69000],["Kingdom Masc",75000],["Kingdom Fem",72000],["Afeef",131000],
+["Musamam White",89000],["Fakhar Gold",67000],["Fakhar Mujer",79500],["Fakhar Masc",75000],
+["Fakhar Platin",69000],["Khamrah Qawha",69000],["Khamrah Dukhan",67000],["Honor & Glory",67000],
+["Oud For Glory",67000],["Sublime",67000],["Amethyst",67000],["Noble Blush",69000],
+["Qaed Al Fursan (Blanco)",62500],["Her Confession",79500],["His Confession",81500],["Asad Bourbon",79500],
+["Asad Negro",76500],["Kit Yara x4 25ml",83000],["Qaed Al Fursan",62500],["Yara Candy",67000],
+["Yara Tous",65500],["Yara Moi",65500],["Yara Rosa",69000],["Sehr",79500],
+["Emaan Azul",67000],["Khanjar",null],["Haya Mujer",76500],["Eclaire",75000],
+["Eclaire Banoffi",84500],["Eclaire Pistache",81500],["Sakeena",69000],["Pride Eternal Oud",null],
+["Pride Pisa",89000],["Maahir Black",72000],["Hayaati Preto",61000],["Asdaaf Rose",65500],
+["Ameerat Red",64000],["Hayaati Gold Elixir",61000],["Atlas",73500],["Pride Nebras",78000],
+["Ansaam Gold",72000],["Ansaam Silver",72000],["Mayar Natural Intense",67000],["Mayar Rosa",70500],
+["Mayar Cherry Intense",69000],["Hayaati Florence",62500],["Victoria",76500],["Vintage Radio",72000],
+["Al Qiam Gold",72000],["Pride Ishq Al Shuyukh Gold",75000],["Teriaq Intense",78000],["Tharwah Gold",100000],
+["Rave Now Black",70500],["Rave Now Rosa",67000],["Confidential Gold",64000],["Opulent Dubai",67000],
+["Yara Elixir",78000],["Asad Elixir",81500],["Asad Zanzibar",70500],["Emeer",84500],
+["Angham",72000],["Qimmah",67000],["Maahir Gold",72000],["Art Of Universe",83000],
+["Teriaq Fem",76500],["Ana Abiyehd Coral",62500],["Pride Shaheen Gold",70500],["Nebras Elixir",79500],
+["Al Qiam Silver",73500],["Win Trophy Gold",72000],["Musamam EDP",78000],["Hayaati Al Maleky",64000],
+["Al Noble Wazeer",69000],["Al Noble Ameer",69000],["Al Noble Safeer",69000],["Angham Second Song",76500],
+["Atheeri",117000],["Jasoor",72000],["Sheikh Al Shuyukh",62500],["Pride D'Antiquités",84500],
+["Art Of Nature I",81500],["Art Of Nature II",81500],["Artisan Ethnique",69000],["Brioche Vanille",69000],
+["Natural Oud",70500],["Eternal Vanille",83000],["Blue Saphire",72000],["Maharjan Gold",73500],
+["Maharjan Silver",73500],["Ta'weel",65500],["Qimmah Masc",62500],["Whipped Pleasure",90500],
+["Vanilla Freak",90500],["Cookie Crave",90500],["Choco Overdose",90500],["Mallow Madness",90500],
+["Berry On Top",90500],["Musamam Black Intense",92000],["Maahir Legacy",72000],["Qaed Al Untamed",62500],
+["Kit Asad x4 25ml",92000],["Pride Ishq Silver",81500],
+]],
+["ARMAF",[
+["Checkmate Queen",null],["Yum Yum",90500],["Island Bliss",84500],["Odyssey Dubai Chocolate",70500],
+["Club Intense",84500],["Club Woman",83000],["Club Intense Femenino",81500],["Mandarin Sky",75000],
+["Odyssey Limoni",72000],["Odyssey Spectra",70500],["Odyssey Homme Black",70500],["Odyssey Homme White",72000],
+["Odyssey Aqua",86000],["Odyssey Candee",72000],["Odyssey Mega",70500],["Club Sillage",86000],
+["Club Nuit Oud",101500],["Club Urban Elixir",84500],["Club Iconic",89000],["Club Untold",89000],
+["Club Milestone",83000],["Club Imperiale",86000],["Club Maleka",87500],["Club Precieux",101500],
+["Tag-Him Prestige",75000],["Tag Donna Di Terra",78000],["Private Key To My Success",100000],["Private Key To My Soul",100000],
+["Private Key To My Love",100000],["Odyssey Aoud",72000],["Marshmallow",84500],["Island Breeze",101500],
+["Beach Party",89000],["Blue Sky",null],["Odyssey Revolution Ultra Edition",73500],["Go Mango",90500],
+["Bahamas",90500],["Mandarín Sky Elixir",97000],["Tag Him",78000],["Tag Donna Colorata",79500],
+["Odyssey Black Forest",87500],["Lionheart Fem",86000],["Lionheart Masc",93500],["Club Nuit Bling",101500],
+["Checkmate King",92000],["Magnifiq",81500],["Grandeur",81500],
+]],
+["AFNAN",[
+["9pm Night Out",null],["9pm Rebel",90500],["9am Dive",81500],["9am Amarillo",83000],
+["9pm",76500],["9pm Violeta",81500],["9am Rosa",null],["9pm Elixir",86000],
+["Supremacy In Heaven",null],["Turathi Brown",null],["Turathi Blue",83000],["Turathi Electric",86000],
+["Historic Olmeda",84500],
+]],
+["AL HARAMAIN",[
+["Amber Gold 120ml",106000],["Amber Dubai Night",98500],["Amber Aqua Dubai",112500],["Amber Ruby",115500],
+["Oud Nomad",89000],["Conception",89000],["Olaf",84500],["Leif",84500],
+]],
+["FRENCH AVENUE",[
+["Liquid Brune",95500],["Veneno",98500],["Vulcan Feu",101500],["Eclair Affair",78000],
+["Aether Extrait",101500],["Vulcan Baie",86000],["Vulcan Sable",87500],["Veneno Blanco",95500],
+["Veneno Scarlet",null],["Azzure Aoud",87500],["Chaos Extrait",89000],["Irida Extrait",93500],
+["Liquid Brun Limitado 150ml",null],["Royal Blend Nero",84500],["Pinnace",93500],["Spectre Wraith",84500],
+["Vulcan Black Friday",93500],["Spectre Ghost",90500],["Cocoa Morado",97000],
+]],
+["BHARARA",[
+["Bharara King 100ml",115500],["Gold Edition",null],["Bleu",103000],["King Parfum",null],
+["Chocolate",108000],["Viking Cairo Black",106000],
+]],
+["RASASI",[
+["For Him",73500],["Elixir",83000],["Black",83000],["Fire",89000],
+["Tropical",93500],["London",97000],["Kobra",98500],["Malibu",95500],
+["Verde",93500],["Ice",93500],["For Her",73500],
+]],
+["MAISON ALHAMBRA",[
+["Jean Lowe Azure",73500],["Salvo",69000],["Jean Lowe Inmortal",73500],["Rose Petals",65500],
+["Galactic Intense",61000],["Jean Lowe Noir",72000],["L'Intrude",69000],["La Voie",67000],
+["Panther Pour Homme",65500],["Philos Pura",70500],["Sceptre Malachite",76500],["Olivia",69000],
+["La Vivacite",69000],["Pacific Blue",67000],["Alpine Homme Sport",72000],["Bad Femme",67000],
+["Chants Tenderina",67000],["Galactic Elixir",62500],["Como Moiselle",76500],["Lovely Cherie",null],
+["Philos Rosso",62500],["Glacier Bold",69000],["Jean Lowe Vibe",78000],["La Rouge Baroque Extreme",65500],
+["Delilah Blanc",81500],["Flaming Elixir",70500],["Florenza",65500],["Fusión Intense",69000],
+["Glacier Bella",67000],["Glacier Ultra",69000],["Jean Lowe Maitre",69000],["Jorge Di Profumo Deep Blue",64000],
+["Love Spark",70500],["Ópera Rouge",61000],["Opulence Leather",73500],["Salvo Intense",73500],
+["Salvo Elixir",67000],["Summer Forever",78000],["Victorioso Fearless",69000],["Victorioso Myth",69000],
+["Yeah Parfum",67000],["Yeah EDP",65500],["Your Touch F",67000],["Dark Door Sport",64000],
+["Eternal Touch",69000],["Jorge Di Profumo EDP",65500],["Leonie EDP",76500],
+]],
+["ZIMAYA",[
+["Tiramisu Caramel",78000],["Tiramisu Coco",78000],["Fatima Velvet",69000],["Fatima Pink",72000],
+]],
+["ORIENTICA",[
+["Amber Rouge",117000],
+]],
+["RAYHAAN",[
+["Elixir",86000],
+]],
+["AL WATANIAH",[
+["Sabah Al Ward Fem",64000],["Ameerati Fem",62500],["Sabah Al Ward Sugar",64000],["Sabah Al Ward Valentine",81500],
+["Sabah Al Ward Delilah",81500],
+]],
+["RIFFS",[
+["Momento",87500],["Noor",90500],["Nusuk Ateeq",null],
+]],
+["PARIS CORNER",[
+["Kahir Peach Delulu",78000],["Rifaaqat",76500],["Marshmallow Blush",84500],
+]],
+["FRAGANCE WORLD",[
+["La Uno Forever Blue",61000],["Urban Man Amaze",70500],["Urban Man Le Parfum",70500],["Urban Man Ultra",70500],
+["Urban Women Paradise",70500],["Urban Man Elixir",70500],["Champion Goat",86000],["Champion Money",86000],
+["Champion Sugar",86000],
+]],
+["ZAKAT",[
+["World Cup",151500],
+]],
+["AZZARO",[
+["The Most Wanted",212500],
+]],
+["PACO RABANNE",[
+["Invictus Parfum",218500],
+]],
+["JEAN PAUL GAULTIER",[
+["Le Male",220000],["Le Beau",226500],["Scandal Le Parfum",242000],["Le Male Elixir",237500],
+]],
+["ARMANI",[
+["Stronger With You Intensely",226500],["Acqua di Giò",234000],["Code Parfum",242000],
+]],
+["DIOR",[
+["Sauvage",226500],
+]],
+["MONTALE",[
+["Arabians Tonka",251500],
+]],
+["VALENTINO",[
+["Uomo Born in Roma Intense",304500],
+]],
+["XERJOFF",[
+["Erba Pura",359000],
+]],
+];
+
+function slug(s){
+  return s.toString()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g,"-")
+    .replace(/(^-+|-+$)/g,"");
+}
+
+// Fichas descriptivas: notas, familia olfativa y a qué diseñador se parece.
+// Se van completando de a poco (clave: "marca-slug|nombre-slug").
+const DESCRIPTIONS = {
+  "azzaro|the-most-wanted": {
+    familia: "Oriental fougère",
+    salida: "Lavanda y cardamomo",
+    corazon: "Acorde de toffee y caramelo",
+    fondo: "Sándalo, haba tonka y vainilla",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, seductor y potente"
+  },
+  "paco-rabanne|invictus-parfum": {
+    familia: "Amaderado aromático",
+    salida: "Bergamota y hoja de laurel",
+    corazon: "Jazmín",
+    fondo: "Ambroxan y pachulí",
+    parecido: null,
+    ocasion: "Día y noche, versátil, con mucha proyección"
+  },
+  "jean-paul-gaultier|le-male": {
+    familia: "Oriental fougère",
+    salida: "Menta, lavanda, cardamomo y bergamota",
+    corazon: "Canela, azahar y anís estrellado",
+    fondo: "Vainilla, haba tonka y ámbar",
+    parecido: null,
+    ocasion: "Noche, todo el año, un clásico atemporal"
+  },
+  "jean-paul-gaultier|le-beau": {
+    familia: "Amaderada aromática",
+    salida: "Bergamota, cardamomo y agua de coco",
+    corazon: "Lavanda",
+    fondo: "Cedro",
+    parecido: null,
+    ocasion: "Primavera-verano, fresco y tropical"
+  },
+  "jean-paul-gaultier|scandal-le-parfum": {
+    familia: "Floral gourmand",
+    salida: "Miel y azahar",
+    corazon: "Pachulí y haba tonka",
+    fondo: "Vainilla y benjuí",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, dulce y magnético"
+  },
+  "armani|stronger-with-you-intensely": {
+    familia: "Oriental especiado",
+    salida: "Pimienta rosa y crema de castañas",
+    corazon: "Cardamomo y lavanda",
+    fondo: "Vainilla, ámbar y haba tonka",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, cálido y envolvente"
+  },
+  "dior|sauvage": {
+    familia: "Aromática fougère",
+    salida: "Bergamota de Calabria y pimienta de Sichuan",
+    corazon: "Lavanda, pimienta rosa, geranio y elemí",
+    fondo: "Ambroxan y cedro",
+    parecido: null,
+    ocasion: "Día y noche, todo el año, el más elegido del mundo"
+  },
+  "armani|acqua-di-gio": {
+    familia: "Aromática acuática",
+    salida: "Bergamota, neroli y notas verdes",
+    corazon: "Jazmín y notas marinas",
+    fondo: "Almizcle blanco, cedro y musgo de roble",
+    parecido: null,
+    ocasion: "Día, primavera-verano, fresco y clásico"
+  },
+  "jean-paul-gaultier|le-male-elixir": {
+    familia: "Ámbar gourmand",
+    salida: "Menta y lavanda",
+    corazon: "Vainilla y miel",
+    fondo: "Haba tonka y tabaco",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, versión intensa del Le Male original"
+  },
+  "armani|code-parfum": {
+    familia: "Oriental especiado",
+    salida: "Bergamota y cardamomo",
+    corazon: "Salvia y haba tonka",
+    fondo: "Cuero y tabaco",
+    parecido: null,
+    ocasion: "Noche, elegante, para ocasiones formales"
+  },
+  "montale|arabians-tonka": {
+    familia: "Oriental gourmand",
+    salida: "Canela y dátiles",
+    corazon: "Haba tonka y jazmín",
+    fondo: "Vainilla, ámbar y benjuí",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, oriental y goloso"
+  },
+  "valentino|uomo-born-in-roma-intense": {
+    familia: "Amaderada aromática",
+    salida: "Bergamota y artemisa",
+    corazon: "Jengibre y salvia",
+    fondo: "Acorde de cuero y cedro",
+    parecido: null,
+    ocasion: "Día y noche, moderno y versátil"
+  },
+  "xerjoff|erba-pura": {
+    familia: "Cítrica frutal",
+    salida: "Bergamota y limón",
+    corazon: "Jazmín y frutas tropicales",
+    fondo: "Almizcle, vainilla y maderas blancas",
+    parecido: null,
+    ocasion: "Día, primavera-verano, fresco y muy elogiado"
+  },
+  "lattafa|khamrah": {
+    familia: "Oriental especiado gourmand",
+    salida: "Canela, nuez moscada y bergamota",
+    corazon: "Dátiles, praliné, nardo",
+    fondo: "Vainilla, haba tonka, ámbar y almizcle",
+    parecido: "Angels' Share de Kilian",
+    ocasion: "Noche, otoño-invierno, cenas y ocasiones especiales"
+  },
+  "lattafa|khamrah-qawha": {
+    familia: "Gourmand oriental con café",
+    salida: "Canela, jengibre y cardamomo",
+    corazon: "Praliné, frutas confitadas y flores blancas",
+    fondo: "Vainilla, café, haba tonka y benjuí",
+    parecido: "Black Opium de Yves Saint Laurent",
+    ocasion: "Noche, otoño-invierno, buena para boliche o salidas"
+  },
+  "lattafa|eclaire": {
+    familia: "Gourmand floral",
+    salida: "Caramelo, leche y azúcar",
+    corazon: "Miel y flores blancas",
+    fondo: "Vainilla, praliné y almizcle",
+    parecido: "La Vie est Belle de Lancôme",
+    ocasion: "Tarde-noche, todo el año, uso diario"
+  },
+  "lattafa|yara-moi": {
+    familia: "Floral cremoso",
+    salida: "Pera, casis y bergamota",
+    corazon: "Gardenia, jazmín y rosa",
+    fondo: "Vainilla, almizcle y madera de cedro",
+    parecido: "Mon Guerlain",
+    ocasion: "Día y noche, todo el año, versátil"
+  },
+  "lattafa|oud-for-glory": {
+    familia: "Oud amaderado especiado",
+    salida: "Bergamota y especias",
+    corazon: "Oud, rosa y cuero",
+    fondo: "Ámbar, sándalo y almizcle",
+    parecido: "Oud Wood de Tom Ford",
+    ocasion: "Noche, otoño-invierno, eventos formales"
+  },
+  "lattafa|kingdom-masc": {
+    familia: "Aromática",
+    salida: "Lavanda, menta y salvia",
+    corazon: "Vainilla, tabaco y azahar",
+    fondo: "Haba tonka, benjuí y ládano",
+    parecido: null,
+    ocasion: "Día y noche, oficina o salidas formales"
+  },
+  "lattafa|kingdom-fem": {
+    familia: "Floral frutal gourmand",
+    salida: "Pera, peonía y casis",
+    corazon: "Praliné, haba tonka y jazmín",
+    fondo: "Vainilla, almizcle, sándalo y ámbar",
+    parecido: null,
+    ocasion: "Uso diario, versátil todo el año"
+  },
+  "lattafa|qaed-al-fursan": {
+    familia: "Oriental amaderada",
+    salida: "Piña y azafrán",
+    corazon: "Abeto balsámico y jazmín",
+    fondo: "Cedro, ámbar y madera de oud",
+    parecido: null,
+    ocasion: "Día, primavera y otoño, uso diario"
+  },
+  "lattafa|qaed-al-untamed": {
+    familia: "Amaderado especiado gourmand",
+    salida: "Canela y nuez moscada",
+    corazon: "Especias y lavanda",
+    fondo: "Caramelo, maderas y resinas",
+    parecido: "Eros Najim de Versace (edición Medio Oriente)",
+    ocasion: "Noche, boliche, otoño-invierno"
+  },
+  "lattafa|sehr": {
+    familia: "Oriental floral / ámbar floral",
+    salida: "Almendra amarga y canela",
+    corazon: "Akigalawood, pomarosa y jazmín",
+    fondo: "Vainilla absoluta, haba tonka y ámbar",
+    parecido: null,
+    ocasion: "Todo el año, día y noche, versátil"
+  },
+  "lattafa|afeef": {
+    familia: "Floral oriental",
+    salida: "Durazno, pimienta rosa y bergamota",
+    corazon: "Nardo, azahar y jazmín",
+    fondo: "Praliné, sándalo, ámbar y pachulí",
+    parecido: null,
+    ocasion: "Día, uso diario, también sirve de noche"
+  },
+  "lattafa|asad-bourbon": {
+    familia: "Oriental especiado",
+    salida: "Lavanda, ciruela mirabel y pimienta rosa",
+    corazon: "Cacao, nuez moscada y davana",
+    fondo: "Vainilla bourbon, ámbar y vetiver",
+    parecido: "The Most Wanted de Azzaro",
+    ocasion: "Noche, otoño-invierno, ocasiones elegantes"
+  },
+  "lattafa|vanilla-freak": {
+    familia: "Gourmand dulce",
+    salida: "Cupcake",
+    corazon: "Azúcar, frosting, almendra y canela",
+    fondo: "Manteca, vainilla y almizcle",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, para amantes de lo dulce"
+  },
+  "lattafa|choco-overdose": {
+    familia: "Oriental vainilla / gourmand",
+    salida: "Chocolate fudge",
+    corazon: "Cacao y cupcake",
+    fondo: "Vainilla, caramelo y benjuí",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, muy dulce e intenso"
+  },
+  "lattafa|whipped-pleasure": {
+    familia: "Gourmand dulce",
+    salida: "Caramelo salado y pochoclo",
+    corazon: "Leche y jazmín",
+    fondo: "Haba tonka, benjuí y almizcle",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno"
+  },
+  "lattafa|mallow-madness": {
+    familia: "Gourmand frutal",
+    salida: "Frutilla y frambuesa",
+    corazon: "Malvavisco y fresia",
+    fondo: "Vainilla, crema chantilly y almizcle",
+    parecido: null,
+    ocasion: "Día, primavera-verano, uso suave y diario"
+  },
+  "lattafa|cookie-crave": {
+    familia: "Oriental vainilla / gourmand",
+    salida: "Manteca y cacao",
+    corazon: "Galleta, leche y azúcar",
+    fondo: "Crema chantilly, vainilla y sándalo",
+    parecido: null,
+    ocasion: "Tarde-noche, otoño-invierno"
+  },
+  "lattafa|ansaam-gold": {
+    familia: "Oriental floral",
+    salida: "Mandarina y pera",
+    corazon: "Notas dulces, jazmín y rosa",
+    fondo: "Almizcle, vainilla y frambuesa",
+    parecido: "Oriana de Parfums de Marly",
+    ocasion: "Día y noche, femenino y versátil"
+  },
+  "lattafa|ansaam-silver": {
+    familia: "Aromática especiada",
+    salida: "Cardamomo y bergamota",
+    corazon: "Lavanda y davana",
+    fondo: "Vainilla, ámbar y pachulí",
+    parecido: "The Most Wanted de Azzaro",
+    ocasion: "Día y noche, versátil, todo el año"
+  },
+  "lattafa|yara-candy": {
+    familia: "Floral frutal gourmand",
+    salida: "Grosellas negras y mandarina verde",
+    corazon: "Caramelo de fresa efervescente y gardenia",
+    fondo: "Vainilla, almizcle, ámbar y sándalo",
+    parecido: null,
+    ocasion: "Día, uso diario, perfil dulce y juvenil"
+  },
+  "lattafa|yara-tous": {
+    familia: "Floral tropical",
+    salida: "Mango, coco y maracuyá",
+    corazon: "Jazmín y azahar",
+    fondo: "Vainilla y cashemira",
+    parecido: null,
+    ocasion: "Primavera-verano, día"
+  },
+  "lattafa|yara-elixir": {
+    familia: "Oriental vainilla",
+    salida: "S'mores de fresa y grosellas negras",
+    corazon: "Jazmín y azahar",
+    fondo: "Vainilla, caramelo, ámbar y almizcle",
+    parecido: null,
+    ocasion: "Todo el año, día y noche — la más gourmand de la línea Yara"
+  },
+  "lattafa|maahir-black": {
+    familia: "Oud amaderado",
+    salida: "Bergamota, romero y violeta",
+    corazon: "Incienso de kyara, raíz de orris, mirra, ámbar y labdano",
+    fondo: "Oud, humo, cuero, sándalo, pachulí y cedro",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, ocasiones formales"
+  },
+  "lattafa|maahir-legacy": {
+    familia: "Aromática cítrica",
+    salida: "Lima, menta, pomelo, lavanda y piña",
+    corazon: "Bayas de enebro, romero, pimienta negra, geranio e incienso",
+    fondo: "Ambroxan, vetiver, musgo de roble, cashmeran y haba tonka",
+    parecido: null,
+    ocasion: "Día, primavera-verano, uso diario y fresco"
+  },
+  "lattafa|fakhar-platin": {
+    familia: "Aromática fougère",
+    salida: "Bergamota, pimienta rosa y cardamomo",
+    corazon: "Guayaba, lavanda y jengibre",
+    fondo: "Incienso, palo santo y sándalo",
+    parecido: "Y Elixir de Yves Saint Laurent",
+    ocasion: "Día y noche, oficina o salidas, todo el año"
+  },
+  "lattafa|noble-blush": {
+    familia: "Floral frutal gourmand",
+    salida: "Rose Milk (rosa con leche)",
+    corazon: "Merengue y almendra",
+    fondo: "Vainilla, almizcle y sándalo",
+    parecido: "Bright Crystal de Versace (versión rosa gourmand)",
+    ocasion: "Día, uso diario, perfil dulce y femenino"
+  },
+  "lattafa|asad-zanzibar": {
+    familia: "Amaderado especiado",
+    salida: "Lavanda y pimienta negra",
+    corazon: "Agua de coco, iris y sal",
+    fondo: "Vainilla e incienso",
+    parecido: null,
+    ocasion: "Días de calor, versátil, primavera-verano"
+  },
+  "lattafa|emaan-azul": {
+    familia: "Chipre floral",
+    salida: "Azahar, grosellas negras y bergamota",
+    corazon: "Nardo, jazmín y caléndula",
+    fondo: "Almizcle, vainilla, cedro y pachulí",
+    parecido: "My Way de Giorgio Armani",
+    ocasion: "Día, elegante, todo el año"
+  },
+  "lattafa|khanjar": {
+    familia: "Cuero especiado",
+    salida: "Nuez moscada, pimienta de Jamaica y jengibre",
+    corazon: "Violeta, pachulí y cachemira",
+    fondo: "Cuero, incienso, vetiver y almizcle",
+    parecido: "Ombre Leather de Tom Ford",
+    ocasion: "Noche, otoño-invierno, ocasiones elegantes"
+  },
+  "lattafa|haya-mujer": {
+    familia: "Floral afrutado",
+    salida: "Champaña, fresa, naranja tangerina, naranja sanguina y rosa",
+    corazon: "Gardenia, jazmín y orquídea de vainilla",
+    fondo: "Ámbar, sándalo y castaña",
+    parecido: null,
+    ocasion: "Día, primavera-verano, uso suave y fresco"
+  },
+  "lattafa|yara-rosa": {
+    familia: "Ámbar vainilla",
+    salida: "Orquídea, heliotropo y mandarina",
+    corazon: "Acuerdo gourmand y frutas tropicales",
+    fondo: "Vainilla, almizcle y sándalo",
+    parecido: null,
+    ocasion: "Todo el año, día y noche, femenino y dulce"
+  },
+  "lattafa|sakeena": {
+    familia: "Floral frutal gourmand",
+    salida: "Maracuyá, notas ozónicas y mandarina",
+    corazon: "Frambuesa, rosa, azahar y sal marina",
+    fondo: "Toffee, praliné, vainilla y almizcle",
+    parecido: null,
+    ocasion: "Otoño, día y noche, uso diario"
+  },
+  "lattafa|pride-pisa": {
+    familia: "Aromática frutal",
+    salida: "Mandarina, limón y bergamota",
+    corazon: "Cedro",
+    fondo: "Sándalo y ámbar",
+    parecido: "Afternoon Swim de Louis Vuitton",
+    ocasion: "Día, primavera-verano, fresco"
+  },
+  "lattafa|pride-eternal-oud": {
+    familia: "Oriental dulce",
+    salida: "Ciruela y pomelo",
+    corazon: "Heliotropo y orquídea",
+    fondo: "Ámbar, benjuí, vainilla, ládano, haba tonka y oud",
+    parecido: "Grand Soir de Maison Francis Kurkdjian",
+    ocasion: "Noche, otoño-invierno, ocasiones especiales"
+  },
+  "lattafa|pride-nebras": {
+    familia: "Oriental vainilla",
+    salida: "Bayas rojas y mandarina",
+    corazon: "Vainilla, cacao y rosa",
+    fondo: "Azúcar, haba tonka, ámbar y almizcle",
+    parecido: "Eilish de Billie Eilish",
+    ocasion: "Otoño-invierno, tardes frías, gourmand dulce"
+  },
+  "lattafa|al-qiam-gold": {
+    familia: "Amaderado oud",
+    salida: "Azafrán y frambuesa",
+    corazon: "Cuero y pachulí",
+    fondo: "Oud, madera de gaiac, benjuí, ámbar y vetiver",
+    parecido: "Ombre Nomade de Louis Vuitton",
+    ocasion: "Noche, otoño-invierno, días fríos"
+  },
+  "lattafa|al-qiam-silver": {
+    familia: "Amaderado ámbar cítrico",
+    salida: "Pomelo y jengibre",
+    corazon: "Ambroxan y sándalo",
+    fondo: "Vetiver y almizcle",
+    parecido: "Tygar de Bvlgari (Le Gemme)",
+    ocasion: "Todo el año, versátil, días de calor"
+  },
+  "lattafa|mayar-cherry-intense": {
+    familia: "Oriental vainilla",
+    salida: "Fresa y bergamota",
+    corazon: "Mermelada de cereza y cacao",
+    fondo: "Vainilla, ámbar y pachulí",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, gourmand intenso"
+  },
+  "lattafa|mayar-natural-intense": {
+    familia: "Floral acuático",
+    salida: "Mandarina verde, higo, agua de coco y melón",
+    corazon: "Flor de loto, nenúfar y jazmín",
+    fondo: "Almizcle, ambroxan, sándalo y vainilla",
+    parecido: null,
+    ocasion: "Día, primavera-verano, fresco"
+  },
+  "lattafa|confidential-gold": {
+    familia: "Oriental frutal",
+    salida: "Melocotón, pera, frutos rojos, cassis y maracuyá",
+    corazon: "Lirio de los valles y frambuesa",
+    fondo: "Almizcle, vainilla, sándalo, pachulí y heliotropo",
+    parecido: null,
+    ocasion: "Día y noche, versátil, perfil dulce tropical"
+  },
+  "lattafa|opulent-dubai": {
+    familia: "Oriental floral",
+    salida: "Mango, pomelo, limón y jengibre",
+    corazon: "Jazmín, cedro y violeta",
+    fondo: "Notas amaderadas, ámbar gris, musgo de roble y benjuí",
+    parecido: "God of Fire de Kayali",
+    ocasion: "Día, primavera-verano, fresco y frutal"
+  },
+  "lattafa|teriaq-intense": {
+    familia: "Oriental especiado",
+    salida: "Azafrán y bergamota",
+    corazon: "Licor de ciruela y canela",
+    fondo: "Ámbar, haba tonka y benjuí",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, eventos elegantes"
+  },
+  "lattafa|angham": {
+    familia: "Oriental vainilla",
+    salida: "Jengibre, mandarina y pimienta rosa",
+    corazon: "Lavanda, praliné, cacao y jazmín",
+    fondo: "Vainilla, ámbar y almizcle",
+    parecido: null,
+    ocasion: "Día y noche, femenino, gourmand versátil"
+  },
+  "lattafa|qimmah": {
+    familia: "Oriental gourmand",
+    salida: "Almendra y café",
+    corazon: "Jazmín, nardo y haba tonka",
+    fondo: "Vainilla, cacao y sándalo",
+    parecido: "Good Girl de Carolina Herrera",
+    ocasion: "Día y noche, versátil, todo el año"
+  },
+  "lattafa|qimmah-masc": {
+    familia: "Amaderado aromático",
+    salida: "Oud y cedro",
+    corazon: "Lavanda, salvia y romero",
+    fondo: "Pachulí y vetiver",
+    parecido: null,
+    ocasion: "Día, uso diario, versátil"
+  },
+  "lattafa|vintage-radio": {
+    familia: "Oriental amaderada",
+    salida: "Lavanda, salvia y bergamota",
+    corazon: "Ciruela, palo santo y pimienta negra",
+    fondo: "Sándalo y oud",
+    parecido: null,
+    ocasion: "Todo el año, día y noche, versátil"
+  },
+  "lattafa|musamam-white": {
+    familia: "Oriental floral",
+    salida: "Especias, bergamota y naranja",
+    corazon: "Coco, ylang-ylang, ambroxan y mahonial",
+    fondo: "Sándalo, almizcle y benjuí",
+    parecido: "Crystal Noir de Versace (nota de coco)",
+    ocasion: "Día y noche, versátil, todo el año"
+  },
+  "lattafa|musamam-black-intense": {
+    familia: "Amaderado aromático",
+    salida: "Lavanda, nuez moscada, salvia y bergamota",
+    corazon: "Cedro, geranio, rosyfolia y mahonial",
+    fondo: "Cacao, haba tonka, arce y pachulí",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, creación original de Lattafa"
+  },
+  "lattafa|honor-glory": {
+    familia: "Gourmand frutal especiado",
+    salida: "Piña brulée",
+    corazon: "Cúrcuma, canela, pimienta negra y benjuí",
+    fondo: "Vainilla, cashmeran, sándalo y musgo",
+    parecido: null,
+    ocasion: "Todo el año, versátil, ideal para combinar con otros perfumes"
+  },
+  "lattafa|sublime": {
+    familia: "Amaderado frutal",
+    salida: "Manzana, lichi y rosa",
+    corazon: "Ciruela y jazmín",
+    fondo: "Musgo, vainilla y pachulí",
+    parecido: "Eden Sparkling Lychee #39 de Kayali",
+    ocasion: "Todo el año, día y noche, frutal versátil"
+  },
+  "lattafa|amethyst": {
+    familia: "Ámbar vainilla",
+    salida: "Pimienta rosa y bergamota",
+    corazon: "Rosa turca, rosa búlgara y jazmín",
+    fondo: "Vainilla, ámbar y oud",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, amantes de la rosa"
+  },
+  "lattafa|her-confession": {
+    familia: "Oriental floral",
+    salida: "Místico y canela",
+    corazon: "Nardo, incienso, jazmín y mahonial",
+    fondo: "Vainilla, haba tonka y almizcle",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, elegante y sensual"
+  },
+  "lattafa|his-confession": {
+    familia: "Oriental amaderada",
+    salida: "Canela, lavanda y mandarina",
+    corazon: "Iris, benjuí, ciprés y mahonial",
+    fondo: "Vainilla, haba tonka, ámbar, incienso, cedro y pachulí",
+    parecido: null,
+    ocasion: "Día y noche, versátil, elegante"
+  },
+  "lattafa|eclaire-banoffi": {
+    familia: "Gourmand dulce",
+    salida: "Banana cream y dulce de leche",
+    corazon: "Crema batida y vainilla",
+    fondo: "Praliné, galleta y almizcle",
+    parecido: null,
+    ocasion: "Otoño-invierno, día o noche, postre goloso"
+  },
+  "lattafa|khamrah-dukhan": {
+    familia: "Oriental ahumado",
+    salida: "Especias, pimienta de Jamaica y mandarina",
+    corazon: "Incienso, ládano, azahar y pachulí",
+    fondo: "Praliné, tabaco, ámbar, haba tonka y benjuí",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, intenso y ahumado"
+  },
+  "lattafa|al-noble-wazeer": {
+    familia: "Frutal amaderado gourmand",
+    salida: "Menta, naranja, bergamota y enebro",
+    corazon: "Chocolate, caramelo, pera, iris y frambuesa",
+    fondo: "Ámbar, vainilla, sándalo, cedro y vetiver",
+    parecido: null,
+    ocasion: "Todo el año, versátil, contraste fresco y goloso"
+  },
+  "lattafa|al-noble-safeer": {
+    familia: "Aromática herbal",
+    salida: "Artemisia y bergamota",
+    corazon: "Notas herbales, verdes y especiadas",
+    fondo: "Madera de guayaco, incienso, enebro, pachulí, labdano y comino",
+    parecido: null,
+    ocasion: "Día, uso particular, perfil herbal poco convencional"
+  },
+  "lattafa|brioche-vanille": {
+    familia: "Oriental vainilla",
+    salida: "Brioche, bergamota y fresia",
+    corazon: "Abeto balsámico y heliotropo",
+    fondo: "Vainilla, benjuí y praliné",
+    parecido: null,
+    ocasion: "Otoño-invierno, gourmand acogedor, día o noche"
+  },
+  "lattafa|eternal-vanille": {
+    familia: "Oriental gourmand",
+    salida: "Zarzamora",
+    corazon: "Cocoapulse, vainilla caviar y cacao",
+    fondo: "Cedro, akigalawood, haba tonka, ambrofix, benjuí y almizcle",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, gourmand intenso"
+  },
+  "lattafa|ana-abiyehd-coral": {
+    familia: "Floral frutal",
+    salida: "Sandía, durazno y naranja",
+    corazon: "Coco y flores blancas",
+    fondo: "Almizcle, vainilla y ámbar",
+    parecido: null,
+    ocasion: "Primavera-verano, días de calor, fresco y frutal"
+  },
+  "lattafa|sheikh-al-shuyukh": {
+    familia: "Oriental amaderada",
+    salida: "Oud y cedro",
+    corazon: "Salvia, lavanda y romero",
+    fondo: "Vetiver y pachulí",
+    parecido: null,
+    ocasion: "Día y noche, versátil, perfil amaderado seco"
+  },
+  "lattafa|art-of-universe": {
+    familia: "Cítrica aromática",
+    salida: "Mandarina, bergamota, jengibre y menta",
+    corazon: "Pera y flor de azahar del naranjo",
+    fondo: "Almizcle, ámbar y cedro",
+    parecido: null,
+    ocasion: "Día, primavera-verano, fresco y dulce"
+  },
+  "lattafa|art-of-nature-i": {
+    familia: "Oriental floral",
+    salida: "Higo, ciruela y grosella negra",
+    corazon: "Cuero, ruibarbo y rosa",
+    fondo: "Oud, ámbar gris y vainilla",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, oud suave para iniciarse en el género"
+  },
+  "lattafa|tharwah-gold": {
+    familia: "Oriental floral",
+    salida: "Lavanda y bergamota",
+    corazon: "Flor de azahar del naranjo y jazmín egipcio",
+    fondo: "Vainilla, ámbar y vetiver",
+    parecido: "Libre de Yves Saint Laurent",
+    ocasion: "Otoño-invierno, elegante, para mujeres de más de 30"
+  },
+  "lattafa|rave-now-black": {
+    familia: "Amaderado aromático",
+    salida: "Piña, bergamota, manzana y grosellas negras",
+    corazon: "Rosa, abedul, jazmín de Marruecos y pachulí",
+    fondo: "Almizcle, vainilla, musgo de roble y ámbar gris",
+    parecido: null,
+    ocasion: "Uso diario, citas informales, salidas nocturnas en clima templado"
+  },
+  "lattafa|hayaati-al-maleky": {
+    familia: "Oriental especiado",
+    salida: "Nuez moscada, pimienta rosa, jengibre y bergamota",
+    corazon: "Incienso, cedro, ládano y notas amaderadas",
+    fondo: "Ámbar, almizcle y ámbar gris",
+    parecido: "Phantom de Paco Rabanne",
+    ocasion: "Noche, todo el año, buena relación calidad-precio"
+  },
+  "lattafa|hayaati-gold-elixir": {
+    familia: "Cítrico cuero gourmand",
+    salida: "Bergamota, pomelo y cassis",
+    corazon: "Cuero, melocotón y azafrán",
+    fondo: "Vainilla, ámbar, almizcle y vetiver",
+    parecido: null,
+    ocasion: "Día y noche, versátil, uso cotidiano"
+  },
+  "lattafa|atlas": {
+    familia: "Acuático amaderado",
+    salida: "Notas marinas, sal y limón",
+    corazon: "Davana e iris",
+    fondo: "Ámbar gris, musgo de roble y sándalo",
+    parecido: "Megamare de Orto Parisi",
+    ocasion: "Día, primavera-verano, aire libre y climas cálidos"
+  },
+  "lattafa|emeer": {
+    familia: "Amaderado aromático",
+    salida: "Limón, bergamota, salvia esclarea y bayas de enebro",
+    corazon: "Té blanco, sándalo, cardamomo e incienso",
+    fondo: "Ámbar gris, cedro, cashmeran y pachulí",
+    parecido: null,
+    ocasion: "Día, versátil, cítrico intenso y de larga duración"
+  },
+  "lattafa|victoria": {
+    familia: "Floral frutal gourmand",
+    salida: "Tarta de limón y merengue",
+    corazon: "Neroli",
+    fondo: "Vainilla",
+    parecido: "Devotion de Dolce & Gabbana",
+    ocasion: "Día, invierno, suave y poco empalagoso"
+  },
+  "lattafa|maharjan-gold": {
+    familia: "Especiado gourmand",
+    salida: "Pimienta y lavanda",
+    corazon: "Incienso, nardo y jazmín",
+    fondo: "Caramelo, cedro, ámbar y cachemira",
+    parecido: null,
+    ocasion: "Noche, uso diario, versátil"
+  },
+  "lattafa|maharjan-silver": {
+    familia: "Floral cítrico",
+    salida: "Bergamota y mandarina",
+    corazon: "Jazmín e iris",
+    fondo: "Almizcle, vetiver y abedul",
+    parecido: null,
+    ocasion: "Día y noche, cualquier estación, muy versátil"
+  },
+  "armaf|club-intense": {
+    familia: "Amaderado especiado / aromático frutal",
+    salida: "Piña, grosella negra, manzana, limón y bergamota",
+    corazon: "Abedul, jazmín y rosa",
+    fondo: "Almizcle, musgo de roble, vainilla y ámbar gris",
+    parecido: "Aventus de Creed",
+    ocasion: "Día y noche, todo el año, muy versátil — el clon más popular del mercado"
+  },
+  "armaf|club-urban-elixir": {
+    familia: "Aromático amaderado",
+    salida: "Bergamota, pimienta rosa, jazmín y azahar",
+    corazon: "Lavanda",
+    fondo: "Ambroxan, almizcle y maderas",
+    parecido: "Mezcla de Sauvage de Dior y Aventus de Creed",
+    ocasion: "Día, uso diario, fresco y con buena proyección"
+  },
+  "armaf|odyssey-homme-white": {
+    familia: "Oriental fougère",
+    salida: "Cardamomo, pimienta rosa y menta",
+    corazon: "Notas acuáticas, salvia y piña",
+    fondo: "Vainilla, amberwood y cedro",
+    parecido: "Stronger With You de Emporio Armani",
+    ocasion: "Día y noche, todo el año, muy elogiado dentro de la línea Odyssey"
+  },
+  "armaf|odyssey-aqua": {
+    familia: "Amaderada aromática",
+    salida: "Naranja, pomelo y abrótano",
+    corazon: "Menta y lavanda",
+    fondo: "Ambroxan, ciprés y pachulí",
+    parecido: null,
+    ocasion: "Día, oficina, fresco sin ser invasivo"
+  },
+  "armaf|checkmate-king": {
+    familia: "Oriental amaderada",
+    salida: "Mirabelle y notas afrutadas",
+    corazon: "Castaña, acuerdo gourmand y especias",
+    fondo: "Sándalo, ámbar, notas empolvadas y balsámicas",
+    parecido: "Scandal de Jean-Paul Gaultier",
+    ocasion: "Noche, otoño-invierno, citas y ocasiones sociales"
+  },
+  "armaf|checkmate-queen": {
+    familia: "Oriental floral",
+    salida: "Nardo y notas verdes",
+    corazon: "Higo y especias",
+    fondo: "Notas empolvadas y sándalo",
+    parecido: null,
+    ocasion: "Noche, elegante, mujer segura de sí misma"
+  },
+  "armaf|club-woman": {
+    familia: "Floral frutal",
+    salida: "Naranja, bergamota, pomelo y durazno",
+    corazon: "Rosa, jazmín, geranio y lichi",
+    fondo: "Pachulí, almizcle, vainilla y vetiver",
+    parecido: "Coco Mademoiselle de Chanel",
+    ocasion: "Día y noche, elegante, todo el año"
+  },
+  "armaf|island-bliss": {
+    familia: "Floral frutal tropical",
+    salida: "Bayas silvestres, bergamota, naranja y cereza",
+    corazon: "Azahar, lirio de agua, coco cremoso y flores blancas",
+    fondo: "Haba tonka, vainilla, ámbar y almizcle",
+    parecido: null,
+    ocasion: "Primavera-verano, vacaciones, fragancia tropical original de Armaf"
+  },
+  "armaf|mandarin-sky": {
+    familia: "Especiado gourmand",
+    salida: "Mandarina, naranja, azafrán y salvia",
+    corazon: "Caramelo, haba tonka y cempasúchil",
+    fondo: "Ambroxan, cedro y vetiver",
+    parecido: null,
+    ocasion: "Todo el año, día y noche, ideal para citas"
+  },
+  "armaf|odyssey-limoni": {
+    familia: "Cítrica fresca",
+    salida: "Limón, naranja dulce, mandarina y bergamota",
+    corazon: "Azahar, notas marinas y jengibre",
+    fondo: "Té, almizcle y ámbar",
+    parecido: null,
+    ocasion: "Primavera-verano, uso diario, fresco"
+  },
+  "armaf|club-milestone": {
+    familia: "Almizcle amaderado floral",
+    salida: "Notas marinas, frutas rojas y bergamota",
+    corazon: "Violeta, maderas blancas y sándalo",
+    fondo: "Almizcle, ambroxan y vetiver",
+    parecido: "Millesime Imperial de Creed",
+    ocasion: "Primavera-verano, casual, día o noche"
+  },
+  "armaf|club-untold": {
+    familia: "Amaderado especiado",
+    salida: "Azafrán y jazmín",
+    corazon: "Amberwood y ámbar gris",
+    fondo: "Resina de abeto y cedro",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, elegante"
+  },
+  "armaf|private-key-to-my-success": {
+    familia: "Aromática especiada",
+    salida: "Jengibre, bergamota y chile rojo",
+    corazon: "Especias y lavanda",
+    fondo: "Akigalawood y vetiver",
+    parecido: null,
+    ocasion: "Día, oficina, imagen de éxito y confianza"
+  },
+  "armaf|private-key-to-my-love": {
+    familia: "Floral frutal",
+    salida: "Durazno, pera, casis y maracuyá",
+    corazon: "Lirio de los valles, madera blanca y amberwood",
+    fondo: "Almizcle, sándalo, pachulí y vainilla",
+    parecido: null,
+    ocasion: "Día, femenino, frutal y cremoso"
+  },
+  "armaf|club-iconic": {
+    familia: "Oriental amaderada",
+    salida: "Pomelo, limón, menta, pimienta rosa y cilantro",
+    corazon: "Jengibre, melón, jazmín y nuez moscada",
+    fondo: "Notas amaderadas, incienso, sándalo, ámbar, cedro, pachulí y ládano",
+    parecido: "Bleu de Chanel",
+    ocasion: "Día y noche, todo el año, navaja suiza"
+  },
+  "armaf|club-sillage": {
+    familia: "Almizcle floral amaderado",
+    salida: "Bergamota, limón, lima, grosellas negras, hojas de violeta y jengibre",
+    corazon: "Rosa, iris y jazmín",
+    fondo: "Ambroxan, almizcle, sándalo y cedro",
+    parecido: null,
+    ocasion: "Día y noche, versátil, todo el año"
+  },
+  "armaf|lionheart-masc": {
+    familia: "Oriental fougère",
+    salida: "Menta y lavanda",
+    corazon: "Vainilla y benjuí",
+    fondo: "Miel, haba tonka y tabaco",
+    parecido: "Le Male Elixir de Jean-Paul Gaultier",
+    ocasion: "Noche, otoño-invierno, eventos sociales y citas"
+  },
+  "armaf|lionheart-fem": {
+    familia: "Oriental gourmand",
+    salida: "Lavanda y vainilla",
+    corazon: "Cacao y jengibre",
+    fondo: "Vainilla absoluta",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, femenino y sensual"
+  },
+  "armaf|grandeur": {
+    familia: "Floral frutal",
+    salida: "Notas florales, bergamota y rosa",
+    corazon: "Notas afrutadas y durazno",
+    fondo: "Ámbar, almizcle y pachulí",
+    parecido: null,
+    ocasion: "Otoño-invierno, dulce y floral, evitar en días de mucho calor"
+  },
+  "armaf|magnifiq": {
+    familia: "Floral cítrico",
+    salida: "Mandarina, naranja y bergamota",
+    corazon: "Rosa, jazmín, mimosa y ylang-ylang",
+    fondo: "Almizcle, pachulí, vainilla, vetiver y haba tonka",
+    parecido: null,
+    ocasion: "Día y noche, elegante, todo el año"
+  },
+  "armaf|club-intense-femenino": {
+    familia: "Chipre floral",
+    salida: "Rosa, azafrán y geranio",
+    corazon: "Nuez moscada, pimienta, violeta y alcaravea",
+    fondo: "Pachulí, oud, vainilla y ámbar",
+    parecido: "Noir de Noir de Tom Ford",
+    ocasion: "Noche, otoño-invierno, eventos formales y citas"
+  },
+  "armaf|odyssey-dubai-chocolate": {
+    familia: "Oriental vainilla",
+    salida: "Café, pistacho, avellana, praliné y knafeh",
+    corazon: "Chocolate, vainilla y cardamomo",
+    fondo: "Caramelo, amberwood y haba tonka",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, gourmand intenso"
+  },
+  "armaf|odyssey-candee": {
+    familia: "Floral dulce",
+    salida: "Fresa, frambuesa, geranio, durazno y bergamota",
+    corazon: "Caramelo, jazmín y maracuyá",
+    fondo: "Pachulí, almizcle y ámbar",
+    parecido: null,
+    ocasion: "Día, dulce y juvenil, uso diario"
+  },
+  "armaf|beach-party": {
+    familia: "Fresca frutal",
+    salida: "Frutas tropicales y pomelo",
+    corazon: "Guayaba y agua de mar",
+    fondo: "Almizcle y notas amaderadas",
+    parecido: null,
+    ocasion: "Primavera-verano, playa, fresco y frutal"
+  },
+  "armaf|go-mango": {
+    familia: "Tropical gourmand",
+    salida: "Pimienta rosa, jengibre, limón y flores blancas",
+    corazon: "Mango, haba tonka y madera seca",
+    fondo: "Vainilla, madera de guayaco, frutos secos, ámbar y almizcle",
+    parecido: null,
+    ocasion: "Verano, playa, días de mucho calor"
+  },
+  "armaf|tag-donna-di-terra": {
+    familia: "Floral especiado",
+    salida: "Pimienta rosa y cítricos",
+    corazon: "Notas especiadas y rosa",
+    fondo: "Pachulí",
+    parecido: "Twilly d'Hermès Eau Poivrée",
+    ocasion: "Día, primavera-otoño, elegante y sofisticado"
+  },
+  "armaf|island-breeze": {
+    familia: "Floral frutal",
+    salida: "Durazno y bayas silvestres",
+    corazon: "Rosa",
+    fondo: "Almizcle blanco",
+    parecido: null,
+    ocasion: "Primavera-verano, fresco y natural"
+  },
+  "armaf|blue-sky": {
+    familia: "Chipre floral",
+    salida: "Grosellas negras, piña, bergamota, manzana, mandarina, limón y pimienta rosa",
+    corazon: "Jazmín sambac y pachulí",
+    fondo: "Vainilla absoluta, ambroxan, ámbar, cedro, tabaco, orquídea y musgo",
+    parecido: null,
+    ocasion: "Día y noche, versátil, todo el año"
+  },
+  "armaf|odyssey-aoud": {
+    familia: "Amaderado especiado",
+    salida: "Azafrán, nuez moscada y lavanda",
+    corazon: "Oud y notas amaderadas",
+    fondo: "Ambroxan, almizcle y pachulí",
+    parecido: "Glorious Oud de French Avenue",
+    ocasion: "Noche, otoño-invierno, oud accesible"
+  },
+  "armaf|odyssey-mega": {
+    familia: "Amaderado aromático",
+    salida: "Bergamota, naranja, limón, jengibre y menta",
+    corazon: "Piña, salvia, enebro y geranio",
+    fondo: "Almizcle, cedro, haba tonka y vetiver",
+    parecido: null,
+    ocasion: "Día, casual, fresco y sencillo"
+  },
+  "armaf|odyssey-black-forest": {
+    familia: "Oriental vainilla",
+    salida: "Caramelo, cereza, canela, lactonas y flor blanca",
+    corazon: "Dátiles, miel y nuez moscada",
+    fondo: "Praliné, vainilla, haba tonka, notas amaderadas y almizcle",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, gourmand tipo torta selva negra"
+  },
+  "armaf|club-nuit-bling": {
+    familia: "Amaderado aromático",
+    salida: "Cítricos",
+    corazon: "Stardust y Flower Prism (acordes florales abstractos)",
+    fondo: "Maderas aterciopeladas y vainilla",
+    parecido: null,
+    ocasion: "Todo el año, versátil, luminoso y moderno"
+  },
+  "afnan|9pm": {
+    familia: "Oriental vainilla",
+    salida: "Manzana, canela, lavanda salvaje y bergamota",
+    corazon: "Azahar y muguet (lirio de los valles)",
+    fondo: "Vainilla, haba tonka, ámbar y pachulí",
+    parecido: "Le Male / Ultra Male de Jean-Paul Gaultier",
+    ocasion: "Noche, otoño-invierno, citas y salidas nocturnas"
+  },
+  "afnan|turathi-blue": {
+    familia: "Cítrica amaderada",
+    salida: "Bergamota, mandarina y pomelo",
+    corazon: "Ámbar y notas amaderadas",
+    fondo: "Almizcle, pachulí y especias",
+    parecido: "Tygar de Bvlgari (Le Gemme)",
+    ocasion: "Primavera a otoño, oficina, día a día"
+  },
+  "afnan|supremacy-in-heaven": {
+    familia: "Amaderada aromática",
+    salida: "Bergamota y mandarina",
+    corazon: "Té verde y grosellas negras",
+    fondo: "Almizcle, notas amaderadas y sándalo",
+    parecido: "Silver Mountain Water de Creed",
+    ocasion: "Día, todo el año, fresco y limpio"
+  },
+  "afnan|9am-dive": {
+    familia: "Aromática acuática",
+    salida: "Limón, menta, grosellas negras y pimienta rosa",
+    corazon: "Manzana, incienso y cedro",
+    fondo: "Jengibre, sándalo, pachulí y jazmín",
+    parecido: "Bleu de Chanel",
+    ocasion: "Día y noche, versátil, todo el año"
+  },
+  "afnan|9pm-elixir": {
+    familia: "Oriental especiado",
+    salida: "Cardamomo, nuez moscada y elemí",
+    corazon: "Pimiento morrón, lavandín y cuero",
+    fondo: "Vainilla, pachulí, ládano y heliántemo",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, versión más intensa del 9pm original"
+  },
+  "afnan|9pm-violeta": {
+    familia: "Oriental floral",
+    salida: "Frambuesa, violeta, manzana y naranja",
+    corazon: "Rosa, peonía, iris y jazmín",
+    fondo: "Ciprés, pino, ámbar y cedro",
+    parecido: "Guilty Absolute Pour Femme de Gucci",
+    ocasion: "Noche, otoño-invierno, femenino e intenso"
+  },
+  "afnan|9am-rosa": {
+    familia: "Ámbar floral",
+    salida: "Mandarina, bergamota y pomelo",
+    corazon: "Grosella negra y frambuesa",
+    fondo: "Almizcle, naranja y ámbar",
+    parecido: null,
+    ocasion: "Día, femenino, fresco y frutal"
+  },
+  "afnan|9am-amarillo": {
+    familia: "Floral amaderado",
+    salida: "Mandarina, cedrat, cardamomo y pimienta rosa",
+    corazon: "Lavanda, azahar, rosa y manzana verde",
+    fondo: "Madera de cedro, musgo, pachulí y almizcle",
+    parecido: null,
+    ocasion: "Día, unisex, versátil"
+  },
+  "al-haramain|amber-dubai-night": {
+    familia: "Oriental amaderada",
+    salida: "Azafrán, bergamota y elemí",
+    corazon: "Oud, rosa búlgara y lirio de los valles",
+    fondo: "Haba tonka, ámbar, almizcle blanco y musgo de roble",
+    parecido: null,
+    ocasion: "Noche, sofisticado y envolvente"
+  },
+  "al-haramain|amber-aqua-dubai": {
+    familia: "Aromática frutal",
+    salida: "Notas verdes, bergamota y mandarina",
+    corazon: "Melón, ámbar, grosellas negras y piña",
+    fondo: "Almizcle, petit grain, gálbano y vainilla",
+    parecido: "Imagination de Louis Vuitton",
+    ocasion: "Día, oficina, fresco y versátil"
+  },
+  "al-haramain|amber-gold-120ml": {
+    familia: "Oriental vainilla",
+    salida: "Bergamota y notas verdes",
+    corazon: "Melón, piña, ámbar y acuerdo gourmand",
+    fondo: "Vainilla, almizcle y notas amaderadas",
+    parecido: null,
+    ocasion: "Día y noche, unisex, cremoso y envolvente"
+  },
+  "al-haramain|amber-ruby": {
+    familia: "Oriental amaderada",
+    salida: "Azafrán y almendra amarga",
+    corazon: "Cedro y jazmín egipcio",
+    fondo: "Ámbar gris, notas amaderadas y almizcle",
+    parecido: "Baccarat Rouge 540 de Maison Francis Kurkdjian",
+    ocasion: "Noche, todo el año, dulce y envolvente"
+  },
+  "al-haramain|oud-nomad": {
+    familia: "Oriental amaderada",
+    salida: "Agarwood (oud) e incienso",
+    corazon: "Oud, frambuesa y rosa",
+    fondo: "Azafrán, geranio, benjuí y abedul",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, oud tradicional"
+  },
+  "al-haramain|conception": {
+    familia: "Amaderado especiado",
+    salida: "Cítricos",
+    corazon: "Neroli, canela y jengibre",
+    fondo: "Té negro, ámbar, madera de guayaco y olíbano",
+    parecido: null,
+    ocasion: "Día y noche, unisex, sofisticado"
+  },
+  "al-haramain|leif": {
+    familia: "Oriental amaderada aromática",
+    salida: "Pimienta rosa, heliotropo, bergamota y cardamomo",
+    corazon: "Almendra amarga, lavanda, geranio y jazmín",
+    fondo: "Madera de guayaco, sándalo, vainilla, ámbar y oud",
+    parecido: "Pegasus Exclusif de Parfums de Marly",
+    ocasion: "Noche, eventos y climas templados"
+  },
+  "al-haramain|olaf": {
+    familia: "Oriental floral",
+    salida: "Almendra y cítricos",
+    corazon: "Nenúfar, gardenia, algalia y rosa",
+    fondo: "Vainilla, café, ámbar y oud",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, intenso"
+  },
+  "french-avenue|liquid-brune": {
+    familia: "Amaderado",
+    salida: "Canela, azahar, cardamomo y bergamota",
+    corazon: "Vainilla bourbon y elemí",
+    fondo: "Praliné, ambroxan, madera de guayaco y almizcle",
+    parecido: "Althaïr de Parfums de Marly",
+    ocasion: "Noche, otoño-invierno, cálido y especiado"
+  },
+  "french-avenue|vulcan-feu": {
+    familia: "Floral",
+    salida: "Mango, limón, jengibre y ruibarbo",
+    corazon: "Pimienta rosa, jazmín, violeta y praliné",
+    fondo: "Haba tonka, cedro, ámbar gris y musgo",
+    parecido: null,
+    ocasion: "Día y noche, unisex, frutal y especiado"
+  },
+  "french-avenue|cocoa-morado": {
+    familia: "Oriental amaderada",
+    salida: "Canela, azafrán, nuez moscada, cardamomo, pimienta rosa y jengibre",
+    corazon: "Oud, dátiles, mirra, incienso, caña de azúcar, caramelo y davana",
+    fondo: "Cuero, vainilla de Madagascar, manteca de cacao, benjuí, haba tonka, ládano, pachulí y almizcle",
+    parecido: "Oud Cadenza de Maison Crivelli",
+    ocasion: "Noche, otoño-invierno, ocasiones especiales"
+  },
+  "french-avenue|veneno-blanco": {
+    familia: "Floral",
+    salida: "Neroli, leche y bergamota",
+    corazon: "Flores blancas, flor de tiaré y ylang-ylang",
+    fondo: "Coco, vainilla, ládano y madera de gaiac",
+    parecido: null,
+    ocasion: "Primavera-verano, cremoso y tropical"
+  },
+  "french-avenue|irida-extrait": {
+    familia: "Floral frutal",
+    salida: "Cereza y jengibre",
+    corazon: "Jazmín",
+    fondo: "Pimienta rosa, almizcle y ámbar",
+    parecido: "Electric Cherry de Tom Ford",
+    ocasion: "Primavera-verano, fresco y frutal"
+  },
+  "french-avenue|azzure-aoud": {
+    familia: "Oriental",
+    salida: "Maracuyá, notas afrutadas, rosa y azafrán",
+    corazon: "Oud, benjuí y pachulí",
+    fondo: "Cuero, madera de guayaco, ámbar, cedro, vainilla, sándalo y ládano",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, oud intenso"
+  },
+  "french-avenue|aether-extrait": {
+    familia: "Aromática frutal",
+    salida: "Manzana verde, bergamota y mandarina",
+    corazon: "Cedro, petitgrain, cashmeran y violeta",
+    fondo: "Almizcle, musgo de roble y amberwood",
+    parecido: "Greenley de Parfums de Marly",
+    ocasion: "Primavera-verano, día, fresco"
+  },
+  "french-avenue|eclair-affair": {
+    familia: "Floral frutal gourmand",
+    salida: "Jazmín, vaina de vainilla y leche de coco",
+    corazon: "Caramelo y ámbar",
+    fondo: "Almizcle, haba tonka y vainilla",
+    parecido: "Bianco Latte de Giardini di Toscana",
+    ocasion: "Todo el año, dulce y cremoso"
+  },
+  "french-avenue|royal-blend-nero": {
+    familia: "Oriental especiado",
+    salida: "Nuez moscada, manzana y bergamota",
+    corazon: "Canela, madera seca y azafrán",
+    fondo: "Vainilla, haba tonka, benjuí y almizcle",
+    parecido: "Elysium de Roja Parfums",
+    ocasion: "Noche, otoño-invierno, ocasiones especiales"
+  },
+  "french-avenue|spectre-ghost": {
+    familia: "Amaderado aromático",
+    salida: "Jengibre, cardamomo y bergamota",
+    corazon: "Pimienta rosa, grosellas negras y rosa",
+    fondo: "Vainilla, cedro y pachulí",
+    parecido: "Ani de Nishane",
+    ocasion: "Día a día, versátil, gourmand con toque fresco"
+  },
+  "french-avenue|spectre-wraith": {
+    familia: "Amaderado acuático",
+    salida: "Ron y especias",
+    corazon: "Café, sándalo, pachulí y vetiver",
+    fondo: "Caña de azúcar",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, oscuro y boozy"
+  },
+  "french-avenue|vulcan-baie": {
+    familia: "Floral frutal",
+    salida: "Grosella negra, zarzamora, bergamota y romero",
+    corazon: "Frambuesa, vodka, lirio de los valles y albahaca",
+    fondo: "Fresa, melocotón, sándalo, incienso, ámbar, pachulí y almizcle",
+    parecido: null,
+    ocasion: "Primavera-verano, alegre y afrutado"
+  },
+  "bharara|gold-edition": {
+    familia: "Oriental vainilla",
+    salida: "Naranja dulce, bergamota, cítricos y limón",
+    corazon: "Notas afrutadas, coco y frutas rojas",
+    fondo: "Vainilla, notas orientales, ámbar y almizcle blanco",
+    parecido: "Bleu de Chanel / Y de Yves Saint Laurent",
+    ocasion: "Día y noche, dulce y cítrico, todo el año"
+  },
+  "bharara|viking-cairo-black": {
+    familia: "Cítrica aromática",
+    salida: "Mandarina, jengibre y limón",
+    corazon: "Acorde fougère, haba tonka, lavanda, violeta y magnolia",
+    fondo: "Vetiver, ámbar, pachulí y almizcle",
+    parecido: "L'Immensité de Louis Vuitton",
+    ocasion: "Día, oficina, cítrico y fresco"
+  },
+  "bharara|chocolate": {
+    familia: "Oriental gourmand",
+    salida: "Bergamota, canela y cardamomo",
+    corazon: "Dátil, praliné, tuberosa, coñac y acorde de cuero",
+    fondo: "Benjuí, vainilla, haba tonka, almizcle y oud",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, gourmand lujoso"
+  },
+  "bharara|bharara-king-100ml": {
+    familia: "Cítrica frutal",
+    salida: "Naranja, bergamota y limón",
+    corazon: "Notas frutales tropicales",
+    fondo: "Almizcle y vainilla",
+    parecido: "Erba Pura de Xerjoff",
+    ocasion: "Día, primavera-verano, muy versátil y juvenil"
+  },
+  "bharara|bleu": {
+    familia: "Aromática especiada",
+    salida: "Naranja, bergamota y limón",
+    corazon: "Bayas silvestres",
+    fondo: "Almizcle blanco, vainilla y ámbar",
+    parecido: "Layton de Parfums de Marly",
+    ocasion: "Día y noche, todo el año, versátil"
+  },
+  "bharara|king-parfum": {
+    familia: "Cítrica frutal",
+    salida: "Naranja, bergamota y limón",
+    corazon: "Notas frutales tropicales",
+    fondo: "Almizcle y vainilla",
+    parecido: "Erba Pura de Xerjoff",
+    ocasion: "Día, primavera-verano — versión Parfum, más concentrada"
+  },
+  "rasasi|for-him": {
+    familia: "Aromática acuática",
+    salida: "Bergamota, manzana, canela y limón",
+    corazon: "Notas acuáticas, ciruela, azahar y cardamomo",
+    fondo: "Ámbar gris, almizcle, madera a la deriva y pachulí",
+    parecido: null,
+    ocasion: "Día, primavera-verano, fresco y versátil"
+  },
+  "rasasi|ice": {
+    familia: "Aromática",
+    salida: "Manzana, limón italiano, bergamota de Sicilia y anís estrellado",
+    corazon: "Ciruela, azahar y cardamomo",
+    fondo: "Almizcle, ámbar, madera a la deriva y musgo",
+    parecido: "Invictus de Paco Rabanne",
+    ocasion: "Día, entretiempo, dulce y fresco"
+  },
+  "rasasi|black": {
+    familia: "Aromática frutal",
+    salida: "Bergamota, piña y pomelo",
+    corazon: "Pachulí, musgo de roble y jazmín",
+    fondo: "Ambroxan y maderas",
+    parecido: "Hacivat de Nishane (estilo Aventus)",
+    ocasion: "Primavera-verano, tardes, potente y duradero"
+  },
+  "rasasi|elixir": {
+    familia: "Gourmand oriental",
+    salida: "Artemisa, bergamota y menta verde",
+    corazon: "Chocolate amargo, lavanda y benjuí",
+    fondo: "Almizcle blanco, haba tonka y vainilla",
+    parecido: "Le Male Elixir de Jean-Paul Gaultier",
+    ocasion: "Noche, citas, sensual y cálido"
+  },
+  "rasasi|fire": {
+    familia: "Ambarado especiado",
+    salida: "Salvia esclarea",
+    corazon: "Jazmín egipcio y notas marinas",
+    fondo: "Ámbar gris, ámbar y notas minerales",
+    parecido: null,
+    ocasion: "Noche, energético e intenso"
+  },
+  "rasasi|kobra": {
+    familia: "Cítrica amaderada",
+    salida: "Jengibre, bergamota y mandarina",
+    corazon: "Canela, neroli y té verde",
+    fondo: "Almizcle, notas amaderadas y ámbar",
+    parecido: null,
+    ocasion: "Día, limpio y fresco, muy versátil"
+  },
+  "rasasi|malibu": {
+    familia: "Aromática",
+    salida: "Piña, naranja y pomelo",
+    corazon: "Iris, ámbar y lavanda",
+    fondo: "Haba tonka, almizcle, pachulí y cashmeran",
+    parecido: null,
+    ocasion: "Verano, tropical y cremoso"
+  },
+  "rasasi|london": {
+    familia: "Floral amaderada",
+    salida: "Pimienta rosa, pera y azafrán",
+    corazon: "Incienso, rosa y flores blancas",
+    fondo: "Maderas rubias, almizcle, ámbar y vainilla",
+    parecido: null,
+    ocasion: "Noche, poco convencional dentro de la línea Hawas"
+  },
+  "rasasi|tropical": {
+    familia: "Aromática verde",
+    salida: "Agua de coco, hoja de higuera y jengibre",
+    corazon: "Coco, higo y menta",
+    fondo: "Sándalo, haba tonka y almizcle",
+    parecido: "Paradise Garden de Jean-Paul Gaultier",
+    ocasion: "Primavera-verano, tropical y fresco"
+  },
+  "rasasi|verde": {
+    familia: "Cítrica aromática",
+    salida: "Lima y manzana verde",
+    corazon: "Romero y pachulí",
+    fondo: "Ámbar",
+    parecido: "Torino 21 de Xerjoff",
+    ocasion: "Día, primavera-verano, fresco y herbal"
+  },
+  "rasasi|for-her": {
+    familia: "Floral frutal gourmand",
+    salida: "Granada, manzana y pomelo",
+    corazon: "Iris, jazmín sambac y cítricos",
+    fondo: "Praliné, pachulí y vetiver",
+    parecido: "La Vie Est Belle de Lancôme",
+    ocasion: "Día y noche, femenino, dulce y elegante"
+  },
+  "maison-alhambra|jean-lowe-inmortal": {
+    familia: "Oriental ámbar",
+    salida: "Jengibre, pomelo y bergamota",
+    corazon: "Romero, notas acuáticas, salvia y geranio",
+    fondo: "Ambroxan, ámbar y ládano",
+    parecido: "Tygar de Bvlgari",
+    ocasion: "Día, versátil, cítrico-amaderado"
+  },
+  "maison-alhambra|opulence-leather": {
+    familia: "Cuero especiado",
+    salida: "Cardamomo",
+    corazon: "Cuero y jazmín sambac",
+    fondo: "Ámbar, musgo y pachulí",
+    parecido: "Ombré Leather de Tom Ford",
+    ocasion: "Noche, otoño-invierno, elegante y con presencia"
+  },
+  "maison-alhambra|como-moiselle": {
+    familia: "Oriental floral",
+    salida: "Bergamota, naranja, mandarina y azahar",
+    corazon: "Rosa turca, jazmín, mimosa y ylang-ylang",
+    fondo: "Pachulí, vetiver, vainilla, almizcle blanco, haba tonka y opoponax",
+    parecido: "Coco Mademoiselle de Chanel",
+    ocasion: "Día y noche, elegante, todo el año"
+  },
+  "maison-alhambra|rose-petals": {
+    familia: "Floral oriental",
+    salida: "Rosa de mayo y rosa búlgara",
+    corazon: "Rosa turca y azafrán",
+    fondo: "Pachulí, vainilla y haba tonka",
+    parecido: null,
+    ocasion: "Todo el año, dulce y cremoso, perfil rosa"
+  },
+  "maison-alhambra|panther-pour-homme": {
+    familia: "Amaderado aromático",
+    salida: "Ralladura de limón, lavanda y limón de Amalfi",
+    corazon: "Lavanda, manzana, pachulí, humo y notas terrosas",
+    fondo: "Vainilla, lavanda y vetiver",
+    parecido: "Phantom de Paco Rabanne",
+    ocasion: "Todo el año excepto mucho calor, versátil"
+  },
+  "maison-alhambra|salvo": {
+    familia: "Aromática fougère",
+    salida: "Bergamota",
+    corazon: "Lavanda y pimienta",
+    fondo: "Ambroxan",
+    parecido: "Sauvage EDT de Dior",
+    ocasion: "Todo el año, versátil, uso diario"
+  },
+  "maison-alhambra|salvo-intense": {
+    familia: "Aromática",
+    salida: "Bergamota",
+    corazon: "Lavanda, pimienta de Sichuan, anís estrellado y nuez moscada",
+    fondo: "Ambroxan y vainilla",
+    parecido: "Paradise Garden de Jean-Paul Gaultier",
+    ocasion: "Día y noche, dulce y aromático"
+  },
+  "maison-alhambra|salvo-elixir": {
+    familia: "Oriental fougère",
+    salida: "Pimienta negra, tabaco y piña",
+    corazon: "Pachulí, iris y café",
+    fondo: "Notas amaderadas, ámbar, vainilla, benjuí y ládano",
+    parecido: "Sauvage Elixir de Dior",
+    ocasion: "Noche, otoño-invierno, intenso"
+  },
+  "maison-alhambra|l-intrude": {
+    familia: "Floral",
+    salida: "Pera y bergamota",
+    corazon: "Nardo, azahar y jazmín sambac",
+    fondo: "Pachulí, ambroxan, vainilla y vetiver",
+    parecido: "L'Interdit de Givenchy",
+    ocasion: "Día y noche, sensual, atalcado"
+  },
+  "maison-alhambra|olivia": {
+    familia: "Almizcle floral amaderado",
+    salida: "Jazmín, mandarina, azucena y jengibre",
+    corazon: "Sal y vainilla",
+    fondo: "Ámbar gris y sándalo",
+    parecido: "Olympéa de Paco Rabanne",
+    ocasion: "Día y noche, salado y dulce a la vez"
+  },
+  "maison-alhambra|pacific-blue": {
+    familia: "Cítrica floral",
+    salida: "Bergamota, mandarina, limón, naranja amarga, lavanda, romero y mirto",
+    corazon: "Azahar africano, neroli, jazmín y pittosporum",
+    fondo: "Ámbar, ambrette y angélica",
+    parecido: "Neroli Portofino de Tom Ford",
+    ocasion: "Primavera-verano, limpio y fresco"
+  },
+  "maison-alhambra|delilah-blanc": {
+    familia: "Floral frutal",
+    salida: "Bergamota, durazno blanco y mandarina",
+    corazon: "Azahar y vetiver",
+    fondo: "Almizcle y vainilla",
+    parecido: "Valaya de Parfums de Marly",
+    ocasion: "Día, primavera-verano, fresco y femenino"
+  },
+  "maison-alhambra|la-voie": {
+    familia: "Floral",
+    salida: "Azahar y bergamota",
+    corazon: "Nardo y jazmín de la India",
+    fondo: "Vainilla de Madagascar, almizcle blanco y cedro de Virginia",
+    parecido: "My Way de Giorgio Armani",
+    ocasion: "Primavera, delicado y muy floral"
+  },
+  "maison-alhambra|lovely-cherie": {
+    familia: "Oriental gourmand",
+    salida: "Almendra amarga y rosa",
+    corazon: "Cereza, cereza negra y ámbar",
+    fondo: "Haba tonka, tofe y bálsamo del Perú",
+    parecido: "Lost Cherry de Tom Ford",
+    ocasion: "Noche, otoño-invierno, dulce y goloso"
+  },
+  "maison-alhambra|bad-femme": {
+    familia: "Floral frutal gourmand",
+    salida: "Bergamota, almendra, café y limón",
+    corazon: "Nardo, azahar, jazmín sambac, rosa de Bulgaria y raíz de lirio",
+    fondo: "Haba tonka, vainilla, almizcle, cacao, praliné, sándalo, madera de cachemira, ámbar, pachulí, cedro y canela",
+    parecido: null,
+    ocasion: "Día y noche, dulce, gourmand complejo"
+  },
+  "maison-alhambra|opera-rouge": {
+    familia: "Oriental floral gourmand",
+    salida: "Cereza y mandarina verde",
+    corazon: "Jazmín, azahar y té negro",
+    fondo: "Vainilla de Madagascar, café y pachulí",
+    parecido: "Black Opium Over Red de Yves Saint Laurent",
+    ocasion: "Noche, otoño-invierno, cálido y goloso"
+  },
+  "maison-alhambra|florenza": {
+    familia: "Floral",
+    salida: "Cítricos, mandarina y peonía",
+    corazon: "Rosa y osmanto",
+    fondo: "Pimienta rosa, pachulí y sándalo",
+    parecido: null,
+    ocasion: "Noche, original dentro de la marca"
+  },
+  "maison-alhambra|victorioso-myth": {
+    familia: "Aromática acuática",
+    salida: "Notas marinas, sal y pomelo",
+    corazon: "Laurel, geranio y especias",
+    fondo: "Madera de guayaco y ámbar",
+    parecido: "Invictus Legend de Paco Rabanne",
+    ocasion: "Día, fresco, tipo salida de ducha"
+  },
+  "maison-alhambra|fusion-intense": {
+    familia: "Cuero",
+    salida: "Lavanda y esclarea",
+    corazon: "Almendra amarga, cuero, vainilla y raíz de lirio",
+    fondo: "Cuero, maderas blancas, haba tonka, cachemira y ámbar",
+    parecido: "Fucking Fabulous de Tom Ford",
+    ocasion: "Noche, otoño-invierno, complejo y elegante"
+  },
+  "maison-alhambra|yeah-parfum": {
+    familia: "Aromática",
+    salida: "Manzana, aldehídos, jengibre y pomelo",
+    corazon: "Lavanda, salvia y geranio",
+    fondo: "Haba tonka, incienso, cedro y pachulí",
+    parecido: "Y de Yves Saint Laurent",
+    ocasion: "Día, fresco y elegante"
+  },
+  "maison-alhambra|glacier-bella": {
+    familia: "Floral frutal",
+    salida: "Pera verde",
+    corazon: "Bergamota",
+    fondo: "Vainilla",
+    parecido: "La Belle de Jean Paul Gaultier",
+    ocasion: "Día, primavera-verano, dulce y ligero"
+  },
+  "maison-alhambra|glacier-bold": {
+    familia: "Aromática fougère gourmand",
+    salida: "Limón, toronja y menta",
+    corazon: "Lavanda, geranio y jengibre",
+    fondo: "Vetiver, cedro y almizcle",
+    parecido: "Le Beau Le Parfum de Jean-Paul Gaultier",
+    ocasion: "Día, primavera-verano, fresco y dulce"
+  },
+  "maison-alhambra|glacier-ultra": {
+    familia: "Especiado aromático",
+    salida: "Canela, pimienta y limón",
+    corazon: "Lavanda, salvia esclarea y pachulí",
+    fondo: "Vainilla, ámbar y cedro",
+    parecido: "Ultra Male de Jean-Paul Gaultier",
+    ocasion: "Día y noche, cálido y especiado"
+  },
+  "maison-alhambra|philos-rosso": {
+    familia: "Oriental floral",
+    salida: "Frambuesa y limón siciliano",
+    corazon: "Jazmín y rosa",
+    fondo: "Ámbar, vainilla y almizcle",
+    parecido: null,
+    ocasion: "Día y noche, dulce y frutal"
+  },
+  "maison-alhambra|philos-pura": {
+    familia: "Aromática frutal",
+    salida: "Naranja, bergamota y limón",
+    corazon: "Frutas",
+    fondo: "Vainilla de Madagascar, almizcle blanco y ámbar",
+    parecido: "Erba Pura de Xerjoff",
+    ocasion: "Día, primavera-verano, cítrico y dulce"
+  },
+  "maison-alhambra|sceptre-malachite": {
+    familia: "Oriental amaderada",
+    salida: "Mandarina verde, bergamota y grosella negra",
+    corazon: "Notas aromáticas y especiadas, jazmín, pimienta rosa y lavanda",
+    fondo: "Ámbar, almizcle, notas amaderadas y vetiver",
+    parecido: "God of Fire de Stéphane Humbert Lucas 777",
+    ocasion: "Día y noche, frutal y único"
+  },
+  "maison-alhambra|alpine-homme-sport": {
+    familia: "Amaderado aromático",
+    salida: "Mandarina, menta, ciprés y salvia",
+    corazon: "Cedro y pimienta",
+    fondo: "Haba tonka, almizcle y sándalo",
+    parecido: "Allure Homme Sport de Chanel",
+    ocasion: "Día, primavera-verano, deportivo y fresco"
+  },
+  "maison-alhambra|jean-lowe-vibe": {
+    familia: "Amaderado aromático",
+    salida: "Menta, citron, limón, naranja, grosella negra y cilantro",
+    corazon: "Albaricoque, albahaca, rosa de mayo y semillas de zanahoria",
+    fondo: "Higo, ambrette y dátiles",
+    parecido: null,
+    ocasion: "Todo el año, cítrico verde, unisex"
+  },
+  "maison-alhambra|jean-lowe-maitre": {
+    familia: "Floral oriental",
+    salida: "Jarabe de grosella negra y notas acuáticas",
+    corazon: "Rosa, ciclamen y jazmín sambac",
+    fondo: "Oud, pachulí, incienso y benjuí",
+    parecido: null,
+    ocasion: "Noche, femenino, rosa con oud"
+  },
+  "maison-alhambra|dark-door-sport": {
+    familia: "Amaderado aromático",
+    salida: "Limón, pomelo, resina de elemi y bergamota",
+    corazon: "Jengibre, cedro y vetiver",
+    fondo: "Romero, lavanda y sándalo",
+    parecido: "Dior Homme Sport",
+    ocasion: "Día, uso diario, fresco y económico"
+  },
+  "maison-alhambra|love-spark": {
+    familia: "Oriental floral",
+    salida: "Cereza y jengibre",
+    corazon: "Jazmín sambac",
+    fondo: "Almizcle, pimienta rosa y ambrettolide",
+    parecido: "Electric Cherry de Tom Ford",
+    ocasion: "Noche, otoño-invierno, frutal y sensual"
+  },
+  "maison-alhambra|summer-forever": {
+    familia: "Floral frutal gourmand",
+    salida: "Flores blancas y ciruela",
+    corazon: "Ládano, jazmín y davana",
+    fondo: "Frambuesa, benjuí, ámbar y pachulí",
+    parecido: null,
+    ocasion: "Primavera-verano, femenino y frutal"
+  },
+  "maison-alhambra|chants-tenderina": {
+    familia: "Floral frutal",
+    salida: "Bergamota, flor del pomelo y durazno",
+    corazon: "Rosa, jazmín e iris",
+    fondo: "Almizcle blanco, vainilla, vetiver y pachulí",
+    parecido: "Chance Eau Tendre de Chanel",
+    ocasion: "Primavera-verano-otoño, elegante, para salidas"
+  },
+  "maison-alhambra|flaming-elixir": {
+    familia: "Oriental especiado",
+    salida: "Especias",
+    corazon: "Jazmín sambac",
+    fondo: "Ambrettolide, pimienta rosa y almizcle",
+    parecido: "Cherry Smoke de Tom Ford",
+    ocasion: "Noche, otoño-invierno, especiado y dulce"
+  },
+  "maison-alhambra|jorge-di-profumo-deep-blue": {
+    familia: "Aromática acuática",
+    salida: "Notas marinas, aquozone, bergamota y mandarina verde",
+    corazon: "Romero, lavanda, ciprés y resina de lentisco",
+    fondo: "Notas minerales, almizcle, ámbar y pachulí",
+    parecido: "Acqua di Giò Profondo de Giorgio Armani",
+    ocasion: "Primavera-verano, día, fresco y marino"
+  },
+  "maison-alhambra|la-vivacite": {
+    familia: "Floral frutal",
+    salida: "Grosella negra y pera",
+    corazon: "Iris, azahar y jazmín",
+    fondo: "Pachulí, haba tonka, praliné y vainilla",
+    parecido: "La Vie Est Belle de Lancôme",
+    ocasion: "Día, versátil, dulce y floral"
+  },
+  "maison-alhambra|galactic-elixir": {
+    familia: "Oriental",
+    salida: "Tabaco y miel",
+    corazon: "Cacao, vainilla y pachulí",
+    fondo: "Ámbar, sándalo y styrax",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, tabaco gourmand"
+  },
+  "maison-alhambra|leonie-edp": {
+    familia: "Floral",
+    salida: "Lavanda, mandarina, petit grain y grosellas negras",
+    corazon: "Azahar, lavanda y jazmín",
+    fondo: "Almizcle, vainilla, cedro y ámbar gris",
+    parecido: "Libre de Yves Saint Laurent",
+    ocasion: "Día y noche, elegante, todo el año"
+  },
+  "maison-alhambra|your-touch-f": {
+    familia: "Almizcle floral amaderado",
+    salida: "Frambuesa, limón y naranja",
+    corazon: "Rosa",
+    fondo: "Vainilla, amberwood y almizcle",
+    parecido: null,
+    ocasion: "Día, femenino, frutal"
+  },
+  "maison-alhambra|la-rouge-baroque-extreme": {
+    familia: "Aromática especiada",
+    salida: "Azafrán y almendra",
+    corazon: "Jazmín egipcio, notas amaderadas y cedro",
+    fondo: "Ámbar gris, almizcle y notas amaderadas",
+    parecido: "Baccarat Rouge 540 Extrait de Maison Francis Kurkdjian",
+    ocasion: "Noche, otoño-invierno, lujoso y potente"
+  },
+  "maison-alhambra|jorge-di-profumo-edp": {
+    familia: "Aromática",
+    salida: "Bergamota, pimienta negra y limón siciliano",
+    corazon: "Lavanda, tabaco y geranio",
+    fondo: "Vetiver, sándalo y almizcle",
+    parecido: "Acqua di Giò EDT de Giorgio Armani",
+    ocasion: "Día, primavera-verano, oficina, clásico"
+  },
+  "maison-alhambra|yeah-edp": {
+    familia: "Aromática",
+    salida: "Manzana, aldehídos, jengibre y pomelo",
+    corazon: "Lavanda, salvia y geranio",
+    fondo: "Haba tonka, incienso, cedro y pachulí",
+    parecido: "Y de Yves Saint Laurent",
+    ocasion: "Día, fresco y elegante, para gym u oficina"
+  },
+  "maison-alhambra|victorioso-fearless": {
+    familia: "Oriental especiado",
+    salida: "Manzana, clavo y cardamomo",
+    corazon: "Canela, geranio y lavanda",
+    fondo: "Vainilla, ámbar y cedro",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, especiado y cálido"
+  },
+  "zimaya|tiramisu-coco": {
+    familia: "Oriental vainilla",
+    salida: "Amaretto y café",
+    corazon: "Helado, vainilla y bizcocho",
+    fondo: "Vainilla, azúcar moreno y ámbar",
+    parecido: null,
+    ocasion: "Otoño-invierno, tardes frías, gourmand dulce"
+  },
+  "zimaya|fatima-velvet": {
+    familia: "Floral frutal",
+    salida: "Maracuyá, notas acuáticas, pera, ámbar y durazno",
+    corazon: "Lirio de los valles, jazmín y ylang-ylang",
+    fondo: "Almizcle, sándalo y caramelo",
+    parecido: null,
+    ocasion: "Primavera-verano, femenino y jugoso"
+  },
+  "orientica|amber-rouge": {
+    familia: "Amaderada especiada",
+    salida: "Azafrán y jazmín",
+    corazon: "Amberwood y ámbar gris",
+    fondo: "Cedro y resina de abeto",
+    parecido: "Baccarat Rouge 540 Extrait de Maison Francis Kurkdjian",
+    ocasion: "Noche, todo el año, intenso y elegante"
+  },
+  "rayhaan|elixir": {
+    familia: "Oriental gourmand",
+    salida: "Menta y lavanda",
+    corazon: "Vainilla y miel",
+    fondo: "Tabaco y haba tonka",
+    parecido: "Le Male Elixir de Jean-Paul Gaultier",
+    ocasion: "Noche, boliche, dulce e intenso"
+  },
+  "al-wataniah|sabah-al-ward-fem": {
+    familia: "Oriental floral",
+    salida: "Pimienta rosa y mandarina",
+    corazon: "Cacao, azahar y jazmín sambac",
+    fondo: "Vainilla, haba tonka y pachulí",
+    parecido: null,
+    ocasion: "Noche, elegante y misterioso"
+  },
+  "al-wataniah|sabah-al-ward-sugar": {
+    familia: "Oriental floral",
+    salida: "Fresa, frambuesa, moras azules, grosellas negras y cereza",
+    corazon: "Jazmín y violeta",
+    fondo: "Almizcle, pétalos de rosa, vainilla, musgo de roble, ámbar, cachemira y pachulí",
+    parecido: null,
+    ocasion: "Día y noche, dulce y goloso, versión Sugar más comestible"
+  },
+  "al-wataniah|sabah-al-ward-valentine": {
+    familia: "Oriental vainilla",
+    salida: "Cereza, notas dulces, vainilla y crema",
+    corazon: "Café, cítricos, azahar y flores blancas",
+    fondo: "Almizcle, pachulí y ámbar",
+    parecido: null,
+    ocasion: "Otoño-invierno, dulce con toque de café"
+  },
+  "riffs|momento": {
+    familia: "Amaderada especiada",
+    salida: "Azúcar, azafrán y mandarina",
+    corazon: "Haba tonka, rosa de Damasco y madera de oud",
+    fondo: "Caramelo, amberwood y cedro",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, alternativa a Khamrah con toque de rosa"
+  },
+  "riffs|noor": {
+    familia: "Gourmand dulce",
+    salida: "Caramelo y leche",
+    corazon: "Acorde gourmand floral cálido",
+    fondo: "Almizcle y vainilla",
+    parecido: "Bianco Latte de Giardini di Toscana",
+    ocasion: "Todo el año, dulce y cremoso"
+  },
+  "riffs|nusuk-ateeq": {
+    familia: "Aromática",
+    salida: "Miel, canela, ámbar, toronja y lima",
+    corazon: "Tabaco, lavanda y jazmín",
+    fondo: "Haba tonka, cumarina, cedro, almizcle y orquídea de vainilla",
+    parecido: "Naxos 1861 de Xerjoff",
+    ocasion: "Noche, otoño-invierno, citas, nicho accesible"
+  },
+  "paris-corner|kahir-peach-delulu": {
+    familia: "Oriental vainilla",
+    salida: "Durazno, guayaba y nectarina",
+    corazon: "Jengibre y cardamomo",
+    fondo: "Caramelo, almizcle y madera seca",
+    parecido: null,
+    ocasion: "Todo el año, frutal y especiado"
+  },
+  "paris-corner|rifaaqat": {
+    familia: "Oriental especiado",
+    salida: "Pimienta negra, elemi y pimienta rosa",
+    corazon: "Olíbano y azafrán",
+    fondo: "Vainilla y madera de cedro",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, citas y climas fríos"
+  },
+  "paris-corner|marshmallow-blush": {
+    familia: "Gourmand dulce",
+    salida: "Fresa, frambuesa y limón",
+    corazon: "Ambroxan, azahar y crema batida",
+    fondo: "Almizcle, marshmallow y vainilla",
+    parecido: "Yum Boujee Marshmallow | 81 de Kayali",
+    ocasion: "Todo el año, dulce, juvenil y cremoso"
+  },
+  "fragance-world|urban-man-amaze": {
+    familia: "Oriental amaderada frutal",
+    salida: "Naranja y bergamota",
+    corazon: "Coco y lavanda",
+    fondo: "Cedro, madera de guayaco, haba tonka y vetiver",
+    parecido: "Le Beau de Jean-Paul Gaultier",
+    ocasion: "Día, primavera-verano, fresco y coco"
+  },
+  "fragance-world|urban-man-le-parfum": {
+    familia: "Oriental amaderada",
+    salida: "Cardamomo",
+    corazon: "Lavanda e iris",
+    fondo: "Vainilla, notas orientales y notas amaderadas",
+    parecido: "Le Male Le Parfum de Jean-Paul Gaultier",
+    ocasion: "Noche, otoño-invierno, elegante"
+  },
+  "fragance-world|urban-man-ultra": {
+    familia: "Aromática especiada",
+    salida: "Pera, lavanda, menta, bergamota y limón",
+    corazon: "Canela, esclarea y alcaravea",
+    fondo: "Vainilla negra, ámbar, pachulí y cedro",
+    parecido: null,
+    ocasion: "Día y noche, versátil, fresco y seductor"
+  },
+  "fragance-world|urban-man-elixir": {
+    familia: "Oriental gourmand",
+    salida: "Lavanda y menta",
+    corazon: "Vainilla y benjuí",
+    fondo: "Miel, haba tonka y tabaco",
+    parecido: "Le Male Elixir de Jean-Paul Gaultier",
+    ocasion: "Noche, boliche, dulce e intenso"
+  },
+  "fragance-world|champion-money": {
+    familia: "Oriental amaderada",
+    salida: "Abrótano y bergamota",
+    corazon: "Lavanda y benjuí",
+    fondo: "Vainilla y haba tonka",
+    parecido: null,
+    ocasion: "Día, uso diario, fresco y versátil"
+  },
+  "fragance-world|champion-sugar": {
+    familia: "Aromática",
+    salida: "Pimienta rosa, cardamomo, bergamota y manzana",
+    corazon: "Azahar, rosa, menta y geranio",
+    fondo: "Ámbar, ámbar gris y haba tonka",
+    parecido: null,
+    ocasion: "Todo el año, elegante, muy duradero"
+  },
+  "fragance-world|champion-goat": {
+    familia: "Aromática frutal",
+    salida: "Pomelo, manzana y bergamota",
+    corazon: "Cilantro, pimienta negra y pachulí",
+    fondo: "Cashmeran, ámbar gris y musgo",
+    parecido: "MYSLF de Yves Saint Laurent",
+    ocasion: "Día y noche, moderno y versátil"
+  },
+  "fragance-world|la-uno-forever-blue": {
+    familia: "Cítrica aromática",
+    salida: "Toronja, mandarina siciliana, enebro y bergamota",
+    corazon: "Notas ozónicas, hojas de violeta, romero y pimienta",
+    fondo: "Aceite de vetiver de Java, pachulí, almizcle blanco, musgo de roble e incienso",
+    parecido: "Light Blue Forever de Dolce & Gabbana",
+    ocasion: "Día, primavera-verano, oficina, fresco"
+  },
+  "zakat|world-cup": {
+    familia: "Cítrica acuática",
+    salida: "Citron, bergamota de Calabria y naranja siciliana",
+    corazon: "Té negro y notas florales suaves",
+    fondo: "Almizcle blanco y maderas ligeras",
+    parecido: "Imagination de Louis Vuitton",
+    ocasion: "Día, primavera-verano, fresco y luminoso"
+  },
+  "zimaya|fatima-pink": {
+    familia: "Oriental floral",
+    salida: "Ruibarbo, bergamota, pomelo y nuez moscada",
+    corazon: "Rosa y jazmín",
+    fondo: "Almizcle, vainilla, vetiver y ámbar gris",
+    parecido: "Delina de Parfums de Marly",
+    ocasion: "Día y noche, femenino, dulce y floral"
+  },
+  "al-wataniah|ameerati-fem": {
+    familia: "Aromática especiada",
+    salida: "Almizcle, notas verdes y cítricos",
+    corazon: "Notas herbales y amaderadas",
+    fondo: "Notas empolvadas y especiadas",
+    parecido: "Ralph Lauren Woman",
+    ocasion: "Día, uso diario, limpio y fresco"
+  },
+  "zimaya|tiramisu-caramel": {
+    familia: "Oriental vainilla",
+    salida: "Caramelo",
+    corazon: "Miel, cumarina y notas amaderadas",
+    fondo: "Vainilla, whisky y almizcle",
+    parecido: null,
+    ocasion: "Otoño-invierno, gourmand goloso, uso diario"
+  },
+  "lattafa|atheeri": {
+    familia: "Floral oriental",
+    salida: "Flor de pasionaria y gota del rocío",
+    corazon: "Orquídea y jazmín",
+    fondo: "Vainilla y amberwood",
+    parecido: "Flora Gorgeous Orchid de Gucci",
+    ocasion: "Todo el año, día y noche, dulce y elegante"
+  },
+  "lattafa|jasoor": {
+    familia: "Frutal amaderada",
+    salida: "Manzana, cardamomo y bergamota",
+    corazon: "Tabaco, lavanda y geranio",
+    fondo: "Haba tonka, cuero, pachulí y vetiver",
+    parecido: "Born In Roma Coral Fantasy de Valentino",
+    ocasion: "Noche, días frescos, varonil"
+  },
+  "lattafa|nebras-elixir": {
+    familia: "Oriental vainilla",
+    salida: "Caramelo de leche y crema batida",
+    corazon: "Caña de azúcar y heliotropo",
+    fondo: "Vainilla, ambroxan y almizcle",
+    parecido: null,
+    ocasion: "Todo el año, dulce y cremoso, para relajarse"
+  },
+  "lattafa|berry-on-top": {
+    familia: "Floral frutal gourmand",
+    salida: "Fresa y crema chantilly",
+    corazon: "Mermelada de fresa, azúcar y flores blancas",
+    fondo: "Vainilla y almizcle",
+    parecido: null,
+    ocasion: "Día, primavera-verano, juvenil y dulce"
+  },
+  "lattafa|win-trophy-gold": {
+    familia: "Floral",
+    salida: "Pimienta rosa",
+    corazon: "Rosa y jazmín",
+    fondo: "Almizcle, vainilla y pachulí",
+    parecido: null,
+    ocasion: "Día, femenino y clásico"
+  },
+  "lattafa|pride-shaheen-gold": {
+    familia: "Frutal aromática",
+    salida: "Piña y toronja",
+    corazon: "Higo y lavanda",
+    fondo: "Vainilla, haba tonka y pachulí",
+    parecido: null,
+    ocasion: "Primavera-verano, frutal y luminoso"
+  },
+  "lattafa|natural-oud": {
+    familia: "Oriental amaderada",
+    salida: "Frutos rojos, azafrán y nuez moscada",
+    corazon: "Rosa y jazmín",
+    fondo: "Oud, cedro, benjuí y ámbar",
+    parecido: "Oud Cadenza de Maison Crivelli",
+    ocasion: "Noche, otoño-invierno, oud accesible y cálido"
+  },
+  "lattafa|blue-saphire": {
+    familia: "Aromática marina",
+    salida: "Menta, limón y manzana",
+    corazon: "Notas marinas, salvia esclarea y geranio",
+    fondo: "Pachulí y cedro",
+    parecido: null,
+    ocasion: "Día, primavera-verano, fresco"
+  },
+  "lattafa|eclaire-pistache": {
+    familia: "Oriental vainilla",
+    salida: "Pistacho y crema de pistacho",
+    corazon: "Crema batida, cacao y coco",
+    fondo: "Vainilla, leche y almizcle",
+    parecido: null,
+    ocasion: "Otoño-invierno, gourmand, uso diario"
+  },
+  "lattafa|asad-elixir": {
+    familia: "Oriental",
+    salida: "Pimienta rosa, azafrán y toronja",
+    corazon: "Tabaco, vainilla y cedro",
+    fondo: "Ámbar ligero, incienso, pachulí y cachemira",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, elegante y cálido"
+  },
+  "lattafa|qaed-al-fursan-blanco": {
+    familia: "Floral frutal gourmand",
+    salida: "Coco, piña y cítricos",
+    corazon: "Ylang-ylang, frangipani y jazmín",
+    fondo: "Vainilla, almizcle, sándalo y notas dulces",
+    parecido: null,
+    ocasion: "Primavera-verano, tropical, unisex"
+  },
+  "lattafa|fakhar-masc": {
+    familia: "Oriental",
+    salida: "Manzana, bergamota y jengibre",
+    corazon: "Lavanda, salvia, bayas de enebro y geranio",
+    fondo: "Haba tonka, cedro, amberwood y vetiver",
+    parecido: "Y de Yves Saint Laurent",
+    ocasion: "Día, uso diario, fresco y limpio"
+  },
+  "lattafa|maahir-gold": {
+    familia: "Ámbar floral",
+    salida: "Bayas rojas, durazno y bergamota",
+    corazon: "Jazmín, peonía y azucena roja",
+    fondo: "Sándalo, flor de vainilla y almizcle",
+    parecido: "Afternoon Swim de Louis Vuitton",
+    ocasion: "Primavera-verano, día y noche, versátil"
+  },
+  "lattafa|ta-weel": {
+    familia: "Amaderada cuero",
+    salida: "Jengibre, bergamota, enebro y nuez moscada",
+    corazon: "Azahar y lavanda",
+    fondo: "Ambroxan, vetiver, pachulí y cuero",
+    parecido: "Tygar de Bvlgari",
+    ocasion: "Todo el año, versátil, casual o formal"
+  },
+  "lattafa|artisan-ethnique": {
+    familia: "Oriental vainilla",
+    salida: "Ron, canela y azúcar",
+    corazon: "Caramelo, cacao, café y musgo de roble",
+    fondo: "Vainilla, madera de cachemira, haba tonka y ládano",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, gourmand intenso"
+  },
+  "lattafa|angham-second-song": {
+    familia: "Floral frutal gourmand",
+    salida: "Flor del peral y bergamota",
+    corazon: "Flor de azahar del naranjo, praliné y peonía",
+    fondo: "Ambroxan, vainilla, haba tonka y almizcle",
+    parecido: null,
+    ocasion: "Primavera-verano, femenino, dulce y romántico"
+  },
+  "lattafa|mayar-rosa": {
+    familia: "Floral frutal",
+    salida: "Lichi, frambuesa y hojas de violeta",
+    corazon: "Rosa blanca, peonía y jazmín",
+    fondo: "Almizcle y vainilla",
+    parecido: null,
+    ocasion: "Otoño-primavera, femenino y romántico"
+  },
+  "afnan|turathi-brown": {
+    familia: "Amaderada especiada",
+    salida: "Ámbar, pachulí, notas amaderadas y notas ozónicas",
+    corazon: "Notas especiadas, especias aromáticas y vainilla",
+    fondo: "Notas balsámicas, rosa y notas acuáticas",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, cálido y especiado"
+  },
+  "afnan|turathi-electric": {
+    familia: "Floral frutal",
+    salida: "Pera, toronja rosada, mandarina y bergamota",
+    corazon: "Flor de azahar del naranjo, manzana y cedro",
+    fondo: "Almizcle, ámbar y vainilla",
+    parecido: "Blue Talisman de Ex Nihilo",
+    ocasion: "Día, primavera-verano, oficina y uso diario"
+  },
+  "afnan|9pm-rebel": {
+    familia: "Aromática frutal",
+    salida: "Piña, manzana Granny Smith y mandarina",
+    corazon: "Vainilla, cedro y musgo de roble",
+    fondo: "Ámbar gris, madera seca, caramelo y almizcle",
+    parecido: null,
+    ocasion: "Noche, versátil, frutal y amaderado"
+  },
+  "french-avenue|veneno-scarlet": {
+    familia: "Frutal amaderada",
+    salida: "Fresa, caramelo y mora",
+    corazon: "Frambuesa, cedro y canela",
+    fondo: "Cuero, caramelo, vainilla, pachulí, haba tonka y abeto",
+    parecido: "Venom Incarnat de Stéphane Humbert Lucas",
+    ocasion: "Noche, otoño-invierno, audaz y especiado"
+  },
+  "french-avenue|chaos-extrait": {
+    familia: "Cuero",
+    salida: "Cereza y frutas rojas",
+    corazon: "Iris",
+    fondo: "Cuero, vainilla y musgo",
+    parecido: "Godolphin de Parfums de Marly",
+    ocasion: "Noche, eventos especiales, dulce y con carácter"
+  },
+  "armaf|mandarin-sky-elixir": {
+    familia: "Oriental amaderada",
+    salida: "Mandarina, naranja, lavanda, cardamomo y pimienta negra",
+    corazon: "Caramelo, haba tonka, pachulí e incienso",
+    fondo: "Vainilla y vetiver",
+    parecido: "Scandal Le Parfum de Jean-Paul Gaultier",
+    ocasion: "Día y noche, versátil, cítrico y dulce"
+  },
+  "fragance-world|urban-women-paradise": {
+    familia: "Oriental floral",
+    salida: "Agua de coco",
+    corazon: "Jazmín e iris",
+    fondo: "Vainilla, sándalo y ámbar",
+    parecido: "La Belle Paradise Garden de Jean Paul Gaultier",
+    ocasion: "Primavera-verano, tropical y femenino"
+  },
+  "maison-alhambra|eternal-touch": {
+    familia: "Oriental ámbar",
+    salida: "Hojas de tabaco y notas especiadas",
+    corazon: "Vainilla, cacao, flor del tabaco y haba tonka",
+    fondo: "Frutos secos y notas amaderadas",
+    parecido: "Tobacco Vanille de Tom Ford",
+    ocasion: "Noche, otoño-invierno, cálido y envolvente"
+  },
+  "french-avenue|vulcan-sable": {
+    familia: "Aromática",
+    salida: "Whisky, naranja, mandarina y cilantro",
+    corazon: "Haba tonka, cachemira, styrax y anís",
+    fondo: "Vainilla, pachulí y benjuí",
+    parecido: "Sand Dance de Stéphane Humbert Lucas",
+    ocasion: "Noche, otoño-invierno, boozy y especiado"
+  },
+  "french-avenue|pinnace": {
+    familia: "Aromática frutal",
+    salida: "Toronja y naranja",
+    corazon: "Menta y grosella negra",
+    fondo: "Ambroxan y almizcle",
+    parecido: null,
+    ocasion: "Primavera-verano, fresco y luminoso"
+  },
+  "french-avenue|vulcan-black-friday": {
+    familia: "Cuero",
+    salida: "Azafrán, manzana y canela",
+    corazon: "Cuero y rosa",
+    fondo: "Pachulí, musgo, papiro de Egipto y almizcle",
+    parecido: "Ombre Leather de Tom Ford",
+    ocasion: "Noche, otoño-invierno, dominante y sofisticado"
+  },
+  "french-avenue|liquid-brun-limitado-150ml": {
+    familia: "Oriental fougère",
+    salida: "Cardamomo, lavanda y cítricos",
+    corazon: "Flor de azahar del naranjo, madera de guayaco y rosa",
+    fondo: "Vainilla, haba tonka, ámbar y musgo de roble",
+    parecido: "Althaïr de Parfums de Marly (edición limitada)",
+    ocasion: "Noche, otoño-invierno, misterioso y dulce"
+  },
+  "al-wataniah|sabah-al-ward-delilah": {
+    familia: "Floral oriental",
+    salida: "Pimienta rosa y mandarina",
+    corazon: "Cacao, flor de azahar del naranjo y jazmín",
+    fondo: "Vainilla, haba tonka y pachulí",
+    parecido: null,
+    ocasion: "Día y noche, elegante y luminoso"
+  },
+  "armaf|club-nuit-oud": {
+    familia: "Frutal amaderada",
+    salida: "Durazno, pera, maracuyá, piña, ciruela y bergamota",
+    corazon: "Madera de cachemira, jazmín, fresia y hojas de violeta",
+    fondo: "Almizcle, oud camboyano, vainilla y ámbar cristalino",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, frutal con oud"
+  },
+  "armaf|tag-donna-colorata": {
+    familia: "Oriental floral",
+    salida: "Petitgrain, grosella negra y mandarina",
+    corazon: "Flor de azahar del naranjo, jazmín y lavanda",
+    fondo: "Vainilla, ámbar gris, almizcle y cedro",
+    parecido: "Libre de Yves Saint Laurent",
+    ocasion: "Otoño-invierno, elegante, uso diario"
+  },
+  "armaf|tag-him-prestige": {
+    familia: "Oriental fougère",
+    salida: "Toronja, menta y bergamota",
+    corazon: "Lavanda, naranja sanguina, canela y pimienta",
+    fondo: "Vainilla, ámbar, madera blanca y pachulí",
+    parecido: "1 Million de Paco Rabanne",
+    ocasion: "Día y noche, dulce y especiado, casual"
+  },
+  "armaf|odyssey-spectra": {
+    familia: "Oriental especiado",
+    salida: "Canela, manzana y bergamota",
+    corazon: "Lavanda, canela, flor de azahar del naranjo y lirio de los valles",
+    fondo: "Vainilla, tabaco, ámbar, haba tonka y pachulí",
+    parecido: "Ultra Male de Jean-Paul Gaultier",
+    ocasion: "Noche, boliche, dulce y especiado"
+  },
+  "lattafa|al-noble-ameer": {
+    familia: "Amaderado especiado",
+    salida: "Manzana, pimienta rosa y romero",
+    corazon: "Clavos de olor y notas florales",
+    fondo: "Oud, pachulí, ládano, ciprés y vetiver",
+    parecido: "Rosendo Mateu Nº 5",
+    ocasion: "Noche, otoño-invierno, intenso y misterioso"
+  },
+  "lattafa|art-of-nature-ii": {
+    familia: "Oriental amaderada",
+    salida: "Incienso de olíbano, mandarina, manzana y bergamota",
+    corazon: "Cardamomo, flor de azahar del naranjo y rosa",
+    fondo: "Vainilla, madera de gaiac, almizcle, ambroxan y cedro",
+    parecido: "Althaïr de Parfums de Marly",
+    ocasion: "Otoño-invierno, día y noche, elegante y versátil"
+  },
+  "lattafa|fakhar-mujer": {
+    familia: "Floral",
+    salida: "Aldehídos, granada, lirio y notas de fruta",
+    corazon: "Gardenia, jazmín, madreselva, peonía, rosa y tuberosa",
+    fondo: "Almizcle blanco, sándalo y vainilla",
+    parecido: null,
+    ocasion: "Día y noche, femenino y romántico"
+  },
+  "armaf|yum-yum": {
+    familia: "Floral frutal",
+    salida: "Bayas silvestres, cereza, naranja y bergamota",
+    corazon: "Rosa, flores blancas y vainilla",
+    fondo: "Notas atalcadas, almizcle y ámbar",
+    parecido: null,
+    ocasion: "Noche, climas templados, dulce y femenino"
+  },
+  "armaf|marshmallow": {
+    familia: "Floral frutal gourmand",
+    salida: "Coco, manzana, limón, peonía y lirio de los valles",
+    corazon: "Malvavisco, fresa, frambuesa, durazno, chabacano y flor de azahar del naranjo",
+    fondo: "Queso mascarpone, vainilla, praliné, almizcle, haba tonka y ámbar",
+    parecido: "Yum Boujee Marshmallow | 81 de Kayali",
+    ocasion: "Todo el año, dulce y cremoso"
+  },
+  "armaf|club-precieux": {
+    familia: "Oriental amaderada",
+    salida: "Piña, limón, bergamota, caramelo, pimienta rosa, pera y pimienta negra",
+    corazon: "Musgo de roble, madera blanca, jazmín, lirio de los valles y anís",
+    fondo: "Ambroxan, almizcle blanco, cedro, pachulí, ámbar, cuero y vainilla",
+    parecido: "Aventus Absolu de Creed",
+    ocasion: "Noche, citas y salidas formales"
+  },
+  "armaf|club-maleka": {
+    familia: "Floral frutal",
+    salida: "Lichi, bergamota y pimienta rosa",
+    corazon: "Raíz de lirio",
+    fondo: "Praliné, sándalo y ambroxan",
+    parecido: null,
+    ocasion: "Día, uso diario, femenino y sofisticado"
+  },
+  "armaf|private-key-to-my-soul": {
+    familia: "Especiado amaderado",
+    salida: "Mandarina y toronja",
+    corazon: "Lavanda y salvia",
+    fondo: "Vainilla",
+    parecido: null,
+    ocasion: "Día, versátil, especiado y fresco"
+  },
+  "armaf|odyssey-homme-black": {
+    familia: "Oriental",
+    salida: "Vainilla y ámbar",
+    corazon: "Notas orientales, especias e iris",
+    fondo: "Vainilla, cuero y jazmín",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, cálido y especiado"
+  },
+  "armaf|club-imperiale": {
+    familia: "Floral amaderada",
+    salida: "Lichi, bergamota y nuez moscada",
+    corazon: "Rosa turca, vainilla, almizcle y peonía",
+    fondo: "Vainilla, incienso, cachemira y cedro",
+    parecido: "Delina Exclusif de Parfums de Marly",
+    ocasion: "Otoño-invierno, femenino, elegante"
+  },
+  "lattafa|pride-ishq-al-shuyukh-gold": {
+    familia: "Oriental vainilla",
+    salida: "Caramelo y azafrán",
+    corazon: "Gamuza, cuero y haba tonka",
+    fondo: "Vainilla, ámbar y almizcle",
+    parecido: "Rosendo Mateu Nº 5",
+    ocasion: "Noche, otoño-invierno, elegante y aterciopelado"
+  },
+  "lattafa|pride-ishq-silver": {
+    familia: "Oriental",
+    salida: "Limón y bergamota",
+    corazon: "Piña y pimienta negra",
+    fondo: "Vainilla, amberwood, cedro y pachulí",
+    parecido: "1 Million Lucky de Paco Rabanne",
+    ocasion: "Noche, boliche, dulce y afrutado"
+  },
+  "lattafa|hayaati-florence": {
+    familia: "Floral frutal gourmand",
+    salida: "Lichi, toronja y grosella roja",
+    corazon: "Rosa, durazno y cedro",
+    fondo: "Florales, almizcle y ámbar",
+    parecido: "Very Good Girl de Carolina Herrera",
+    ocasion: "Todo el año, femenino y ligero"
+  },
+  "lattafa|rave-now-rosa": {
+    familia: "Floral frutal dulce",
+    salida: "Frutos rojos y naranja",
+    corazon: "Malvavisco, jazmín y lirio de los valles",
+    fondo: "Vainilla, musgo y almizcle",
+    parecido: "Burberry Her Elixir",
+    ocasion: "Día, juvenil y dulce"
+  },
+  "lattafa|teriaq-fem": {
+    familia: "Oriental gourmand",
+    salida: "Pimienta rosa, caramelo, almendra amarga y albaricoque",
+    corazon: "Miel, flores blancas, ruibarbo y rosa",
+    fondo: "Vainilla, cuero, labdano, almizcle y vetiver",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, complejo y llamativo"
+  },
+  "afnan|9pm-night-out": {
+    familia: "Oriental especiado",
+    salida: "Pitahaya, lavanda, coñac, manzana y bergamota",
+    corazon: "Tofe, gamuza, cardamomo, cedro y mahonial",
+    fondo: "Haba tonka, akigalawood, ambrofix y pachulí",
+    parecido: "Karagöz de Nishane",
+    ocasion: "Noche, otoño-invierno, salidas y eventos especiales"
+  },
+  "maison-alhambra|jean-lowe-azure": {
+    familia: "Ámbar frutal",
+    salida: "Mandarina y bergamota",
+    corazon: "Naranja",
+    fondo: "Jengibre y ámbar gris",
+    parecido: "Afternoon Swim de Louis Vuitton",
+    ocasion: "Día, primavera-verano, cítrico y fresco"
+  },
+  "maison-alhambra|jean-lowe-noir": {
+    familia: "Oud ahumado",
+    salida: "Oud e incienso",
+    corazon: "Rosa, frambuesa, azafrán y abedul",
+    fondo: "Ámbar, benjuí y geranio",
+    parecido: "Ombre Nomade de Louis Vuitton",
+    ocasion: "Noche, otoño-invierno, intenso y ahumado"
+  },
+  "armaf|bahamas": {
+    familia: "Acuática frutal",
+    salida: "Pera asiática, ciruela, manzana verde, melón cantalupo, sal y algas marinas",
+    corazon: "Musgo de roble, notas acuáticas, nenúfar e incienso",
+    fondo: "Cedro, ámbar, almizcle y azúcar blanca",
+    parecido: null,
+    ocasion: "Primavera-verano, tropical y fresco"
+  },
+  "lattafa|musamam-edp": {
+    familia: "Amaderada aromática",
+    salida: "Azafrán, lavanda y mandarina italiana",
+    corazon: "Amberwood, cedro de Virginia y geranio",
+    fondo: "Madera de akigala, incienso y jara",
+    parecido: null,
+    ocasion: "Noche, otoño-invierno, misterioso y elegante"
+  },
+  "lattafa|pride-d-antiquites": {
+    familia: "Floral frutal gourmand",
+    salida: "Manzana, davana y rosa",
+    corazon: "Cedro y osmanthus",
+    fondo: "Vainilla, haba tonka y pachulí",
+    parecido: "1 Million Elixir de Paco Rabanne",
+    ocasion: "Noche, otoño-invierno, cálido y seductor"
+  },
+  "lattafa|asad-negro": {
+    familia: "Ámbar oriental",
+    salida: "Pimienta negra, piña y tabaco",
+    corazon: "Café, iris y pachulí",
+    fondo: "Ámbar, vainilla, maderas secas, benjuí y ládano",
+    parecido: "Sauvage Elixir de Dior",
+    ocasion: "Noche, otoño-invierno, intenso y misterioso"
+  },
+  "lattafa|hayaati-preto": {
+    familia: "Oriental especiado",
+    salida: "Nuez moscada, pimienta rosa, jengibre y bergamota",
+    corazon: "Incienso, cedro, ládano y notas amaderadas",
+    fondo: "Ámbar, almizcle y ámbar gris",
+    parecido: null,
+    ocasion: "Noche, todo el año, fuerza y misterio"
+  },
+  "armaf|tag-him": {
+    familia: "Amaderada especiada",
+    salida: "Toronja, limón, bergamota y pimienta rosa",
+    corazon: "Jengibre, menta, lavanda y nuez moscada",
+    fondo: "Vetiver, sándalo, pachulí y cedro",
+    parecido: "Bleu de Chanel",
+    ocasion: "Día, oficina, versátil y económico"
+  },
+  "maison-alhambra|galactic-intense": {
+    familia: "Oriental especiado (boozy gourmand)",
+    salida: "Bergamota y naranja",
+    corazon: "Pachulí, whisky, malta y café",
+    fondo: "Vainilla, ámbar, cedro y almizcle",
+    parecido: "A*Men Pure Malt de Mugler",
+    ocasion: "Noche, otoño-invierno, varonil y boozy"
+  },
+  "armaf|odyssey-revolution-ultra-edition": {
+    familia: "Aromática frutal",
+    salida: "Piña, grosella negra, naranja sanguina y salvia",
+    corazon: "Praliné, vainilla, ciruela y cardamomo",
+    fondo: "Pachulí y haba tonka",
+    parecido: null,
+    ocasion: "Primavera-otoño, dulce y especiado, tardes de verano"
+  },
+  "lattafa|fakhar-gold": {
+    familia: "Amaderado especiado",
+    salida: "Toronja, pimienta rosa y cardamomo",
+    corazon: "Notas solares, abrótano y nardos",
+    fondo: "Ládano, cachemira, ámbar y cuero",
+    parecido: null,
+    ocasion: "Noche, elegante y sofisticado"
+  },
+  "lattafa|asdaaf-rose": {
+    familia: "Floral frutal",
+    salida: "Fresa, uvas y naranja",
+    corazon: "Rosa, jazmín, gardenia y ylang-ylang",
+    fondo: "Haba tonka, ámbar y sándalo",
+    parecido: null,
+    ocasion: "Día y noche, romántico y elegante"
+  },
+  "lattafa|ameerat-red": {
+    familia: "Floral frutal",
+    salida: "Frambuesa, bergamota y melocotón",
+    corazon: "Rosa, jazmín y peonía",
+    fondo: "Sándalo, almizcle, ámbar y pachulí",
+    parecido: null,
+    ocasion: "Otoño-invierno, romántico y envolvente"
+  },
+  "afnan|historic-olmeda": {
+    familia: "Amaderada aromática",
+    salida: "Bergamota, pomelo y notas cítricas",
+    corazon: "Notas aromáticas y especiadas",
+    fondo: "Ámbar gris, almizcle y maderas",
+    parecido: "Mezcla de Sauvage EDT de Dior, Bleu de Chanel y Versace Pour Homme Dylan Blue",
+    ocasion: "Día y noche, versátil, todo el año"
+  },
+  "french-avenue|veneno": {
+    familia: "Oriental amaderada",
+    salida: "Canela, azafrán, nuez moscada, cardamomo, pimienta rosa y jengibre",
+    corazon: "Oud, dátiles, mirra, incienso, caña de azúcar, caramelo y davana",
+    fondo: "Cuero, vainilla de Madagascar, manteca de cacao, benjuí, haba tonka, ládano, pachulí y almizcle",
+    parecido: "Oud Cadenza de Maison Crivelli",
+    ocasion: "Noche, otoño-invierno, ocasiones especiales"
+  },
+  "lattafa|kit-yara-x4-25ml": {
+    familia: "Floral frutal (línea Yara)",
+    salida: "Varía según el mini incluido",
+    corazon: "Set de 4 minis x 25ml de la línea Yara",
+    fondo: "Ideal para probar toda la línea antes de elegir el favorito",
+    parecido: null,
+    ocasion: "Regalo o para descubrir cuál Yara te gusta más"
+  },
+  "lattafa|kit-asad-x4-25ml": {
+    familia: "Oriental amaderada (línea Asad)",
+    salida: "Varía según el mini incluido",
+    corazon: "Set de 4 minis x 25ml de la línea Asad",
+    fondo: "Ideal para probar toda la línea antes de elegir el favorito",
+    parecido: null,
+    ocasion: "Regalo o para descubrir cuál Asad te gusta más"
+  }
+};
+function getDescription(brand, name){
+  return DESCRIPTIONS[slug(brand) + "|" + slug(name)] || null;
+}
+// Cuando el nombre del producto cambia pero la foto ya quedó subida con el nombre viejo
+const IMG_NAME_OVERRIDE = {
+  "valentino|uomo-born-in-roma-intense": "born-in-roma"
+};
+function imgPath(brand, name){
+  return `assets/${slug(brand)}/${slug(name)}.jpg`;
+}
+function imgCandidates(brand, name){
+  const key = slug(brand) + "|" + slug(name);
+  const fileName = IMG_NAME_OVERRIDE[key] || slug(name);
+  const base = `assets/${slug(brand)}/${fileName}`;
+  return [base + ".jpg", base + ".jpeg", base + ".webp", base + ".png"];
+}
+function tryImageChain(imgEl, candidates){
+  let idx = 0;
+  imgEl.onerror = () => {
+    if(idx >= candidates.length){ imgEl.style.display = "none"; imgEl.onerror = null; return; }
+    imgEl.src = candidates[idx++];
+  };
+  imgEl.style.display = "";
+  imgEl.src = candidates[idx++];
+}
+function fmtPrice(n){
+  return "$" + n.toLocaleString("es-AR");
+}
+function waLink(name){
+  const msg = name ? `Hola! Quiero consultar por *${name}*` : "Hola! Quiero ver el catálogo de perfumes";
+  return `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
+}
+
+// wire top-level WA buttons
+["headerWa","heroWa","fabWa","footWa"].forEach(id=>{
+  document.getElementById(id).href = waLink();
+});
+
+const CATEGORY_ORDER = ["arabes","disenador"];
+const CATEGORY_LABEL = {
+  arabes: "Perfumes Árabes",
+  disenador: "Perfumes de Diseñador"
+};
+const CATEGORY_SUB = {
+  arabes: "Inspirados en los grandes clásicos, calidad premium",
+  disenador: "Originales, sellados, de las casas de perfumería más reconocidas"
+};
+const CATEGORY_OF_BRAND = {};
+["LATTAFA","ARMAF","AFNAN","AL HARAMAIN","FRENCH AVENUE","BHARARA","RASASI","MAISON ALHAMBRA","ZIMAYA","ORIENTICA","RAYHAAN","AL WATANIAH","RIFFS","PARIS CORNER","FRAGANCE WORLD","ZAKAT"].forEach(b => CATEGORY_OF_BRAND[b] = "arabes");
+["AZZARO","PACO RABANNE","JEAN PAUL GAULTIER","ARMANI","DIOR","MONTALE","VALENTINO","XERJOFF"].forEach(b => CATEGORY_OF_BRAND[b] = "disenador");
+
+const brandContainer = document.getElementById("brandContainer");
+const chipsEl = document.getElementById("chips");
+const searchEl = document.getElementById("search");
+const countPill = document.getElementById("countPill");
+const emptyState = document.getElementById("emptyState");
+const catJumpEl = document.getElementById("catJump");
+const searchChipsWrap = document.getElementById("searchChipsWrap");
+
+let totalCount = 0;
+DATA.forEach(([brand, items]) => totalCount += items.length);
+
+let activeCategory = null; // null | "arabes" | "disenador" | "__all__"
+let activeBrand = "__all__";
+
+function buildChips(){
+  chipsEl.innerHTML = "";
+  const allChip = document.createElement("button");
+  allChip.className = "chip active";
+  allChip.textContent = "Todas las marcas";
+  allChip.dataset.brand = "__all__";
+  chipsEl.appendChild(allChip);
+
+  DATA.forEach(([brand]) => {
+    if(activeCategory !== "__all__" && CATEGORY_OF_BRAND[brand] !== activeCategory) return;
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.textContent = brand;
+    chip.dataset.brand = brand;
+    chipsEl.appendChild(chip);
+  });
+  activeBrand = "__all__";
+}
+
+chipsEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".chip");
+  if(!btn) return;
+  activeBrand = btn.dataset.brand;
+  [...chipsEl.children].forEach(c => c.classList.toggle("active", c === btn));
+  render();
+  if(activeBrand !== "__all__"){
+    const sec = document.getElementById("brand-" + activeBrand.replace(/\s+/g,"-"));
+    if(sec) sec.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+});
+
+catJumpEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".cat-jump-btn");
+  if(!btn) return;
+  activeCategory = btn.dataset.cat;
+  [...catJumpEl.children].forEach(c => c.classList.toggle("active", c === btn));
+  searchChipsWrap.classList.add("show");
+  searchEl.value = "";
+  buildChips();
+  render();
+  searchChipsWrap.scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+searchEl.addEventListener("input", render);
+
+function render(){
+  if(!activeCategory) return;
+
+  const q = searchEl.value.trim().toLowerCase();
+  brandContainer.innerHTML = "";
+  let shown = 0;
+
+  const catsToShow = activeCategory === "__all__" ? CATEGORY_ORDER : [activeCategory];
+
+  catsToShow.forEach(catKey => {
+    const catBrands = DATA.filter(([brand]) => CATEGORY_OF_BRAND[brand] === catKey);
+    if(catBrands.length === 0) return;
+
+    const catWrap = document.createElement("section");
+    catWrap.className = "category-section category-" + catKey;
+    catWrap.id = "cat-" + catKey;
+
+    const catHeader = document.createElement("div");
+    catHeader.className = "category-header";
+    const motif = catKey === "arabes"
+      ? `<svg class="cat-motif" viewBox="0 0 1200 22" preserveAspectRatio="none"><path d="M0,11 Q50,1 100,11 T200,11 T300,11 T400,11 T500,11 T600,11 T700,11 T800,11 T900,11 T1000,11 T1100,11 T1200,11"/><circle cx="600" cy="11" r="3"/></svg>`
+      : `<svg class="cat-motif cat-motif-diamond" viewBox="0 0 40 22"><path d="M20 2 L34 11 L20 20 L6 11 Z"/></svg>`;
+    catHeader.innerHTML = `
+      ${motif}
+      <h2>${CATEGORY_LABEL[catKey]}</h2>
+      <p>${CATEGORY_SUB[catKey]}</p>
+    `;
+    catWrap.appendChild(catHeader);
+
+    let catShown = 0;
+
+    catBrands.forEach(([brand, items]) => {
+      if(activeBrand !== "__all__" && brand !== activeBrand) return;
+
+      const filtered = items.filter(([name]) => name.toLowerCase().includes(q));
+      if(filtered.length === 0) return;
+      shown += filtered.length;
+      catShown += filtered.length;
+
+      const section = document.createElement("section");
+      section.className = "brand-section";
+      section.id = "brand-" + brand.replace(/\s+/g,"-");
+
+      section.innerHTML = `
+        <div class="brand-title">
+          <h3>${brand}</h3>
+          <span class="brand-count">${filtered.length} perfume${filtered.length===1?"":"s"}</span>
+        </div>
+        <div class="grid"></div>
+      `;
+
+      const grid = section.querySelector(".grid");
+      filtered.forEach(([name, price]) => {
+        const card = document.createElement("div");
+        card.className = "card" + (price === null ? " out" : "");
+        card.dataset.brand = brand;
+        card.dataset.name = name;
+        card.dataset.price = price === null ? "" : price;
+        card.innerHTML = `
+          <div class="card-body">
+            <div class="card-img">
+              <span class="card-img-fallback">${name.trim().charAt(0).toUpperCase()}</span>
+              <img alt="${name}" loading="lazy">
+            </div>
+            <div class="card-left">
+              <div class="card-name">${name}</div>
+              <div class="card-price ${price === null ? "na" : ""}">${price === null ? "Sin stock" : fmtPrice(price)}</div>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="card-buy-btn" type="button" aria-label="Comprar ${name}" title="Comprar con Mercado Pago">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm2 2v8h16V8H4zm0-2v.01L20 6H4z"/></svg>
+            </button>
+            <a class="card-cta" href="${price === null ? "#" : waLink(brand + " " + name)}" target="${price === null ? "_self" : "_blank"}" rel="noopener" aria-label="Consultar ${name}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.42-1.36c1.37.7 2.93 1.1 4.62 1.1 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.09c-1.5 0-2.9-.4-4.12-1.09l-.29-.17-3.22.81.84-3.14-.19-.32a8.03 8.03 0 0 1-1.24-4.27c0-4.46 3.63-8.09 8.13-8.09 4.5 0 8.13 3.63 8.13 8.09 0 4.46-3.63 8.18-8.04 8.18z"/></svg>
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+        if(price !== null){
+          card.querySelector(".card-buy-btn").addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            buyNow(brand, name, price);
+          });
+        }
+        tryImageChain(card.querySelector(".card-img img"), imgCandidates(brand, name));
+      });
+
+      catWrap.appendChild(section);
+    });
+
+    if(catShown === 0){
+      catWrap.remove();
+    } else {
+      brandContainer.appendChild(catWrap);
+    }
+  });
+
+  let catTotal = 0;
+  catsToShow.forEach(catKey => {
+    DATA.forEach(([brand, items]) => { if(CATEGORY_OF_BRAND[brand] === catKey) catTotal += items.length; });
+  });
+  countPill.textContent = `${shown} de ${catTotal} perfumes`;
+  emptyState.classList.toggle("show", shown === 0);
+}
+
+render();
+
+// ---------- quick-view modal ----------
+const modalOverlay = document.getElementById("modalOverlay");
+const modalClose = document.getElementById("modalClose");
+const modalImg = document.getElementById("modalImg");
+const modalImgFallback = document.getElementById("modalImgFallback");
+const modalBrand = document.getElementById("modalBrand");
+const modalName = document.getElementById("modalName");
+const modalPrice = document.getElementById("modalPrice");
+const modalWa = document.getElementById("modalWa");
+
+function openModal(brand, name, price){
+  modalBrand.textContent = brand;
+  modalName.textContent = name;
+  modalImgFallback.textContent = name.trim().charAt(0).toUpperCase();
+  modalImg.alt = name;
+  tryImageChain(modalImg, imgCandidates(brand, name));
+
+  const desc = getDescription(brand, name);
+  const modalNotes = document.getElementById("modalNotes");
+  if(desc){
+    modalNotes.innerHTML = `
+      <div class="modal-notes-family">${desc.familia}</div>
+      <p><b>Salida:</b> ${desc.salida}</p>
+      <p><b>Corazón:</b> ${desc.corazon}</p>
+      <p><b>Fondo:</b> ${desc.fondo}</p>
+      ${desc.ocasion ? `<p><b>Ideal para:</b> ${desc.ocasion}</p>` : ""}
+      ${desc.parecido ? `<div class="modal-notes-like">Se parece a: ${desc.parecido}</div>` : ""}
+    `;
+    modalNotes.classList.add("show");
+  } else {
+    modalNotes.innerHTML = "";
+    modalNotes.classList.remove("show");
+  }
+  const modalBuyRow = document.getElementById("modalBuyRow");
+  if(price === ""){
+    modalPrice.textContent = "Sin stock";
+    modalPrice.className = "modal-price na";
+    modalWa.style.display = "none";
+    modalBuyRow.style.display = "none";
+    currentModalItem = null;
+  } else {
+    modalPrice.textContent = fmtPrice(Number(price));
+    modalPrice.className = "modal-price";
+    modalWa.style.display = "";
+    modalWa.href = waLink(brand + " " + name);
+    modalBuyRow.style.display = "";
+    currentModalItem = { brand, name, price: Number(price) };
+  }
+  modalOverlay.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+let currentModalItem = null;
+document.getElementById("modalBuyNow").addEventListener("click", () => {
+  if(!currentModalItem) return;
+  buyNow(currentModalItem.brand, currentModalItem.name, currentModalItem.price);
+});
+document.getElementById("modalAddCart").addEventListener("click", () => {
+  if(!currentModalItem) return;
+  addToCart(currentModalItem.brand, currentModalItem.name, currentModalItem.price);
+  showToast(`${currentModalItem.name} agregado al carrito`);
+});
+
+function closeModal(){
+  modalOverlay.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+brandContainer.addEventListener("click", (e) => {
+  if(e.target.closest(".card-actions")) return; // los botones de WA/comprar siguen de largo
+  const card = e.target.closest(".card");
+  if(!card) return;
+  openModal(card.dataset.brand, card.dataset.name, card.dataset.price);
+});
+
+modalClose.addEventListener("click", closeModal);
+modalOverlay.addEventListener("click", (e) => { if(e.target === modalOverlay) closeModal(); });
+document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+
+// ---------- carrito + pago con Mercado Pago ----------
+const CART_KEY = "tonessence_cart";
+let cart = [];
+try{ cart = JSON.parse(localStorage.getItem(CART_KEY)) || []; }catch{ cart = []; }
+
+const cartOverlay = document.getElementById("cartOverlay");
+const cartItemsEl = document.getElementById("cartItems");
+const cartTotalEl = document.getElementById("cartTotal");
+const cartPayBtn = document.getElementById("cartPayBtn");
+const fabCart = document.getElementById("fabCart");
+const fabCartBadge = document.getElementById("fabCartBadge");
+const cartClose = document.getElementById("cartClose");
+const toastEl = document.getElementById("toast");
+
+function saveCart(){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  renderCart();
+}
+
+function addToCart(brand, name, price){
+  const existing = cart.find(i => i.brand === brand && i.name === name);
+  if(existing){ existing.quantity += 1; }
+  else{ cart.push({ brand, name, price, quantity: 1 }); }
+  saveCart();
+}
+
+function removeFromCart(index){
+  cart.splice(index, 1);
+  saveCart();
+}
+
+function changeQty(index, delta){
+  const item = cart[index];
+  if(!item) return;
+  item.quantity += delta;
+  if(item.quantity <= 0){ removeFromCart(index); return; }
+  saveCart();
+}
+
+function cartTotal(){
+  return cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+}
+
+function cartCount(){
+  return cart.reduce((sum, i) => sum + i.quantity, 0);
+}
+
+function renderCart(){
+  const count = cartCount();
+  fabCartBadge.textContent = count;
+  fabCartBadge.classList.toggle("show", count > 0);
+
+  if(cart.length === 0){
+    cartItemsEl.innerHTML = `<div class="cart-empty">Tu carrito está vacío.<br>Agregá perfumes desde el catálogo.</div>`;
+    cartPayBtn.disabled = true;
+  } else {
+    cartItemsEl.innerHTML = cart.map((item, i) => `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.brand} — ${item.name}</div>
+          <div class="cart-item-price">${fmtPrice(item.price)} c/u</div>
+        </div>
+        <div class="cart-item-qty">
+          <button type="button" data-act="dec" data-i="${i}">−</button>
+          <span>${item.quantity}</span>
+          <button type="button" data-act="inc" data-i="${i}">+</button>
+        </div>
+        <button class="cart-item-remove" data-act="del" data-i="${i}" aria-label="Quitar">✕</button>
+      </div>
+    `).join("");
+    cartPayBtn.disabled = false;
+  }
+  cartTotalEl.textContent = fmtPrice(cartTotal());
+}
+
+cartItemsEl.addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-act]");
+  if(!btn) return;
+  const i = Number(btn.dataset.i);
+  if(btn.dataset.act === "inc") changeQty(i, 1);
+  else if(btn.dataset.act === "dec") changeQty(i, -1);
+  else if(btn.dataset.act === "del") removeFromCart(i);
+});
+
+function openCart(){
+  cartOverlay.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+function closeCart(){
+  cartOverlay.classList.remove("show");
+  document.body.style.overflow = "";
+}
+fabCart.addEventListener("click", openCart);
+cartClose.addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", (e) => { if(e.target === cartOverlay) closeCart(); });
+
+let toastTimer = null;
+function showToast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2200);
+}
+
+async function goToCheckout(items, triggerBtn){
+  if(triggerBtn){ triggerBtn.disabled = true; }
+  try{
+    const res = await fetch("/.netlify/functions/create-preference", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items })
+    });
+    const data = await res.json();
+    if(!res.ok || !data.init_point){
+      showToast(data.error || "No pudimos iniciar el pago. Probá de nuevo.");
+      if(triggerBtn){ triggerBtn.disabled = false; }
+      return;
+    }
+    window.location.href = data.init_point;
+  } catch(err){
+    showToast("Error de conexión. Probá de nuevo.");
+    if(triggerBtn){ triggerBtn.disabled = false; }
+  }
+}
+
+function buyNow(brand, name, price){
+  goToCheckout([{ brand, name, price, quantity: 1 }]);
+}
+
+cartPayBtn.addEventListener("click", () => {
+  if(cart.length === 0) return;
+  const items = cart.map(i => ({ brand: i.brand, name: i.name, price: i.price, quantity: i.quantity }));
+  goToCheckout(items, cartPayBtn);
+});
+
+renderCart();
+
+// mensaje post-pago (Mercado Pago vuelve a la página con ?pago=exito|error|pendiente)
+(function checkPaymentReturn(){
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get("pago");
+  if(status === "exito"){
+    cart = [];
+    saveCart();
+    showToast("¡Pago aprobado! Gracias por tu compra 🎉");
+  } else if(status === "pendiente"){
+    showToast("Tu pago está pendiente de confirmación.");
+  } else if(status === "error"){
+    showToast("El pago no se completó. Podés reintentar cuando quieras.");
+  }
+})();
+</script>
+
+</body>
+</html>
