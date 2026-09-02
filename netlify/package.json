@@ -1,0 +1,9 @@
+{
+  "name": "ton-essence",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ton Essence — catálogo con pagos por Mercado Pago",
+  "engines": {
+    "node": "18"
+  }
+}

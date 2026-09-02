@@ -1,0 +1,6 @@
+[build]
+  publish = "."
+  command = "node scripts/export-products.js"
+
+[functions]
+  directory = "netlify/functions"
