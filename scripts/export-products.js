@@ -53,15 +53,18 @@ try {
   process.exit(1);
 }
 
-// Aplanamos a un mapa "MARCA||nombre" -> { value, type }, para lookup rápido y directo.
+// Aplanamos a un mapa "MARCA||nombre" -> { value, type, margin }, para lookup rápido y directo.
 // type "usd": value es el costo en dólares (el precio final se calcula con el dólar del día).
-// type "fixed": value ya es el precio final en pesos (perfumes de diseñador, no depende del dólar).
+//   margin (opcional): margen propio en USD de ese perfume; si no está, se usa el margen general.
+// type "fixed": value ya es el precio final en pesos (no depende del dólar).
 const catalog = {};
 let total = 0;
 data.forEach(([brand, items]) => {
-  items.forEach(([name, value, type]) => {
+  items.forEach(([name, value, type, margin]) => {
     if (value === null) return; // sin stock: no se puede comprar
-    catalog[`${brand}||${name}`] = { value, type };
+    const entry = { value, type };
+    if (margin !== undefined) entry.margin = margin;
+    catalog[`${brand}||${name}`] = entry;
     total++;
   });
 });

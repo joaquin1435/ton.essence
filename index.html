@@ -1150,14 +1150,16 @@ async function fetchDollarRate(){
 }
 
 // value = costo en USD (si type "usd") o precio final en ARS ya fijo (si type "fixed")
-function resolvePrice(value, type){
+// customMargin (opcional) = margen en USD propio de ese perfume (si no, se usa MARGEN_USD)
+function resolvePrice(value, type, customMargin){
   if(value === null) return null;
   if(type === "fixed") return value;
-  const raw = (value + MARGEN_USD) * USD_RATE;
+  const margen = (customMargin !== undefined && customMargin !== null) ? customMargin : MARGEN_USD;
+  const raw = (value + margen) * USD_RATE;
   return Math.round(raw / 500) * 500;
 }
 
-// name, valor (costo USD o precio fijo ARS), tipo ("usd" | "fixed"). null = sin stock
+// name, valor (costo USD o precio fijo ARS), tipo ("usd" | "fixed"), [margen USD propio opcional]. null = sin stock
 const DATA = [
 ["LATTAFA",[
 ["Khamrah",37,"usd"],["Kingdom Masc",41,"usd"],["Kingdom Fem",39,"usd"],
@@ -1293,29 +1295,29 @@ const DATA = [
 ["World Cup",90,"usd"],
 ]],
 ["AZZARO",[
-["The Most Wanted",212500,"fixed"],
+["The Most Wanted",106,"usd",30],
 ]],
 ["PACO RABANNE",[
-["Invictus Parfum",218500,"fixed"],
+["Invictus Parfum",110,"usd",30],
 ]],
 ["JEAN PAUL GAULTIER",[
-["Le Male",220000,"fixed"],["Le Beau",226500,"fixed"],["Scandal Le Parfum",242000,"fixed"],
-["Le Male Elixir",237500,"fixed"],
+["Le Male",111,"usd",30],["Le Beau",115,"usd",30],["Scandal Le Parfum",125,"usd",30],
+["Le Male Elixir",142,"usd",25],
 ]],
 ["ARMANI",[
-["Stronger With You Intensely",226500,"fixed"],["Acqua di Giò",234000,"fixed"],["Code Parfum",242000,"fixed"],
+["Stronger With You Intensely",135,"usd",25],["Acqua di Giò",140,"usd",25],["Code Parfum",145,"usd",25],
 ]],
 ["DIOR",[
-["Sauvage",226500,"fixed"],
+["Sauvage",135,"usd",25],
 ]],
 ["MONTALE",[
-["Arabians Tonka",251500,"fixed"],
+["Arabians Tonka",151,"usd",25],
 ]],
 ["VALENTINO",[
-["Uomo Born in Roma Intense",304500,"fixed"],
+["Uomo Born in Roma Intense",165,"usd",30],
 ]],
 ["XERJOFF",[
-["Erba Pura",359000,"fixed"],
+["Erba Pura",220,"usd",25],
 ]],
 ];
 
@@ -4158,7 +4160,7 @@ function render(){
     catBrands.forEach(([brand, items]) => {
       if(activeBrand !== "__all__" && brand !== activeBrand) return;
 
-      const resolved = items.map(([name, value, type]) => [name, resolvePrice(value, type)]);
+      const resolved = items.map(([name, value, type, margin]) => [name, resolvePrice(value, type, margin)]);
       const filtered = resolved
         .filter(([name]) => name.toLowerCase().includes(q))
         .filter(([name]) => activeGender === "todos" || inferGender(name, brand) === activeGender);
@@ -4313,7 +4315,7 @@ function renderRelated(brand, currentName){
   const brandData = DATA.find(([b]) => b === brand);
   if(!brandData){ relatedEl.innerHTML = ""; return; }
   const candidates = brandData[1]
-    .map(([n, value, type]) => [n, resolvePrice(value, type)])
+    .map(([n, value, type, margin]) => [n, resolvePrice(value, type, margin)])
     .filter(([n, p]) => n !== currentName && p !== null);
   // random pero estable-ish: mezclamos y tomamos 4
   const shuffled = [...candidates].sort(() => Math.random() - 0.5).slice(0, 4);

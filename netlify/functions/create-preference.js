@@ -40,9 +40,10 @@ async function getDollarRate() {
   return DOLLAR_RATE_FLOOR;
 }
 
-function resolvePrice(value, type, usdRate) {
+function resolvePrice(value, type, usdRate, customMargin) {
   if (type === "fixed") return value;
-  const raw = (value + MARGEN_USD) * usdRate;
+  const margen = (customMargin !== undefined && customMargin !== null) ? customMargin : MARGEN_USD;
+  const raw = (value + margen) * usdRate;
   return Math.round(raw / 500) * 500;
 }
 
@@ -96,7 +97,7 @@ exports.handler = async function (event) {
       return json(400, { error: `"${name}" no está disponible para compra en este momento.` });
     }
 
-    const realPrice = resolvePrice(entry.value, entry.type, usdRate);
+    const realPrice = resolvePrice(entry.value, entry.type, usdRate, entry.margin);
 
     items.push({
       title: `${brand} - ${name}`,
