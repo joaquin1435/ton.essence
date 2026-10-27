@@ -394,6 +394,8 @@
   .card.out{ opacity:0.5; }
   .card.out:hover{ transform:none; border-color:var(--line); background:var(--surface); box-shadow:none; }
 
+  /* fotos de tienda: producto entero sobre fondo blanco, todas iguales */
+  img.img-remote{ object-fit:contain !important; background:#fff; padding:8%; box-sizing:border-box; }
   .card-img{
     position:relative;
     width:100%;
@@ -1149,175 +1151,193 @@ async function fetchDollarRate(){
   }
 }
 
-// value = costo en USD (si type "usd") o precio final en ARS ya fijo (si type "fixed")
-// customMargin (opcional) = margen en USD propio de ese perfume (si no, se usa MARGEN_USD)
-function resolvePrice(value, type, customMargin){
+// value = costo en USD (si type "usd"), costo en ARS ya con envío (si type "ars") o precio final en ARS ya fijo (si type "fixed")
+function resolvePrice(value, type){
   if(value === null) return null;
   if(type === "fixed") return value;
-  const margen = (customMargin !== undefined && customMargin !== null) ? customMargin : MARGEN_USD;
-  const raw = (value + margen) * USD_RATE;
+  if(type === "ars"){
+    const rawArs = value + MARGEN_USD * USD_RATE;
+    return Math.round(rawArs / 500) * 500;
+  }
+  const raw = (value + MARGEN_USD) * USD_RATE;
   return Math.round(raw / 500) * 500;
 }
 
-// name, valor (costo USD o precio fijo ARS), tipo ("usd" | "fixed"), [margen USD propio opcional]. null = sin stock
+// name, valor (costo USD o precio fijo ARS), tipo ("usd" | "ars" | "fixed"). null = sin stock
 const DATA = [
 ["LATTAFA",[
-["Khamrah",37,"usd"],["Kingdom Masc",41,"usd"],["Kingdom Fem",39,"usd"],
-["Afeef",77,"usd"],["Musamam White",50,"usd"],["Fakhar Gold",36,"usd"],
-["Fakhar Mujer",44,"usd"],["Fakhar Masc",41,"usd"],["Fakhar Platin",37,"usd"],
-["Khamrah Qawha",37,"usd"],["Khamrah Dukhan",36,"usd"],["Honor & Glory",36,"usd"],
-["Oud For Glory",36,"usd"],["Sublime",36,"usd"],["Amethyst",36,"usd"],
-["Noble Blush",37,"usd"],["Qaed Al Fursan (Blanco)",33,"usd"],["Her Confession",44,"usd"],
-["His Confession",45,"usd"],["Asad Bourbon",44,"usd"],["Asad Negro",42,"usd"],
-["Kit Yara x4 25ml",46,"usd"],["Qaed Al Fursan",33,"usd"],["Yara Candy",36,"usd"],
-["Yara Tous",35,"usd"],["Yara Moi",35,"usd"],["Yara Rosa",37,"usd"],
-["Sehr",44,"usd"],["Emaan Azul",36,"usd"],["Khanjar",null,"usd"],
-["Haya Mujer",42,"usd"],["Eclaire",41,"usd"],["Eclaire Banoffi",47,"usd"],
-["Eclaire Pistache",45,"usd"],["Sakeena",37,"usd"],["Pride Eternal Oud",null,"usd"],
-["Pride Pisa",50,"usd"],["Maahir Black",39,"usd"],["Hayaati Preto",32,"usd"],
-["Asdaaf Rose",35,"usd"],["Ameerat Red",34,"usd"],["Hayaati Gold Elixir",32,"usd"],
-["Atlas",40,"usd"],["Pride Nebras",43,"usd"],["Ansaam Gold",39,"usd"],
-["Ansaam Silver",39,"usd"],["Mayar Natural Intense",36,"usd"],["Mayar Rosa",38,"usd"],
-["Mayar Cherry Intense",37,"usd"],["Hayaati Florence",33,"usd"],["Victoria",42,"usd"],
-["Vintage Radio",39,"usd"],["Al Qiam Gold",39,"usd"],["Pride Ishq Al Shuyukh Gold",41,"usd"],
-["Teriaq Intense",43,"usd"],["Tharwah Gold",57,"usd"],["Rave Now Black",38,"usd"],
-["Rave Now Rosa",36,"usd"],["Confidential Gold",34,"usd"],["Opulent Dubai",36,"usd"],
-["Yara Elixir",43,"usd"],["Asad Elixir",45,"usd"],["Asad Zanzibar",38,"usd"],
-["Emeer",47,"usd"],["Angham",39,"usd"],["Qimmah",36,"usd"],
-["Maahir Gold",39,"usd"],["Art Of Universe",46,"usd"],["Teriaq Fem",42,"usd"],
-["Ana Abiyehd Coral",33,"usd"],["Pride Shaheen Gold",38,"usd"],["Nebras Elixir",44,"usd"],
-["Al Qiam Silver",40,"usd"],["Win Trophy Gold",39,"usd"],["Musamam EDP",43,"usd"],
-["Hayaati Al Maleky",34,"usd"],["Al Noble Wazeer",37,"usd"],["Al Noble Ameer",37,"usd"],
-["Al Noble Safeer",37,"usd"],["Angham Second Song",42,"usd"],["Atheeri",68,"usd"],
-["Jasoor",39,"usd"],["Sheikh Al Shuyukh",33,"usd"],["Pride D'Antiquités",47,"usd"],
-["Art Of Nature I",45,"usd"],["Art Of Nature II",45,"usd"],["Artisan Ethnique",37,"usd"],
-["Brioche Vanille",37,"usd"],["Natural Oud",38,"usd"],["Eternal Vanille",46,"usd"],
-["Blue Saphire",39,"usd"],["Maharjan Gold",40,"usd"],["Maharjan Silver",40,"usd"],
-["Ta'weel",35,"usd"],["Qimmah Masc",33,"usd"],["Whipped Pleasure",51,"usd"],
-["Vanilla Freak",51,"usd"],["Cookie Crave",51,"usd"],["Choco Overdose",51,"usd"],
-["Mallow Madness",51,"usd"],["Berry On Top",51,"usd"],["Musamam Black Intense",52,"usd"],
-["Maahir Legacy",39,"usd"],["Qaed Al Untamed",33,"usd"],["Kit Asad x4 25ml",52,"usd"],
-["Pride Ishq Silver",45,"usd"],
+["Khamrah",35,"usd"],["Kingdom Masc",39,"usd"],["Kingdom Fem",37,"usd"],
+["Afeef",75,"usd"],["Musamam White Intense",48,"usd"],["Fakhar Extrait Gold",34,"usd"],
+["Fakhar Rose Fem",42,"usd"],["Fakhar Black",39,"usd"],["Fakhar Platin",35,"usd"],
+["Khamrah Qahwa",35,"usd"],["Khamrah Dukhan",34,"usd"],["Khamrah Waha",98000,"ars"],
+["Honor & Glory",34,"usd"],["Oud For Glory",34,"usd"],["Sublime",34,"usd"],
+["Badee Al Oud Amethyst Fusion",34,"usd"],["Badee Al Oud Black Exposed",94000,"ars"],["Noble Blush",35,"usd"],
+["Qaed Al Fursan Unlimited",31,"usd"],["Her Confession",42,"usd"],["His Confession",43,"usd"],
+["Asad Bourbon",42,"usd"],["Asad",40,"usd"],["Kit Yara x4 25ml",44,"usd"],
+["Qaed Al Fursan",31,"usd"],["Yara Candy",34,"usd"],["Yara Tous",33,"usd"],
+["Yara Moi",33,"usd"],["Yara",35,"usd"],["Sehr",42,"usd"],
+["Emaan Azul",34,"usd"],["Khanjar",null,"usd"],["Haya Mujer",40,"usd"],
+["Eclaire",39,"usd"],["Eclaire Banoffi",68000,"ars"],["Eclaire Pistache",43,"usd"],
+["Sakeena",35,"usd"],["Pride Eternal Oud",null,"usd"],["Pride Pisa",48,"usd"],
+["Maahir Black",37,"usd"],["Hayaati Preto",30,"usd"],["Asdaaf Rose",33,"usd"],
+["Ameerat Al Arab Rojo",32,"usd"],["Ameerat Al Arab",61000,"ars"],["Hayaati Gold Elixir",30,"usd"],
+["Atlas",38,"usd"],["Atlas Canyon",94000,"ars"],["Nebras",41,"usd"],
+["Ansaam Gold",37,"usd"],["Ansaam Silver",37,"usd"],["Mayar Natural Intense",34,"usd"],
+["Mayar Rosa",36,"usd"],["Mayar Cherry Intense",35,"usd"],["Hayaati Florence",31,"usd"],
+["Victoria",40,"usd"],["Vintage Radio",37,"usd"],["Al Qiam Gold",37,"usd"],
+["Pride Ishq Al Shuyukh Gold",39,"usd"],["Teriaq Intense",41,"usd"],["Tharwah Gold",55,"usd"],
+["Rave Now Black",36,"usd"],["Rave Now Rosa",34,"usd"],["Confidential Gold",32,"usd"],
+["Opulent Dubai",34,"usd"],["Yara Elixir",41,"usd"],["Asad Elixir",43,"usd"],
+["Asad Zanzibar",36,"usd"],["Emeer",45,"usd"],["Angham",37,"usd"],
+["Qimmah Women",34,"usd"],["Maahir Gold",37,"usd"],["Art Of Universe",44,"usd"],
+["Teriaq Fem",40,"usd"],["Ana Abiyedh Coral",31,"usd"],["Pride Shaheen Gold",36,"usd"],
+["Nebras Elixir",42,"usd"],["Al Qiam Silver",38,"usd"],["Win Trophy Gold",37,"usd"],
+["Musamam",41,"usd"],["Hayaati Al Maleky",32,"usd"],["Al Noble Wazeer",35,"usd"],
+["Al Noble Ameer",35,"usd"],["Al Noble Safeer",35,"usd"],["Angham Second Song",40,"usd"],
+["Atheeri",66,"usd"],["Jasoor",37,"usd"],["Sheikh Al Shuyukh",31,"usd"],
+["Pride D'Antiquités",45,"usd"],["Art Of Nature I",43,"usd"],["Art Of Nature II",43,"usd"],
+["Artisan Ethnique",35,"usd"],["Brioche Vanille",35,"usd"],["Natural Oud",36,"usd"],
+["Eternal Vanille",44,"usd"],["Blue Saphire",37,"usd"],["Maharjan Gold",38,"usd"],
+["Maharjan Silver",38,"usd"],["Ta'weel",33,"usd"],["Qimmah Masc",31,"usd"],
+["Whipped Pleasure",49,"usd"],["Vanilla Freak",49,"usd"],["Cookie Crave",49,"usd"],
+["Choco Overdose",49,"usd"],["Mallow Madness",49,"usd"],["Berry On Top",49,"usd"],
+["Musamam Black Intense",50,"usd"],["Maahir Legacy",37,"usd"],["Maahir Honor",74000,"ars"],
+["Qaed Al Untamed",31,"usd"],["Kit Asad x4 25ml",50,"usd"],["Pride Ishq Silver",43,"usd"],
+["Pride Taureau",82000,"ars"],["Ramz Gold",47000,"ars"],
 ]],
 ["ARMAF",[
-["Checkmate Queen",null,"usd"],["Yum Yum",51,"usd"],["Island Bliss",47,"usd"],
-["Odyssey Dubai Chocolate",38,"usd"],["Club Intense",47,"usd"],["Club Woman",46,"usd"],
-["Club Intense Femenino",45,"usd"],["Mandarin Sky",41,"usd"],["Odyssey Limoni",39,"usd"],
-["Odyssey Spectra",38,"usd"],["Odyssey Homme Black",38,"usd"],["Odyssey Homme White",39,"usd"],
-["Odyssey Aqua",48,"usd"],["Odyssey Candee",39,"usd"],["Odyssey Mega",38,"usd"],
-["Club Sillage",48,"usd"],["Club Nuit Oud",58,"usd"],["Club Urban Elixir",47,"usd"],
-["Club Iconic",50,"usd"],["Club Untold",50,"usd"],["Club Milestone",46,"usd"],
-["Club Imperiale",48,"usd"],["Club Maleka",49,"usd"],["Club Precieux",58,"usd"],
-["Tag-Him Prestige",41,"usd"],["Tag Donna Di Terra",43,"usd"],["Private Key To My Success",57,"usd"],
-["Private Key To My Soul",57,"usd"],["Private Key To My Love",57,"usd"],["Odyssey Aoud",39,"usd"],
-["Marshmallow",47,"usd"],["Island Breeze",58,"usd"],["Beach Party",50,"usd"],
-["Blue Sky",null,"usd"],["Odyssey Revolution Ultra Edition",40,"usd"],["Go Mango",51,"usd"],
-["Bahamas",51,"usd"],["Mandarín Sky Elixir",55,"usd"],["Tag Him",43,"usd"],
-["Tag Donna Colorata",44,"usd"],["Odyssey Black Forest",49,"usd"],["Lionheart Fem",48,"usd"],
-["Lionheart Masc",53,"usd"],["Club Nuit Bling",58,"usd"],["Checkmate King",52,"usd"],
-["Magnifiq",45,"usd"],["Grandeur",45,"usd"],
+["Checkmate Queen",null,"usd"],["Yum Yum",49,"usd"],["Island Bliss",45,"usd"],
+["Odyssey Dubai Chocolate",36,"usd"],["Club Intense",45,"usd"],["Club Woman",44,"usd"],
+["Club Intense Femenino",43,"usd"],["Mandarin Sky",39,"usd"],["Odyssey Limoni",37,"usd"],
+["Odyssey Spectra",36,"usd"],["Odyssey Homme Black",36,"usd"],["Odyssey Homme White",37,"usd"],
+["Odyssey Aqua",46,"usd"],["Odyssey Candee",37,"usd"],["Odyssey Mega",36,"usd"],
+["Club Sillage",46,"usd"],["Club Nuit Oud",56,"usd"],["Club Urban Elixir",45,"usd"],
+["Club Iconic",48,"usd"],["Club Untold",48,"usd"],["Club Milestone",44,"usd"],
+["Club Imperiale",46,"usd"],["Club Maleka",47,"usd"],["Club Precieux",56,"usd"],
+["Tag-Him Prestige",39,"usd"],["Tag Donna Di Terra",41,"usd"],["Private Key To My Success",55,"usd"],
+["Private Key To My Soul",55,"usd"],["Private Key To My Love",55,"usd"],["Odyssey Aoud",37,"usd"],
+["Marshmallow",45,"usd"],["Island Breeze",56,"usd"],["Beach Party",72000,"ars"],
+["Blue Sky",null,"usd"],["Odyssey Revolution Ultra Edition",38,"usd"],["Go Mango",49,"usd"],
+["Bahamas",49,"usd"],["Mandarin Sky Elixir",53,"usd"],["Tag Him",41,"usd"],
+["Tag Donna Colorata",42,"usd"],["Odyssey Black Forest",47,"usd"],["Lionheart Fem",46,"usd"],
+["Lionheart Masc",51,"usd"],["Club Nuit Bling",56,"usd"],["Checkmate King",50,"usd"],
+["Magnifiq",43,"usd"],["Grandeur",43,"usd"],["Dubai Nights Midnight",96000,"ars"],
+["Dunescape",101000,"ars"],
 ]],
 ["AFNAN",[
-["9pm Night Out",null,"usd"],["9pm Rebel",51,"usd"],["9am Dive",45,"usd"],
-["9am Amarillo",46,"usd"],["9pm",42,"usd"],["9pm Violeta",45,"usd"],
-["9am Rosa",null,"usd"],["9pm Elixir",48,"usd"],["Supremacy In Heaven",null,"usd"],
-["Turathi Brown",null,"usd"],["Turathi Blue",46,"usd"],["Turathi Electric",48,"usd"],
-["Historic Olmeda",47,"usd"],
+["9pm Night Out",null,"usd"],["9pm Rebel",49,"usd"],["9am Dive",43,"usd"],
+["9am Amarillo",44,"usd"],["9pm",40,"usd"],["9pm Violeta",43,"usd"],
+["9am Rosa",null,"usd"],["9pm Elixir",46,"usd"],["Supremacy In Heaven",null,"usd"],
+["Supremacy Collectors Edition",136000,"ars"],["Turathi Brown",null,"usd"],["Turathi Blue",44,"usd"],
+["Turathi Electric",46,"usd"],["Historic Olmeda",45,"usd"],
 ]],
 ["AL HARAMAIN",[
-["Amber Gold 120ml",61,"usd"],["Amber Dubai Night",56,"usd"],["Amber Aqua Dubai",65,"usd"],
-["Amber Ruby",67,"usd"],["Oud Nomad",50,"usd"],["Conception",50,"usd"],
-["Olaf",47,"usd"],["Leif",47,"usd"],
+["Amber Gold 120ml",59,"usd"],["Amber Dubai Night",54,"usd"],["Amber Aqua Dubai",63,"usd"],
+["Amber Ruby",65,"usd"],["Oud Nomad",48,"usd"],["Conception",48,"usd"],
+["Olaf",45,"usd"],["Leif",45,"usd"],
 ]],
 ["FRENCH AVENUE",[
-["Liquid Brune",54,"usd"],["Veneno",49,"usd"],["Vulcan Feu",58,"usd"],
-["Eclair Affair",43,"usd"],["Aether Extrait",58,"usd"],["Vulcan Baie",48,"usd"],
-["Vulcan Sable",49,"usd"],["Veneno Blanco",54,"usd"],["Veneno Scarlet",null,"usd"],
-["Azzure Aoud",49,"usd"],["Chaos Extrait",50,"usd"],["Irida Extrait",53,"usd"],
-["Liquid Brun Limitado 150ml",null,"usd"],["Royal Blend Nero",47,"usd"],["Pinnace",53,"usd"],
-["Spectre Wraith",47,"usd"],["Vulcan Black Friday",53,"usd"],["Spectre Ghost",51,"usd"],
-["Cocoa Morado",55,"usd"],
+["Liquid Brun",52,"usd"],["Veneno",47,"usd"],["Vulcan Feu",56,"usd"],
+["Eclair Affair",41,"usd"],["Aether Extrait",56,"usd"],["Vulcan Baie",46,"usd"],
+["Vulcan Sable",47,"usd"],["Veneno Blanco",52,"usd"],["Veneno Scarlet",null,"usd"],
+["Azzure Aoud",47,"usd"],["Chaos Extrait",48,"usd"],["Irida Extrait",51,"usd"],
+["Liquid Brun Limitado 150ml",null,"usd"],["Royal Blend Nero",45,"usd"],["Pinnace",51,"usd"],
+["Spectre Wraith",45,"usd"],["Vulcan Black Friday",51,"usd"],["Spectre Ghost",49,"usd"],
+["Cocoa Morado",53,"usd"],
 ]],
 ["BHARARA",[
-["Bharara King 100ml",67,"usd"],["Gold Edition",null,"usd"],["Bleu",59,"usd"],
-["King Parfum",null,"usd"],["Chocolate",62,"usd"],["Viking Cairo Black",61,"usd"],
+["Bharara King 100ml",65,"usd"],["Gold Edition",null,"usd"],["Bleu",57,"usd"],
+["King Parfum",null,"usd"],["Chocolate",60,"usd"],["Viking Cairo Black",59,"usd"],
+["Rey de Reyes",138000,"ars"],
 ]],
 ["RASASI",[
-["For Him",40,"usd"],["Elixir",46,"usd"],["Black",46,"usd"],
-["Fire",50,"usd"],["Tropical",53,"usd"],["London",55,"usd"],
-["Kobra",56,"usd"],["Malibu",54,"usd"],["Verde",53,"usd"],
-["Ice",53,"usd"],["For Her",40,"usd"],
+["For Him",38,"usd"],["Elixir",44,"usd"],["Black",44,"usd"],
+["Fire",48,"usd"],["Tropical",51,"usd"],["London",77000,"ars"],
+["Kobra",54,"usd"],["Malibu",52,"usd"],["Verde",51,"usd"],
+["Ice",51,"usd"],["For Her Diva",38,"usd"],["Atlantis",92000,"ars"],
+["Chrome",99000,"ars"],["Eclat",82000,"ars"],
 ]],
 ["MAISON ALHAMBRA",[
-["Jean Lowe Azure",40,"usd"],["Salvo",37,"usd"],["Jean Lowe Inmortal",40,"usd"],
-["Rose Petals",35,"usd"],["Galactic Intense",25,"usd"],["Jean Lowe Noir",39,"usd"],
-["L'Intrude",37,"usd"],["La Voie",36,"usd"],["Panther Pour Homme",35,"usd"],
-["Philos Pura",38,"usd"],["Sceptre Malachite",42,"usd"],["Olivia",37,"usd"],
-["La Vivacite",37,"usd"],["Pacific Blue",36,"usd"],["Alpine Homme Sport",39,"usd"],
-["Bad Femme",36,"usd"],["Chants Tenderina",36,"usd"],["Galactic Elixir",26,"usd"],
-["Como Moiselle",42,"usd"],["Lovely Cherie",null,"usd"],["Philos Rosso",33,"usd"],
-["Glacier Bold",37,"usd"],["Jean Lowe Vibe",43,"usd"],["La Rouge Baroque Extreme",35,"usd"],
-["Delilah Blanc",45,"usd"],["Flaming Elixir",38,"usd"],["Florenza",35,"usd"],
-["Fusión Intense",37,"usd"],["Glacier Bella",36,"usd"],["Glacier Ultra",37,"usd"],
-["Jean Lowe Maitre",37,"usd"],["Jorge Di Profumo Deep Blue",34,"usd"],["Love Spark",38,"usd"],
-["Ópera Rouge",32,"usd"],["Opulence Leather",40,"usd"],["Salvo Intense",40,"usd"],
-["Salvo Elixir",36,"usd"],["Summer Forever",43,"usd"],["Victorioso Fearless",37,"usd"],
-["Victorioso Myth",37,"usd"],["Yeah Parfum",36,"usd"],["Yeah EDP",35,"usd"],
-["Your Touch F",36,"usd"],["Dark Door Sport",34,"usd"],["Eternal Touch",37,"usd"],
-["Jorge Di Profumo EDP",35,"usd"],["Leonie EDP",42,"usd"],
+["Jean Lowe Azure",38,"usd"],["Salvo",35,"usd"],["Jean Lowe Inmortal",38,"usd"],
+["Rose Petals",33,"usd"],["Galactic Intense",23,"usd"],["Jean Lowe Noir",37,"usd"],
+["L'Intrude",35,"usd"],["La Voie",34,"usd"],["Panther Pour Homme",33,"usd"],
+["Philos Pura",36,"usd"],["Sceptre Malachite",40,"usd"],["Olivia",35,"usd"],
+["La Vivacite",35,"usd"],["Pacific Blue",34,"usd"],["Alpine Homme Sport",37,"usd"],
+["Bad Femme",34,"usd"],["Chants Tenderina",34,"usd"],["Galactic Elixir",24,"usd"],
+["Como Moiselle",40,"usd"],["Lovely Cherie",null,"usd"],["Philos Rosso",31,"usd"],
+["Glacier Bold",35,"usd"],["Jean Lowe Vibe",41,"usd"],["La Rouge Baroque Extreme",33,"usd"],
+["Delilah Blanc",43,"usd"],["Flaming Elixir",36,"usd"],["Florenza",33,"usd"],
+["Fusión Intense",35,"usd"],["Glacier Bella",34,"usd"],["Glacier Ultra",35,"usd"],
+["Jean Lowe Maitre",35,"usd"],["Jorge Di Profumo Deep Blue",32,"usd"],["Love Spark",36,"usd"],
+["Ópera Rouge",30,"usd"],["Opulence Leather",38,"usd"],["Salvo Intense",38,"usd"],
+["Salvo Elixir",34,"usd"],["Summer Forever",41,"usd"],["Victorioso Fearless",35,"usd"],
+["Victorioso Myth",35,"usd"],["Yeah Man",34,"usd"],["Yeah EDP",33,"usd"],
+["Your Touch F",34,"usd"],["Your Touch M",64000,"ars"],["Dark Door Sport",32,"usd"],
+["Eternal Touch",35,"usd"],["Jorge Di Profumo EDP",33,"usd"],["Leonie EDP",40,"usd"],
+["So Candid Pour Femme",77000,"ars"],
 ]],
 ["ZIMAYA",[
-["Tiramisu Caramel",43,"usd"],["Tiramisu Coco",43,"usd"],["Fatima Velvet",37,"usd"],
-["Fatima Pink",39,"usd"],
+["Tiramisu Caramel",41,"usd"],["Tiramisu Coco",41,"usd"],["Fatima Velvet",35,"usd"],
+["Fatima Pink",37,"usd"],
 ]],
 ["ORIENTICA",[
-["Amber Rouge",68,"usd"],
+["Amber Rouge",66,"usd"],
 ]],
 ["RAYHAAN",[
-["Elixir",48,"usd"],
+["Elixir",46,"usd"],["Amazonica",92000,"ars"],["Aquatica",87000,"ars"],
+["Azul",85000,"ars"],["Italia",108000,"ars"],["Jungle Vibe",82000,"ars"],
+["Lion",74000,"ars"],["Nocturno Elixir",77000,"ars"],["Pacific Aura",96000,"ars"],
+["Tropical Vibe",84000,"ars"],["Wolf",84000,"ars"],
 ]],
 ["AL WATANIAH",[
-["Sabah Al Ward Fem",34,"usd"],["Ameerati Fem",33,"usd"],["Sabah Al Ward Sugar",34,"usd"],
-["Sabah Al Ward Valentine",45,"usd"],["Sabah Al Ward Delilah",45,"usd"],
+["Sabah Al Ward Fem",32,"usd"],["Ameerati Fem",31,"usd"],["Sabah Al Ward Sugar",32,"usd"],
+["Sabah Al Ward Valentine",43,"usd"],["Sabah Al Ward Delilah",43,"usd"],
 ]],
 ["RIFFS",[
-["Momento",49,"usd"],["Noor",51,"usd"],["Nusuk Ateeq",null,"usd"],
+["Momento",47,"usd"],["Noor",49,"usd"],["Nusuk Ateeq",null,"usd"],
+["Freeze in Flames",111000,"ars"],
 ]],
 ["PARIS CORNER",[
-["Kahir Peach Delulu",43,"usd"],["Rifaaqat",42,"usd"],["Marshmallow Blush",47,"usd"],
+["Kahir Peach Delulu",41,"usd"],["Rifaaqat",40,"usd"],["Marshmallow Blush",45,"usd"],
 ]],
 ["FRAGANCE WORLD",[
-["La Uno Forever Blue",32,"usd"],["Urban Man Amaze",38,"usd"],["Urban Man Le Parfum",38,"usd"],
-["Urban Man Ultra",38,"usd"],["Urban Women Paradise",38,"usd"],["Urban Man Elixir",38,"usd"],
-["Champion Goat",48,"usd"],["Champion Money",48,"usd"],["Champion Sugar",48,"usd"],
+["La Uno Forever Blue",30,"usd"],["Urban Man Amaze",36,"usd"],["Urban Man Le Parfum",36,"usd"],
+["Urban Man Ultra",36,"usd"],["Urban Women Paradise",36,"usd"],["Urban Man Elixir",36,"usd"],
+["Champion Goat",46,"usd"],["Champion Money",46,"usd"],["Champion Sugar",46,"usd"],
 ]],
 ["ZAKAT",[
-["World Cup",90,"usd"],
+["World Cup",88,"usd"],
 ]],
 ["AZZARO",[
-["The Most Wanted",106,"usd",30],
+["The Most Wanted",190000,"fixed"],["The Most Wanted Intense",175000,"fixed"],
 ]],
 ["PACO RABANNE",[
-["Invictus Parfum",110,"usd",30],
+["Invictus Parfum",218500,"fixed"],
 ]],
 ["JEAN PAUL GAULTIER",[
-["Le Male",111,"usd",30],["Le Beau",115,"usd",30],["Scandal Le Parfum",125,"usd",30],
-["Le Male Elixir",142,"usd",25],
+["Le Male",220000,"fixed"],["Le Beau",226500,"fixed"],["Scandal Le Parfum",242000,"fixed"],
+["Le Male Elixir",237500,"fixed"],
 ]],
 ["ARMANI",[
-["Stronger With You Intensely",135,"usd",25],["Acqua di Giò",140,"usd",25],["Code Parfum",145,"usd",25],
+["Stronger With You Intensely",216000,"fixed"],["Acqua di Giò",234000,"fixed"],["Code Parfum",242000,"fixed"],
 ]],
 ["DIOR",[
-["Sauvage",135,"usd",25],
+["Sauvage",226500,"fixed"],
 ]],
 ["MONTALE",[
-["Arabians Tonka",151,"usd",25],
+["Arabians Tonka",244000,"fixed"],
+]],
+["CAROLINA HERRERA",[
+["212 Men",181000,"fixed"],["Good Girl",214000,"fixed"],
+]],
+["DUMONT",[
+["Nitro Red",107000,"fixed"],
 ]],
 ["VALENTINO",[
-["Uomo Born in Roma Intense",165,"usd",30],
+["Uomo Born in Roma Intense",304500,"fixed"],
 ]],
 ["XERJOFF",[
-["Erba Pura",220,"usd",25],
+["Erba Pura",359000,"fixed"],
 ]],
 ];
 
@@ -1332,6 +1352,254 @@ function slug(s){
 // Fichas descriptivas: notas, familia olfativa y a qué diseñador se parece.
 // Se van completando de a poco (clave: "marca-slug|nombre-slug").
 const DESCRIPTIONS = {
+  "afnan|supremacy-collectors-edition": {
+    familia: "Frutal amaderado",
+    salida: "Piña, bergamota, manzana y flores blancas",
+    corazon: "Azahar, abedul y ámbar",
+    fondo: "Musgo de roble, almizcle y ámbar gris",
+    ocasion: "Día y noche, todo el año, fresco y elegante",
+    parecido: "Aventus de Creed",
+  },
+  "armaf|dubai-nights-midnight": {
+    familia: "Amaderado aromático",
+    salida: "Lavanda y bergamota",
+    corazon: "Geranio y azahar",
+    fondo: "Pachulí y maderas",
+    ocasion: "Noche, otoño-invierno, aromático y elegante",
+    parecido: null,
+  },
+  "armaf|dunescape": {
+    familia: "Cítrico aromático",
+    salida: "Limón, mandarina, bergamota, naranja sanguina, jengibre, enebro y salvia",
+    corazon: "Notas ozónicas, geranio, rosa, manzana y cashmeran",
+    fondo: "Ámbar seco, almizcle y sándalo",
+    ocasion: "Día, primavera-verano, fresco y limpio",
+    parecido: null,
+  },
+  "lattafa|ameerat-al-arab": {
+    familia: "Oriental floral",
+    salida: "Cítricos, bergamota y acorde frutal",
+    corazon: "Rosa, jazmín y flores blancas",
+    fondo: "Oud, ámbar, almizcle, vainilla y sándalo",
+    ocasion: "Noche, otoño-invierno, intenso y elegante",
+    parecido: null,
+  },
+  "bharara|rey-de-reyes": {
+    familia: "Amaderado aromático",
+    salida: "Bergamota, pimienta rosa, cardamomo y enebro",
+    corazon: "Lavanda, geranio y nuez moscada",
+    fondo: "Pachulí, sándalo y ambroxan",
+    ocasion: "Día y noche, todo el año, fresco y amaderado",
+    parecido: null,
+  },
+  "lattafa|atlas-canyon": {
+    familia: "Acuático amaderado",
+    salida: "Bergamota, jengibre y limón",
+    corazon: "Lirio de los valles y notas marinas",
+    fondo: "Pachulí, musgo de roble, ambroxan y almizcle",
+    ocasion: "Día, primavera-verano, fresco y marino",
+    parecido: null,
+  },
+  "lattafa|badee-al-oud-black-exposed": {
+    familia: "Oriental ámbar",
+    salida: "Incienso, toffee y pimienta rosa",
+    corazon: "Iris, cacao y maderas suaves",
+    fondo: "Vainilla, ládano y ámbar",
+    ocasion: "Noche, otoño-invierno, dulce e intenso",
+    parecido: null,
+  },
+  "lattafa|khamrah-waha": {
+    familia: "Acuático amaderado",
+    salida: "Bergamota, yuzu y enebro",
+    corazon: "Jengibre, salvia, sal marina, pepino e iris",
+    fondo: "Akigalawood, haba tonka, vainilla y almizcle",
+    ocasion: "Día, primavera-verano, fresco y salino",
+    parecido: null,
+  },
+  "lattafa|maahir-honor": {
+    familia: "Aromático amaderado",
+    salida: "Bergamota, limón dulce, menta y tomillo",
+    corazon: "Lavanda, romero, jazmín y moringa árabe",
+    fondo: "Almizcle, cedro y ámbar",
+    ocasion: "Día, todo el año, fresco y limpio",
+    parecido: null,
+  },
+  "lattafa|pride-taureau": {
+    familia: "Oriental especiado",
+    salida: "Cardamomo, canela y benjuí",
+    corazon: "Heliotropo, jazmín, tabaco y cashmeran",
+    fondo: "Vainilla, haba tonka y pachulí",
+    ocasion: "Noche, otoño-invierno, cálido y especiado",
+    parecido: null,
+  },
+  "lattafa|ramz-gold": {
+    familia: "Floral frutal",
+    salida: "Manzana, piña y bergamota",
+    corazon: "Jazmín, sándalo, madera de guayaco y pachulí",
+    fondo: "Almizcle, humo de oud, vainilla y ámbar gris",
+    ocasion: "Día y noche, versátil, dulce y frutal",
+    parecido: null,
+  },
+  "maison-alhambra|so-candid-pour-femme": {
+    familia: "Floral dulce",
+    salida: "Miel y tuberosa",
+    corazon: "Sándalo y jazmín",
+    fondo: "Haba tonka y pera",
+    ocasion: "Día y noche, todo el año, dulce y femenino",
+    parecido: null,
+  },
+  "maison-alhambra|your-touch-m": {
+    familia: "Ámbar aromático",
+    salida: "Cardamomo, pimienta rosa, menta y hoja de violeta",
+    corazon: "Piña, salvia, sandía, canela y lavanda",
+    fondo: "Vainilla, castaña, cedro y madera de ámbar",
+    ocasion: "Día y noche, otoño-invierno, dulce y especiado",
+    parecido: null,
+  },
+  "rasasi|atlantis": {
+    familia: "Acuático amaderado",
+    salida: "Bergamota, cardamomo y notas marinas",
+    corazon: "Jazmín, violeta y notas acuáticas",
+    fondo: "Sándalo, ámbar gris, vetiver y almizcle",
+    ocasion: "Día, primavera-verano, fresco y marino",
+    parecido: null,
+  },
+  "rasasi|chrome": {
+    familia: "Frutal ámbar",
+    salida: "Durazno y naranja dulce",
+    corazon: "Mango, notas acuosas y flor de la pasión",
+    fondo: "Ámbar, vainilla y almizcle",
+    ocasion: "Día y noche, primavera-verano, fresco y frutal",
+    parecido: "Erba Gold de Xerjoff",
+  },
+  "rasasi|eclat": {
+    familia: "Floral amaderado",
+    salida: "Notas luminosas y energizantes",
+    corazon: "Esencias florales delicadas",
+    fondo: "Maderas cálidas y notas sensuales",
+    ocasion: "Día y noche, todo el año, floral y elegante",
+    parecido: null,
+  },
+  "rayhaan|amazonica": {
+    familia: "Fresco frutal",
+    salida: "Notas frescas y frutales",
+    corazon: "Notas florales y verdes",
+    fondo: "Almizcle y maderas suaves",
+    ocasion: "Día, primavera-verano, fresco y juvenil",
+    parecido: null,
+  },
+  "rayhaan|aquatica": {
+    familia: "Acuático tropical gourmand",
+    salida: "Bergamota, lima, mandarina y leche de coco",
+    corazon: "Jazmín, gardenia, hibisco y caña de azúcar",
+    fondo: "Pachulí, almizcle, haba tonka y ron",
+    ocasion: "Día, primavera-verano, fresco y tropical",
+    parecido: null,
+  },
+  "rayhaan|azul": {
+    familia: "Aromático acuático",
+    salida: "Cítricos frescos",
+    corazon: "Lavanda y notas aromáticas",
+    fondo: "Ámbar blanco y cedro",
+    ocasion: "Día, primavera-verano, fresco y limpio",
+    parecido: null,
+  },
+  "rayhaan|italia": {
+    familia: "Oriental tabaco gourmand",
+    salida: "Lavanda, limón, lima y bergamota",
+    corazon: "Miel, canela, cashmere y jazmín",
+    fondo: "Hojas de tabaco, vainilla y haba tonka",
+    ocasion: "Noche, otoño-invierno, cálido y especiado",
+    parecido: null,
+  },
+  "rayhaan|jungle-vibe": {
+    familia: "Frutal fresco",
+    salida: "Frutas jugosas",
+    corazon: "Notas florales dulces",
+    fondo: "Almizcle y notas suaves",
+    ocasion: "Día, primavera-verano, fresco y frutal",
+    parecido: null,
+  },
+  "rayhaan|lion": {
+    familia: "Aromático vainilla especiado",
+    salida: "Notas aromáticas y especias frescas",
+    corazon: "Especias suaves",
+    fondo: "Vainilla",
+    ocasion: "Día y noche, todo el año, cálido y aromático",
+    parecido: null,
+  },
+  "rayhaan|nocturno-elixir": {
+    familia: "Oriental",
+    salida: "Notas especiadas",
+    corazon: "Notas dulces y cálidas",
+    fondo: "Maderas y ámbar",
+    ocasion: "Noche, otoño-invierno, intenso y envolvente",
+    parecido: null,
+  },
+  "rayhaan|pacific-aura": {
+    familia: "Cítrico aromático frutal",
+    salida: "Cítricos",
+    corazon: "Notas aromáticas",
+    fondo: "Notas frutales y maderas suaves",
+    ocasion: "Día, primavera-verano, fresco y luminoso",
+    parecido: null,
+  },
+  "rayhaan|tropical-vibe": {
+    familia: "Frutal fresco",
+    salida: "Piña y mango",
+    corazon: "Coco y frutas exóticas",
+    fondo: "Ámbar y almizcle",
+    ocasion: "Día, primavera-verano, tropical y dulce",
+    parecido: null,
+  },
+  "rayhaan|wolf": {
+    familia: "Oriental especiado",
+    salida: "Cardamomo y bergamota",
+    corazon: "Canela y notas florales",
+    fondo: "Haba tonka, almizcle y pachulí",
+    ocasion: "Noche, otoño-invierno, intenso y especiado",
+    parecido: null,
+  },
+  "riffs|freeze-in-flames": {
+    familia: "Aromático frutal",
+    salida: "Frambuesa, manzana roja, maracuyá, menta verde y bergamota de Calabria",
+    corazon: "Menta, lavanda, salvia y té",
+    fondo: "Almizcle y cedro",
+    ocasion: "Día, primavera-verano, fresco y frutal",
+    parecido: null,
+  },
+  "azzaro|the-most-wanted-intense": {
+    familia: "Oriental fougère",
+    salida: "Cardamomo",
+    corazon: "Acorde de caramelo",
+    fondo: "Madera de ámbar",
+    ocasion: "Noche, otoño-invierno, dulce y seductor",
+    parecido: null,
+  },
+  "carolina-herrera|212-men": {
+    familia: "Amaderado floral almizclado",
+    salida: "Pomelo, bergamota, notas verdes, lavanda y especias",
+    corazon: "Jengibre, pimienta verde, violeta, gardenia y salvia",
+    fondo: "Almizcle, sándalo, vetiver, incienso y ládano",
+    ocasion: "Día, primavera-verano, urbano y fresco",
+    parecido: null,
+  },
+  "carolina-herrera|good-girl": {
+    familia: "Floral oriental",
+    salida: "Almendra, café, bergamota y limón",
+    corazon: "Tuberosa, jazmín sambac, azahar e iris",
+    fondo: "Haba tonka, cacao, vainilla, praliné, sándalo y ámbar",
+    ocasion: "Noche, otoño-invierno, sensual y elegante",
+    parecido: null,
+  },
+  "dumont|nitro-red": {
+    familia: "Oriental fresco",
+    salida: "Lavanda, cálamo y sandía",
+    corazon: "Cedro y cálamo",
+    fondo: "Sándalo, ámbar y pachulí",
+    ocasion: "Día y noche, todo el año, fresco y cálido",
+    parecido: null,
+  },
   "azzaro|the-most-wanted": {
     familia: "Oriental fougère",
     salida: "Lavanda y cardamomo",
@@ -1444,7 +1712,7 @@ const DESCRIPTIONS = {
     ocasion: "Noche, otoño-invierno, cenas y ocasiones especiales",
     parecido: "1 Million de Paco Rabanne",
   },
-  "lattafa|khamrah-qawha": {
+  "lattafa|khamrah-qahwa": {
     familia: "Gourmand oriental con café",
     salida: "Canela, jengibre y cardamomo",
     corazon: "Praliné, frutas confitadas y flores blancas",
@@ -1676,7 +1944,7 @@ const DESCRIPTIONS = {
     ocasion: "Día, primavera-verano, uso suave y fresco",
     parecido: null,
   },
-  "lattafa|yara-rosa": {
+  "lattafa|yara": {
     familia: "Ámbar vainilla",
     salida: "Orquídea, heliotropo y mandarina",
     corazon: "Acuerdo gourmand y frutas tropicales",
@@ -1708,7 +1976,7 @@ const DESCRIPTIONS = {
     ocasion: "Noche, otoño-invierno, ocasiones especiales",
     parecido: "Grand Soir de Maison Francis Kurkdjian",
   },
-  "lattafa|pride-nebras": {
+  "lattafa|nebras": {
     familia: "Oriental vainilla",
     salida: "Bayas rojas y mandarina",
     corazon: "Vainilla, cacao y rosa",
@@ -1780,7 +2048,7 @@ const DESCRIPTIONS = {
     ocasion: "Día y noche, femenino, gourmand versátil",
     parecido: null,
   },
-  "lattafa|qimmah": {
+  "lattafa|qimmah-women": {
     familia: "Oriental gourmand",
     salida: "Almendra y café",
     corazon: "Jazmín, nardo y haba tonka",
@@ -1804,7 +2072,7 @@ const DESCRIPTIONS = {
     ocasion: "Todo el año, día y noche, versátil",
     parecido: null,
   },
-  "lattafa|musamam-white": {
+  "lattafa|musamam-white-intense": {
     familia: "Oriental floral",
     salida: "Especias, bergamota y naranja",
     corazon: "Coco, ylang-ylang, ambroxan y mahonial",
@@ -1836,7 +2104,7 @@ const DESCRIPTIONS = {
     ocasion: "Todo el año, día y noche, frutal versátil",
     parecido: "Eden Sparkling Lychee #39 de Kayali",
   },
-  "lattafa|amethyst": {
+  "lattafa|badee-al-oud-amethyst-fusion": {
     familia: "Ámbar vainilla",
     salida: "Pimienta rosa y bergamota",
     corazon: "Rosa turca, rosa búlgara y jazmín",
@@ -1908,7 +2176,7 @@ const DESCRIPTIONS = {
     ocasion: "Noche, otoño-invierno, gourmand intenso",
     parecido: null,
   },
-  "lattafa|ana-abiyehd-coral": {
+  "lattafa|ana-abiyedh-coral": {
     familia: "Floral frutal",
     salida: "Sandía, durazno y naranja",
     corazon: "Coco y flores blancas",
@@ -2396,7 +2664,7 @@ const DESCRIPTIONS = {
     ocasion: "Noche, otoño-invierno, intenso",
     parecido: null,
   },
-  "french-avenue|liquid-brune": {
+  "french-avenue|liquid-brun": {
     familia: "Amaderado",
     salida: "Canela, azahar, cardamomo y bergamota",
     corazon: "Vainilla bourbon y elemí",
@@ -2620,7 +2888,7 @@ const DESCRIPTIONS = {
     ocasion: "Día, primavera-verano, fresco y herbal",
     parecido: "Acqua di Giò de Giorgio Armani",
   },
-  "rasasi|for-her": {
+  "rasasi|for-her-diva": {
     familia: "Floral frutal gourmand",
     salida: "Granada, manzana y pomelo",
     corazon: "Iris, jazmín sambac y cítricos",
@@ -2780,7 +3048,7 @@ const DESCRIPTIONS = {
     ocasion: "Noche, otoño-invierno, complejo y elegante",
     parecido: "Fucking Fabulous de Tom Ford",
   },
-  "maison-alhambra|yeah-parfum": {
+  "maison-alhambra|yeah-man": {
     familia: "Aromática",
     salida: "Manzana, aldehídos, jengibre y pomelo",
     corazon: "Lavanda, salvia y geranio",
@@ -3252,7 +3520,7 @@ const DESCRIPTIONS = {
     ocasion: "Noche, otoño-invierno, elegante y cálido",
     parecido: "Sauvage Elixir de Dior",
   },
-  "lattafa|qaed-al-fursan-blanco": {
+  "lattafa|qaed-al-fursan-unlimited": {
     familia: "Floral frutal gourmand",
     salida: "Coco, piña y cítricos",
     corazon: "Ylang-ylang, frangipani y jazmín",
@@ -3260,7 +3528,7 @@ const DESCRIPTIONS = {
     ocasion: "Primavera-verano, tropical, unisex",
     parecido: "Black Orchid de Tom Ford",
   },
-  "lattafa|fakhar-masc": {
+  "lattafa|fakhar-black": {
     familia: "Oriental",
     salida: "Manzana, bergamota y jengibre",
     corazon: "Lavanda, salvia, bayas de enebro y geranio",
@@ -3460,7 +3728,7 @@ const DESCRIPTIONS = {
     ocasion: "Otoño-invierno, día y noche, elegante y versátil",
     parecido: "Bleu de Chanel",
   },
-  "lattafa|fakhar-mujer": {
+  "lattafa|fakhar-rose-fem": {
     familia: "Floral",
     salida: "Aldehídos, granada, lirio y notas de fruta",
     corazon: "Gardenia, jazmín, madreselva, peonía, rosa y tuberosa",
@@ -3596,7 +3864,7 @@ const DESCRIPTIONS = {
     ocasion: "Primavera-verano, tropical y fresco",
     parecido: null,
   },
-  "lattafa|musamam-edp": {
+  "lattafa|musamam": {
     familia: "Amaderada aromática",
     salida: "Azafrán, lavanda y mandarina italiana",
     corazon: "Amberwood, cedro de Virginia y geranio",
@@ -3612,7 +3880,7 @@ const DESCRIPTIONS = {
     ocasion: "Noche, otoño-invierno, cálido y seductor",
     parecido: "1 Million Elixir de Paco Rabanne",
   },
-  "lattafa|asad-negro": {
+  "lattafa|asad": {
     familia: "Ámbar oriental",
     salida: "Pimienta negra, piña y tabaco",
     corazon: "Café, iris y pachulí",
@@ -3652,7 +3920,7 @@ const DESCRIPTIONS = {
     ocasion: "Primavera-otoño, dulce y especiado, tardes de verano",
     parecido: null,
   },
-  "lattafa|fakhar-gold": {
+  "lattafa|fakhar-extrait-gold": {
     familia: "Amaderado especiado",
     salida: "Toronja, pimienta rosa y cardamomo",
     corazon: "Notas solares, abrótano y nardos",
@@ -3668,7 +3936,7 @@ const DESCRIPTIONS = {
     ocasion: "Día y noche, romántico y elegante",
     parecido: null,
   },
-  "lattafa|ameerat-red": {
+  "lattafa|ameerat-al-arab-rojo": {
     familia: "Floral frutal",
     salida: "Frambuesa, bergamota y melocotón",
     corazon: "Rosa, jazmín y peonía",
@@ -3714,24 +3982,49 @@ function getDescription(brand, name){
 }
 // Cuando el nombre del producto cambia pero la foto ya quedó subida con el nombre viejo
 const IMG_NAME_OVERRIDE = {
-  "valentino|uomo-born-in-roma-intense": "born-in-roma"
+  "valentino|uomo-born-in-roma-intense": "born-in-roma",
+  "lattafa|khamrah-qahwa": "khamrah-qawha",
+  "lattafa|asad": "asad-negro",
+  "lattafa|ana-abiyedh-coral": "ana-abiyehd-coral",
+  "french-avenue|liquid-brun": "liquid-brune",
+  "lattafa|ameerat-al-arab-rojo": "ameerat-red",
+  "lattafa|badee-al-oud-amethyst-fusion": "amethyst",
+  "lattafa|fakhar-black": "fakhar-masc",
+  "lattafa|fakhar-extrait-gold": "fakhar-gold",
+  "lattafa|fakhar-rose-fem": "fakhar-mujer",
+  "lattafa|musamam": "musamam-edp",
+  "lattafa|musamam-white-intense": "musamam-white",
+  "lattafa|nebras": "pride-nebras",
+  "lattafa|qaed-al-fursan-unlimited": "qaed-al-fursan-blanco",
+  "lattafa|qimmah-women": "qimmah",
+  "rasasi|for-her-diva": "for-her",
+  "maison-alhambra|yeah-man": "yeah-parfum",
+  "lattafa|yara": "yara-rosa"
 };
 function imgPath(brand, name){
   return `assets/${slug(brand)}/${slug(name)}.jpg`;
 }
 function imgCandidates(brand, name){
   const key = slug(brand) + "|" + slug(name);
-  const fileName = IMG_NAME_OVERRIDE[key] || slug(name);
-  const base = `assets/${slug(brand)}/${fileName}`;
-  return [base + ".jpg", base + ".jpeg", base + ".webp", base + ".png"];
+  // prueba primero el nombre de archivo viejo (si lo hay) y después el nombre nuevo
+  const names = [IMG_NAME_OVERRIDE[key], slug(name)].filter((n, i, a) => n && a.indexOf(n) === i);
+  const out = [];
+  names.forEach(n => {
+    const base = `assets/${slug(brand)}/${n}`;
+    out.push(base + ".jpg", base + ".jpeg", base + ".webp", base + ".png");
+  });
+  return out;
 }
 function tryImageChain(imgEl, candidates){
   let idx = 0;
   imgEl.onerror = () => {
     if(idx >= candidates.length){ imgEl.style.display = "none"; imgEl.onerror = null; return; }
-    imgEl.src = candidates[idx++];
+    const next = candidates[idx++];
+    imgEl.classList.toggle("img-remote", /^https?:/.test(next));
+    imgEl.src = next;
   };
   imgEl.style.display = "";
+  imgEl.classList.remove("img-remote");
   imgEl.src = candidates[idx++];
 }
 function fmtPrice(n){
@@ -3758,7 +4051,7 @@ const CATEGORY_SUB = {
 };
 const CATEGORY_OF_BRAND = {};
 ["LATTAFA","ARMAF","AFNAN","AL HARAMAIN","FRENCH AVENUE","BHARARA","RASASI","MAISON ALHAMBRA","ZIMAYA","ORIENTICA","RAYHAAN","AL WATANIAH","RIFFS","PARIS CORNER","FRAGANCE WORLD","ZAKAT"].forEach(b => CATEGORY_OF_BRAND[b] = "arabes");
-["AZZARO","PACO RABANNE","JEAN PAUL GAULTIER","ARMANI","DIOR","MONTALE","VALENTINO","XERJOFF"].forEach(b => CATEGORY_OF_BRAND[b] = "disenador");
+["AZZARO","CAROLINA HERRERA","DUMONT","PACO RABANNE","JEAN PAUL GAULTIER","ARMANI","DIOR","MONTALE","VALENTINO","XERJOFF"].forEach(b => CATEGORY_OF_BRAND[b] = "disenador");
 
 const brandContainer = document.getElementById("brandContainer");
 const chipsEl = document.getElementById("chips");
@@ -3778,33 +4071,45 @@ let activeSort = ""; // "" | asc | desc
 
 // Heurística por nombre + overrides investigados por línea/nombre árabe.
 const GENDER_MAP = {
+  "afnan|supremacy collectors edition": "hombre",
+  "bharara|rey de reyes": "hombre",
+  "maison alhambra|so candid pour femme": "mujer",
+  "maison alhambra|your touch m": "hombre",
+  "rasasi|atlantis": "hombre",
+  "rasasi|chrome": "hombre",
+  "rasasi|eclat": "mujer",
+  "rayhaan|italia": "hombre",
+  "azzaro|the most wanted intense": "hombre",
+  "carolina herrera|212 men": "hombre",
+  "carolina herrera|good girl": "mujer",
+  "dumont|nitro red": "hombre",
   "lattafa|khamrah": "hombre",
   "lattafa|kingdom masc": "hombre",
   "lattafa|kingdom fem": "mujer",
   "lattafa|afeef": "hombre",
-  "lattafa|musamam white": "hombre",
-  "lattafa|fakhar gold": "hombre",
-  "lattafa|fakhar mujer": "mujer",
-  "lattafa|fakhar masc": "hombre",
+  "lattafa|musamam white intense": "hombre",
+  "lattafa|fakhar extrait gold": "hombre",
+  "lattafa|fakhar rose fem": "mujer",
+  "lattafa|fakhar black": "hombre",
   "lattafa|fakhar platin": "hombre",
-  "lattafa|khamrah qawha": "hombre",
+  "lattafa|khamrah qahwa": "hombre",
   "lattafa|khamrah dukhan": "hombre",
   "lattafa|honor & glory": "hombre",
   "lattafa|oud for glory": "hombre",
   "lattafa|sublime": "hombre",
-  "lattafa|amethyst": "mujer",
+  "lattafa|badee al oud amethyst fusion": "mujer",
   "lattafa|noble blush": "mujer",
-  "lattafa|qaed al fursan (blanco)": "hombre",
+  "lattafa|qaed al fursan unlimited": "hombre",
   "lattafa|her confession": "mujer",
   "lattafa|his confession": "hombre",
   "lattafa|asad bourbon": "hombre",
-  "lattafa|asad negro": "hombre",
+  "lattafa|asad": "hombre",
   "lattafa|kit yara x4 25ml": "mujer",
   "lattafa|qaed al fursan": "hombre",
   "lattafa|yara candy": "mujer",
   "lattafa|yara tous": "mujer",
   "lattafa|yara moi": "mujer",
-  "lattafa|yara rosa": "mujer",
+  "lattafa|yara": "mujer",
   "lattafa|sehr": "mujer",
   "lattafa|emaan azul": "hombre",
   "lattafa|haya mujer": "mujer",
@@ -3816,10 +4121,10 @@ const GENDER_MAP = {
   "lattafa|maahir black": "hombre",
   "lattafa|hayaati preto": "mujer",
   "lattafa|asdaaf rose": "mujer",
-  "lattafa|ameerat red": "mujer",
+  "lattafa|ameerat al arab rojo": "mujer",
   "lattafa|hayaati gold elixir": "mujer",
   "lattafa|atlas": "hombre",
-  "lattafa|pride nebras": "hombre",
+  "lattafa|nebras": "hombre",
   "lattafa|ansaam gold": "hombre",
   "lattafa|ansaam silver": "hombre",
   "lattafa|mayar natural intense": "mujer",
@@ -3841,16 +4146,16 @@ const GENDER_MAP = {
   "lattafa|asad zanzibar": "hombre",
   "lattafa|emeer": "hombre",
   "lattafa|angham": "mujer",
-  "lattafa|qimmah": "mujer",
+  "lattafa|qimmah women": "mujer",
   "lattafa|maahir gold": "hombre",
   "lattafa|art of universe": "hombre",
   "lattafa|teriaq fem": "mujer",
-  "lattafa|ana abiyehd coral": "mujer",
+  "lattafa|ana abiyedh coral": "mujer",
   "lattafa|pride shaheen gold": "hombre",
   "lattafa|nebras elixir": "hombre",
   "lattafa|al qiam silver": "hombre",
   "lattafa|win trophy gold": "hombre",
-  "lattafa|musamam edp": "hombre",
+  "lattafa|musamam": "hombre",
   "lattafa|hayaati al maleky": "mujer",
   "lattafa|al noble wazeer": "hombre",
   "lattafa|al noble ameer": "hombre",
@@ -3966,7 +4271,7 @@ const GENDER_MAP = {
   "maison alhambra|summer forever": "mujer",
   "maison alhambra|victorioso fearless": "hombre",
   "maison alhambra|victorioso myth": "hombre",
-  "maison alhambra|yeah parfum": "hombre",
+  "maison alhambra|yeah man": "hombre",
   "maison alhambra|yeah edp": "hombre",
   "maison alhambra|your touch f": "mujer",
   "maison alhambra|dark door sport": "hombre",
@@ -3992,8 +4297,8 @@ const GENDER_MAP = {
   "al haramain|conception": "hombre",
   "al haramain|olaf": "hombre",
   "al haramain|leif": "hombre",
-  "french avenue|liquid brune": "hombre",
-  "french avenue|veneno cocoa morado": "mujer",
+  "french avenue|liquid brun": "hombre",
+  "french avenue|veneno": "mujer",
   "french avenue|vulcan feu": "hombre",
   "french avenue|eclair affair": "mujer",
   "french avenue|aether extrait": "hombre",
@@ -4023,7 +4328,7 @@ const GENDER_MAP = {
   "rasasi|malibu": "hombre",
   "rasasi|verde": "hombre",
   "rasasi|ice": "hombre",
-  "rasasi|for her": "mujer",
+  "rasasi|for her diva": "mujer",
   "zimaya|tiramisu caramel": "mujer",
   "zimaya|tiramisu coco": "mujer",
   "zimaya|fatima velvet": "mujer",
@@ -4160,7 +4465,7 @@ function render(){
     catBrands.forEach(([brand, items]) => {
       if(activeBrand !== "__all__" && brand !== activeBrand) return;
 
-      const resolved = items.map(([name, value, type, margin]) => [name, resolvePrice(value, type, margin)]);
+      const resolved = items.map(([name, value, type]) => [name, resolvePrice(value, type)]);
       const filtered = resolved
         .filter(([name]) => name.toLowerCase().includes(q))
         .filter(([name]) => activeGender === "todos" || inferGender(name, brand) === activeGender);
@@ -4315,7 +4620,7 @@ function renderRelated(brand, currentName){
   const brandData = DATA.find(([b]) => b === brand);
   if(!brandData){ relatedEl.innerHTML = ""; return; }
   const candidates = brandData[1]
-    .map(([n, value, type, margin]) => [n, resolvePrice(value, type, margin)])
+    .map(([n, value, type]) => [n, resolvePrice(value, type)])
     .filter(([n, p]) => n !== currentName && p !== null);
   // random pero estable-ish: mezclamos y tomamos 4
   const shuffled = [...candidates].sort(() => Math.random() - 0.5).slice(0, 4);

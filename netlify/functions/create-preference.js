@@ -43,6 +43,8 @@ async function getDollarRate() {
 function resolvePrice(value, type, usdRate, customMargin) {
   if (type === "fixed") return value;
   const margen = (customMargin !== undefined && customMargin !== null) ? customMargin : MARGEN_USD;
+  // type "ars": value es el costo en pesos (ya con envío); se le suma la ganancia en USD.
+  if (type === "ars") return Math.round((value + margen * usdRate) / 500) * 500;
   const raw = (value + margen) * usdRate;
   return Math.round(raw / 500) * 500;
 }
